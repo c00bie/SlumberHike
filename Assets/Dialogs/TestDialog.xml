@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Dialog>
+	<Sentence charDelay="0.1" sentenceDelay="1" lineBreak="false">Twoja stara </Sentence>
+	<Sentence charDelay="0.2" sentenceDelay="2">Wiadomo co</Sentence>
+	<Sentence charDelay="0.05" sentenceDelay="1">A twój <Pause pauseDelay="2"/>stary</Sentence>
+	<Sentence charDelay="0.2" sentenceDelay="2">To samo</Sentence>
+</Dialog>
