@@ -26,9 +26,9 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    //Movement
+    void Update()
     {
-        //Movement
         if (Input.GetKey(KeyCode.W))
         {
             if (isGrounded)
