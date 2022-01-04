@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterController : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class CharacterController : MonoBehaviour
                 isGrounded = false;
             }
         }
-
+        
         if (Input.GetKey(KeyCode.S))
         {
             col.offset = new Vector2(col.offset.x, -0.25f);
