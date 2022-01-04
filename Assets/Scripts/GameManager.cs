@@ -9,18 +9,21 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (MythicItems.backpack)
         {
-            if (equipmentVisible)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                menu.SetActive(false);
-            }
-            else
-            {
-                menu.SetActive(true);
-            }
+                if (equipmentVisible)
+                {
+                    menu.SetActive(false);
+                }
+                else
+                {
+                    menu.SetActive(true);
+                }
 
-            equipmentVisible = !equipmentVisible;
+                equipmentVisible = !equipmentVisible;
+            }
         }
     }
 }

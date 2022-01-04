@@ -6,7 +6,6 @@ public class Item : MonoBehaviour
 {
     Inventory inventory;
     public GameObject itemButton;
-    bool pressingButton;
 
     private void Start()
     {
@@ -17,20 +16,22 @@ public class Item : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (Input.GetKey(KeyCode.E))
+            if (MythicItems.backpack || inventory.isFull[0] == false)
             {
-                for (int i = 0; i < inventory.slots.Length; i++)
+                if (Input.GetKey(KeyCode.E))
                 {
-                    if (inventory.isFull[i] == false)
+                    for (int i = 0; i < inventory.slots.Length; i++)
                     {
-                        inventory.isFull[i] = true;
-                        Instantiate(itemButton, inventory.slots[i].transform, false);
-                        Destroy(gameObject);
-                        break;
+                        if (inventory.isFull[i] == false)
+                        {
+                            inventory.isFull[i] = true;
+                            Instantiate(itemButton, inventory.slots[i].transform, false);
+                            Destroy(gameObject);
+                            break;
+                        }
                     }
                 }
             }
-            
         }
     }
 }
