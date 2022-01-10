@@ -1,17 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CharacterController : MonoBehaviour
 {
-    Rigidbody2D rb;
-    BoxCollider2D col;
-
     [SerializeField]
     float jumpForce = 7f;
     [SerializeField]
     float movementSpeed = 4.5f;
-    bool isGrounded = false;
 
+
+    bool isGrounded = false;
+    Rigidbody2D rb;
+    BoxCollider2D col;
+    public static float x;
+    public static float y=-3f;
+
+
+    void Start()
+    {
+        SetPosition(x, y, 0.0f);
+
+    }
 
     void Awake()
     {
@@ -27,9 +38,9 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    //Movement
-    void Update()
+    void FixedUpdate()
     {
+        //Movement
         if (Input.GetKey(KeyCode.W))
         {
             if (isGrounded)
@@ -38,7 +49,7 @@ public class CharacterController : MonoBehaviour
                 isGrounded = false;
             }
         }
-        
+
         if (Input.GetKey(KeyCode.S))
         {
             col.offset = new Vector2(col.offset.x, -0.25f);
@@ -58,5 +69,9 @@ public class CharacterController : MonoBehaviour
         {
             rb.velocity = new Vector2(-movementSpeed, rb.velocity.y);
         }
+    }
+    void SetPosition(float x, float y, float z)
+    {
+        transform.position = new Vector3(x, y, z);
     }
 }
