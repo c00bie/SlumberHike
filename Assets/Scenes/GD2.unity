@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95217d33cace0d6489de6b3a6928e82e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexLevel: 3
+  indexLevel: 6
   x: 8.94
   y: -3
 --- !u!61 &692499071
@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95217d33cace0d6489de6b3a6928e82e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexLevel: 6
+  indexLevel: 3
   x: -8.94
   y: -3
 --- !u!61 &958593131
