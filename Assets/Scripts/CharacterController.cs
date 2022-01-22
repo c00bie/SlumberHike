@@ -8,7 +8,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     float jumpForce = 7f;
     [SerializeField]
-    float movementSpeed = 4.5f;
+    float runningSpeed = 4.5f;
+    [SerializeField]
+    float walkingSpeed = 0.05f;
 
 
     bool isGrounded = false;
@@ -63,11 +65,29 @@ public class CharacterController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            rb.velocity = new Vector2(movementSpeed, rb.velocity.y);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                rb.velocity = new Vector2(runningSpeed, rb.velocity.y);
+            }
+            else
+            {
+                rb.transform.position += new Vector3(walkingSpeed, 0, 0);
+
+            }
+            //rb.velocity = new Vector2(movementSpeed, rb.velocity.y);
+
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            rb.velocity = new Vector2(-movementSpeed, rb.velocity.y);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                rb.velocity = new Vector2(-runningSpeed, rb.velocity.y);
+            }
+            else
+            {
+                rb.transform.position -= new Vector3(walkingSpeed, 0, 0);
+            }
+            //rb.velocity = new Vector2(-runningSpeed, rb.velocity.y);
         }
     }
     void SetPosition(float x, float y, float z)
