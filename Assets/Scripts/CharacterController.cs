@@ -42,7 +42,7 @@ public class CharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Movement
+        // Skakanie
         if (Input.GetKey(KeyCode.W))
         {
             if (isGrounded)
@@ -52,6 +52,7 @@ public class CharacterController : MonoBehaviour
             }
         }
 
+        // Kucanie
         if (Input.GetKey(KeyCode.S))
         {
             col.offset = new Vector2(col.offset.x, -0.25f);
@@ -63,6 +64,7 @@ public class CharacterController : MonoBehaviour
             col.size = new Vector2(col.size.x, 1);
         }
 
+        // Bieganie i chodzenie w prawo
         if (Input.GetKey(KeyCode.D))
         {
             if (Input.GetKey(KeyCode.LeftShift))
@@ -74,9 +76,8 @@ public class CharacterController : MonoBehaviour
                 rb.transform.position += new Vector3(walkingSpeed, 0, 0);
 
             }
-            //rb.velocity = new Vector2(movementSpeed, rb.velocity.y);
-
         }
+        // Bieganie i chodzenie w lewo
         else if (Input.GetKey(KeyCode.A))
         {
             if (Input.GetKey(KeyCode.LeftShift))
@@ -87,7 +88,6 @@ public class CharacterController : MonoBehaviour
             {
                 rb.transform.position -= new Vector3(walkingSpeed, 0, 0);
             }
-            //rb.velocity = new Vector2(-runningSpeed, rb.velocity.y);
         }
     }
     void SetPosition(float x, float y, float z)
