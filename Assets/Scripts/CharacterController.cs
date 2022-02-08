@@ -28,12 +28,14 @@ public class CharacterController : MonoBehaviour
 
     void Awake()
     {
+        // Przypisywanie wartoœci zmiennym
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        // Reset warunków skakania
         if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
@@ -42,7 +44,7 @@ public class CharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Skakanie
+        // Skakanie i wstawanie
         if (Input.GetKey(KeyCode.W))
         {
             if (isGrounded)

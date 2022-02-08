@@ -9,17 +9,20 @@ public class Slot : MonoBehaviour
 
     private void Start()
     {
+        // Przypisywanie zmiennym wartoœci
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
 
     private void Update()
     {
+        // Odblokowywanie slotów ekwipunku
         if (transform.childCount <= 0)
         {
             inventory.isFull[i] = false;
         }
     }
 
+    // Metoda odpowiadaj¹ca za upuszczanie przedmiotów
     public void DropItem()
     {
         foreach (Transform child in transform)

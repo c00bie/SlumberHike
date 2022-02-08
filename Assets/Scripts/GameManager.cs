@@ -17,7 +17,10 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("P1");
     }
-
+    public void Options()
+    {
+        SceneManager.LoadScene("MainOptions");
+    }
     public void QuitGame()
     {
         Debug.Log("Now game would close itself");
