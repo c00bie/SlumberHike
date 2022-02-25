@@ -13,7 +13,9 @@ public class CharacterController : MonoBehaviour
     float walkingSpeed = 0.05f;
 
 
-    bool isGrounded = false;
+    bool holdingObject = false;
+    GameObject holdedObject;
+    public bool isGrounded = false;
     Rigidbody2D rb;
     BoxCollider2D col;
     public static float x;
@@ -44,11 +46,23 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // Od³¹czanie obiektu od gracza
+        if (holdingObject)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                this.AttachObject(holdedObject);
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
         // Skakanie i wstawanie
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && holdingObject == false)
         {
             if (isGrounded)
             {
@@ -58,7 +72,7 @@ public class CharacterController : MonoBehaviour
         }
 
         // Kucanie
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && holdingObject == false)
         {
             //animator.SetBool("Crouch", true);
             col.offset = new Vector2(col.offset.x, -0.25f);
@@ -74,7 +88,7 @@ public class CharacterController : MonoBehaviour
         // Bieganie i chodzenie w prawo
         if (Input.GetKey(KeyCode.D))
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && holdingObject == false)
             {
                 rb.velocity = new Vector2(runningSpeed, rb.velocity.y);
             }
@@ -87,7 +101,7 @@ public class CharacterController : MonoBehaviour
         // Bieganie i chodzenie w lewo
         else if (Input.GetKey(KeyCode.A))
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && holdingObject == false)
             {
                 rb.velocity = new Vector2(-runningSpeed, rb.velocity.y);
             }
@@ -97,6 +111,30 @@ public class CharacterController : MonoBehaviour
             }
         }
     }
+
+    // Metoda do³¹czaj¹ca albo od³¹czaj¹ca dany obiekt jako dziecko gracza
+    public void AttachObject(GameObject movableObject)
+    {
+        if (holdingObject)
+        {
+            movableObject.transform.parent = null;
+
+            holdingObject = false;
+            holdedObject = null;
+
+            walkingSpeed = 0.05f;
+        }
+        else
+        {
+            movableObject.transform.SetParent(gameObject.transform, true);
+
+            holdingObject = true;
+            holdedObject = movableObject;
+
+            walkingSpeed = 0.025f;
+        }
+    }
+
     void SetPosition(float x, float y, float z)
     {
         transform.position = new Vector3(x, y, z);
