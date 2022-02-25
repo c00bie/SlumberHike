@@ -29,7 +29,6 @@ public class ChangeSceneScript : MonoBehaviour
     {
         if (this.GetComponents<Collider2D>()[0].IsTouchingLayers(Player))
         {
-            Debug.Log("test");
             CharacterController.x = this.x;
             CharacterController.y = this.y;
             SceneManager.LoadScene(this.indexLevel, LoadSceneMode.Single);
