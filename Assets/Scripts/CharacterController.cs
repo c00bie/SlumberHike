@@ -18,6 +18,8 @@ public class CharacterController : MonoBehaviour
     BoxCollider2D col;
     public static float x;
     public static float y=-3f;
+    public Animator animator;
+
 
 
     void Start()
@@ -44,6 +46,7 @@ public class CharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
+        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
         // Skakanie i wstawanie
         if (Input.GetKey(KeyCode.W))
         {
@@ -57,11 +60,13 @@ public class CharacterController : MonoBehaviour
         // Kucanie
         if (Input.GetKey(KeyCode.S))
         {
+            //animator.SetBool("Crouch", true);
             col.offset = new Vector2(col.offset.x, -0.25f);
             col.size = new Vector2(col.size.x, 0.5f);
         }
         else
         {
+            //animator.SetBool("Crouch", false);
             col.offset = new Vector2(col.offset.x, 0);
             col.size = new Vector2(col.size.x, 1);
         }

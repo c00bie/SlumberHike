@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class Variable : MonoBehaviour
+public class ChangeSceneScript : MonoBehaviour
 {
     [SerializeField]
     public int indexLevel;
