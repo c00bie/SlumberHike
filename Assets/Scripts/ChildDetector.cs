@@ -30,7 +30,7 @@ public class ChildDetector : MonoBehaviour
         {
             gameObject.layer = 6;
         }
-        else
+        else if(player.transform.position.y > gameObject.transform.position.y + 1.95)
         {
             gameObject.layer = 0;
         }
