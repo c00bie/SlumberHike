@@ -299,7 +299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Twoja stara zapierdala\nA tw\xF3j stary te\u017C"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1194,7 +1194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1320063096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1216,6 +1216,7 @@ MonoBehaviour:
     - {fileID: 4900000, guid: d2830dc7de5d2f24cbb3b6b366572fcf, type: 3}
     output: {fileID: 0}
   interactions: []
+  testDialog: {fileID: 0}
 --- !u!212 &1320063097
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1944,7 +1945,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
