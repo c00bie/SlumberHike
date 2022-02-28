@@ -1,109 +1,168 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Xml;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
-[System.Serializable]
-public class DialogParser
+namespace SH.Dialogs
 {
-    [SerializeField]
-    private float defaultCharDelay = 0.1f;
-    [SerializeField]
-    private float defaultSentenceDelay = 0.5f;
-    [SerializeField]
-    private float defaultPauseDelay = 1f;
-    [SerializeField]
-    private bool defaultLineBreak = true;
-    [SerializeField]
-    private List<TextAsset> dialogs = new List<TextAsset>();
-    [SerializeField]
-    private GameObject output;
-
-    public IEnumerator ProcessDialogs()
+    [Serializable]
+    public class DialogParser
     {
-        output.SetActive(true);
-        var outputText = output.GetComponentInChildren<TMP_Text>();
-        if (outputText == null)
+        [SerializeField]
+        private double defaultCharDelay = 0.1f;
+        [SerializeField]
+        private double defaultSentenceDelay = 0.5f;
+        [SerializeField]
+        private double defaultPauseDelay = 1f;
+        [SerializeField]
+        private bool defaultLineBreak = true;
+        [SerializeField]
+        private List<TextAsset> dialogs = new List<TextAsset>();
+        [SerializeField]
+        private TMP_Text output;
+
+        public string StartingDialog { get; set; }
+
+        private List<Dialog> parsedDialogs = new List<Dialog>();
+        private bool parsing = false;
+        private bool endProcess = false;
+
+        public IEnumerator ParseDialogs()
         {
-            Debug.LogError("Output text not found");
-            yield break;
-        }
-        outputText.text = "";
-        foreach (TextAsset dialog in dialogs)
-        {
-            XmlReader reader = XmlReader.Create(new StringReader(dialog.text));
-            reader.ReadToFollowing("Dialog");
-            Dictionary<string, string> mainattributes = new Dictionary<string, string>();
-            if (reader.HasAttributes)
+            parsing = true;
+            Debug.Log("Parsing dialogs started");
+            parsedDialogs.Clear();
+            foreach (var asset in dialogs)
             {
-                while (reader.MoveToNextAttribute())
-                    mainattributes[reader.Name] = reader.Value;
-                reader.MoveToContent();
-            }
-            while (reader.ReadToFollowing("Sentence"))
-            {
-                Dictionary<string, string> attributes = mainattributes.DeepCopy();
-                if (reader.HasAttributes)
+                try
                 {
-                    while (reader.MoveToNextAttribute())
-                        attributes[reader.Name] = reader.Value;
-                    reader.MoveToContent();
+                    parsedDialogs.Add(Dialog.Deserialize(asset.text));
                 }
-                var sub = reader.ReadSubtree();
-                if (sub != null)
-                    while (sub.Read())
-                    {
-                        switch (sub.NodeType)
+                catch (Exception ex)
+                {
+                    Debug.LogException(ex);
+                }
+            }
+            Debug.Log("Parsing dialogs ended, found {0} dialogs".Format(parsedDialogs.Count));
+            parsing = false;
+            yield return null;
+        }
+
+        public IEnumerator ProcessDialogs()
+        {
+            endProcess = false;
+            yield return new WaitUntil(() => !parsing);
+            if (output is null)
+            {
+                Debug.LogError("Output text is null");
+                yield break;
+            }
+            output.gameObject.SetActive(true);
+            output.text = "";
+
+            int currDialog = 0;
+            if (!StartingDialog.IsNullOrEmpty())
+                currDialog = parsedDialogs.FindIndex(d => d.ID == StartingDialog);
+            while (currDialog < parsedDialogs.Count && currDialog != -1)
+            {
+                Dialog d = parsedDialogs[currDialog];
+                yield return ProcessDialog(d);
+                if (endProcess)
+                {
+                    endProcess = false;
+                    yield break;
+                }
+                currDialog++;
+            }
+        }
+
+        public IEnumerator ProcessDialog(string id) => ProcessDialog(FindDialogWithID(id));
+
+        public IEnumerator ProcessDialog(Dialog d)
+        {
+            if (d is null)
+            {
+                Debug.LogError("Dialog is null");
+                yield break;
+            }
+            output.text = "";
+            int elem = 0;
+            while (elem >= 0 && elem < d.Content.Count)
+            {
+                IDialogElement dialog = d.Content[elem];
+                switch (dialog)
+                {
+                    case Sentence s:
                         {
-                            case XmlNodeType.Element:
-                                Dictionary<string, string> subattributes = attributes.DeepCopy();
-                                if (sub.HasAttributes)
+                            if (s.Clear.Chain())
+                                output.text = "";
+                            foreach (ISentenceElement sel in s.Content)
+                            {
+                                switch (sel)
                                 {
-                                    while (sub.MoveToNextAttribute())
-                                        subattributes[sub.Name] = sub.Value;
-                                    sub.MoveToContent();
-                                }
-                                switch (sub.Name)
-                                {
-                                    case "Pause":
-                                        float pauseDelay = defaultPauseDelay;
-                                        if (subattributes.ContainsKey("pauseDelay"))
-                                            float.TryParse(subattributes["pauseDelay"], NumberStyles.Float, CultureInfo.InvariantCulture, out pauseDelay);
-                                        yield return new WaitForSeconds(pauseDelay);
+                                    case Pause p:
+                                        yield return new WaitForSeconds((float)p.Delay.Chain(d.PauseDelay, defaultPauseDelay));
+                                        break;
+                                    case Text t:
+                                        {
+                                            foreach (char c in t)
+                                            {
+                                                output.text += c;
+                                                yield return new WaitForSeconds((float)s.CharDelay.Chain(d.CharDelay, defaultCharDelay));
+                                            }
+                                            if (!t.Content.EndsWith(" "))
+                                                output.text += " ";
+                                        }
+                                        break;
+                                    case Break b:
+                                        output.text += "\n";
                                         break;
                                 }
-                                break;
-                            case XmlNodeType.Text:
-                                float charDelay = defaultCharDelay;
-                                if (attributes.ContainsKey("charDelay"))
-                                    float.TryParse(attributes["charDelay"], NumberStyles.Float, CultureInfo.InvariantCulture, out charDelay);
-                                if (charDelay > 0)
+                            }
+                            if (s.LineBreak.Chain(d.LineBreak, defaultLineBreak))
+                                output.text += "\n";
+                            yield return new WaitForSeconds((float)s.SentenceDelay.Chain(d.SentenceDelay, defaultSentenceDelay));
+                            if (!s.Goto.IsNullOrEmpty())
+                            {
+                                switch (s.Goto)
                                 {
-                                    foreach (char c in sub.Value)
-                                    {
-                                        outputText.text += c;
-                                        yield return new WaitForSeconds(charDelay);
-                                    }
+                                    case "$end":
+                                        output.text = "";
+                                        yield break;
+                                    default:
+                                        {
+                                            var next = FindDialogElementWithID(d, s.Goto);
+                                            if (next != null)
+                                                elem = d.Content.IndexOf(next);
+                                        }
+                                        break;
                                 }
-                                else
-                                    outputText.text += sub.Value;
-                                break;
+                            }
                         }
-                    }
-                float sentenceDelay = defaultSentenceDelay;
-                if (attributes.ContainsKey("sentenceDelay"))
-                    float.TryParse(attributes["sentenceDelay"], NumberStyles.Float, CultureInfo.InvariantCulture, out sentenceDelay);
-                yield return new WaitForSeconds(sentenceDelay);
-                bool lineBreak = defaultLineBreak;
-                if (attributes.ContainsKey("lineBreak"))
-                    bool.TryParse(attributes["lineBreak"], out lineBreak);
-                if (lineBreak)
-                    outputText.text += "\n";
+                        break;
+                    default:
+                        continue;
+                }
+                elem++;
             }
-            yield return new WaitForSeconds(2);
+            yield return null;
+        }
+
+        private IDialogElement FindDialogElementWithID(Dialog d, string id)
+        {
+            if (id.IsNullOrEmpty())
+                return null;
+            return d.Content.Find(e => e.ID == id);
+        }
+
+        private Dialog FindDialogWithID(string id)
+        {
+            return parsedDialogs.Find(d => d.ID == id);
         }
     }
 }
