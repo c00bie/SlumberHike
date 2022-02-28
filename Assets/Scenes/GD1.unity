@@ -154,14 +154,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogParser:
-    defaultCharDelay: 0.1
+    defaultCharDelay: 0.10000000149011612
     defaultSentenceDelay: 0.5
     defaultPauseDelay: 1
     defaultLineBreak: 1
     dialogs:
     - {fileID: 4900000, guid: d2830dc7de5d2f24cbb3b6b366572fcf, type: 3}
-    output: {fileID: 0}
+    output: {fileID: 990952361}
   interactions: []
+  testDialog: {fileID: 4900000, guid: d2830dc7de5d2f24cbb3b6b366572fcf, type: 3}
 --- !u!212 &176901229
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -472,7 +473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Twoja stara zapierdala\nA tw\xF3j stary te\u017C"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -824,7 +825,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 7
-  movementSpeed: 4.5
+  runningSpeed: 4.5
+  walkingSpeed: 0.05
 --- !u!50 &1283996876
 Rigidbody2D:
   serializedVersion: 4
