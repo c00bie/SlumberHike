@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/MainOptions.unity
     guid: e388b9877629cea4db6032bf230d6569
+  - enabled: 1
+    path: Assets/Scenes/Chapter1/Puzzle.unity
+    guid: 8865cef76db310647b43c4e2b0ac7596
   m_configObjects: {}
