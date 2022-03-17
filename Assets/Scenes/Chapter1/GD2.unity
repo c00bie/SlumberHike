@@ -156,6 +156,7 @@ MonoBehaviour:
   indexLevel: 3
   x: -8.94
   y: -3
+  onClick: 0
 --- !u!61 &393249629
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -384,6 +385,7 @@ MonoBehaviour:
   indexLevel: 6
   x: 8.94
   y: -3
+  onClick: 1
 --- !u!61 &692499071
 BoxCollider2D:
   m_ObjectHideFlags: 0

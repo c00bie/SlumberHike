@@ -12,6 +12,8 @@ public class ChangeSceneScript : MonoBehaviour
     public float x;
     [SerializeField]
     public float y;
+    [SerializeField]
+    public bool onClick;
 
 
 
@@ -27,12 +29,25 @@ public class ChangeSceneScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (this.GetComponents<Collider2D>()[0].IsTouchingLayers(Player))
+        if (this.onClick)
         {
-            CharacterController.x = this.x;
-            CharacterController.y = this.y;
-            SceneManager.LoadScene(this.indexLevel, LoadSceneMode.Single);
+            if (this.GetComponents<Collider2D>()[0].IsTouchingLayers(Player) && Input.GetKeyDown(KeyCode.E))
+            {
+                CharacterController.x = this.x;
+                CharacterController.y = this.y;
+                SceneManager.LoadScene(this.indexLevel, LoadSceneMode.Single);
+            }
         }
+        else
+        {
+            if (this.GetComponents<Collider2D>()[0].IsTouchingLayers(Player))
+            {
+                CharacterController.x = this.x;
+                CharacterController.y = this.y;
+                SceneManager.LoadScene(this.indexLevel, LoadSceneMode.Single);
+            }
+        }
+        
     }
 
 
