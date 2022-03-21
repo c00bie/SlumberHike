@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class CharacterController : MonoBehaviour
 {
     [SerializeField]
@@ -13,13 +14,14 @@ public class CharacterController : MonoBehaviour
     float walkingSpeed = 0.05f;
 
 
+
     bool holdingObject = false;
     GameObject holdedObject;
     public bool isGrounded = false;
     Rigidbody2D rb;
     BoxCollider2D col;
     public static float x;
-    public static float y=-3f;
+    public static float y = -3f;
     public Animator animator;
 
 
@@ -60,6 +62,7 @@ public class CharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
+
         animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
         // Skakanie i wstawanie
         if (Input.GetKey(KeyCode.W) && holdingObject == false)
@@ -82,7 +85,7 @@ public class CharacterController : MonoBehaviour
         {
             //animator.SetBool("Crouch", false);
             col.offset = new Vector2(col.offset.x, 0);
-            col.size = new Vector2(col.size.x, 1);
+            col.size = new Vector2(col.size.x, 4);
         }
 
         // Bieganie i chodzenie w prawo
@@ -140,3 +143,4 @@ public class CharacterController : MonoBehaviour
         transform.position = new Vector3(x, y, z);
     }
 }
+ 
