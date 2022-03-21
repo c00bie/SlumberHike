@@ -21,20 +21,25 @@ public class CharacterController : MonoBehaviour
     public static float x;
     public static float y=-3f;
     public Animator animator;
-
+    private NewInput input;
+    private SpriteRenderer spriteRenderer;
+    bool crouched = false;
 
 
     void Start()
     {
-        SetPosition(x, y, 0.0f);
-
+        transform.position = new Vector3(x, y, 0f);
     }
 
     void Awake()
     {
         // Przypisywanie wartoœci zmiennym
+        input = new NewInput();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        input.Enable();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -51,18 +56,21 @@ public class CharacterController : MonoBehaviour
         // Od³¹czanie obiektu od gracza
         if (holdingObject)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (input.Actions.Grab.IsPressed())
             {
-                this.AttachObject(holdedObject);
+                AttachObject(holdedObject);
             }
         }
     }
 
     void FixedUpdate()
     {
-        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        float horizontal = input.Movement.Horizontal.ReadValue<float>();
+        if (horizontal != 0)
+            spriteRenderer.flipX = horizontal > 0;
+        animator.SetFloat("Horizontal", horizontal);
         // Skakanie i wstawanie
-        if (Input.GetKey(KeyCode.W) && holdingObject == false)
+        if (input.Movement.Jump.IsPressed() && holdingObject == false)
         {
             if (isGrounded)
             {
@@ -72,42 +80,32 @@ public class CharacterController : MonoBehaviour
         }
 
         // Kucanie
-        if (Input.GetKey(KeyCode.S) && holdingObject == false)
+        if (!crouched && input.Movement.Crouch.IsPressed() && holdingObject == false)
         {
-            //animator.SetBool("Crouch", true);
+            animator.SetBool("Crouch", true);
             col.offset = new Vector2(col.offset.x, -0.25f);
             col.size = new Vector2(col.size.x, 0.5f);
+            crouched = true;
         }
-        else
+        else if (crouched && !input.Movement.Crouch.IsPressed())
         {
-            //animator.SetBool("Crouch", false);
+            animator.SetBool("Crouch", false);
             col.offset = new Vector2(col.offset.x, 0);
-            col.size = new Vector2(col.size.x, 1);
+            col.size = new Vector2(col.size.x, 4);
+            crouched = false;
         }
 
         // Bieganie i chodzenie w prawo
-        if (Input.GetKey(KeyCode.D))
+        if (horizontal != 0)
         {
-            if (Input.GetKey(KeyCode.LeftShift) && holdingObject == false)
+            if (input.Movement.Run.IsPressed() && holdingObject == false)
             {
-                rb.velocity = new Vector2(runningSpeed, rb.velocity.y);
+                rb.velocity = new Vector2(runningSpeed * horizontal, rb.velocity.y);
             }
             else
             {
-                rb.transform.position += new Vector3(walkingSpeed, 0, 0);
+                rb.transform.position += new Vector3(walkingSpeed * horizontal, 0, 0);
 
-            }
-        }
-        // Bieganie i chodzenie w lewo
-        else if (Input.GetKey(KeyCode.A))
-        {
-            if (Input.GetKey(KeyCode.LeftShift) && holdingObject == false)
-            {
-                rb.velocity = new Vector2(-runningSpeed, rb.velocity.y);
-            }
-            else
-            {
-                rb.transform.position -= new Vector3(walkingSpeed, 0, 0);
             }
         }
     }
@@ -133,10 +131,5 @@ public class CharacterController : MonoBehaviour
 
             walkingSpeed = 0.025f;
         }
-    }
-
-    void SetPosition(float x, float y, float z)
-    {
-        transform.position = new Vector3(x, y, z);
     }
 }
