@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class CharacterController : MonoBehaviour
 {
     [SerializeField]
@@ -13,13 +14,14 @@ public class CharacterController : MonoBehaviour
     float walkingSpeed = 0.05f;
 
 
+
     bool holdingObject = false;
     GameObject holdedObject;
     public bool isGrounded = false;
     Rigidbody2D rb;
     BoxCollider2D col;
     public static float x;
-    public static float y=-3f;
+    public static float y = -3f;
     public Animator animator;
     private NewInput input;
     private SpriteRenderer spriteRenderer;
@@ -33,7 +35,7 @@ public class CharacterController : MonoBehaviour
 
     void Awake()
     {
-        // Przypisywanie wartoœci zmiennym
+        // Przypisywanie wartoï¿½ci zmiennym
         input = new NewInput();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
@@ -44,7 +46,7 @@ public class CharacterController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        // Reset warunków skakania
+        // Reset warunkï¿½w skakania
         if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
@@ -53,7 +55,7 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
-        // Od³¹czanie obiektu od gracza
+        // Odï¿½ï¿½czanie obiektu od gracza
         if (holdingObject)
         {
             if (input.Actions.Grab.IsPressed())
@@ -110,7 +112,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    // Metoda do³¹czaj¹ca albo od³¹czaj¹ca dany obiekt jako dziecko gracza
+    // Metoda doï¿½ï¿½czajï¿½ca albo odï¿½ï¿½czajï¿½ca dany obiekt jako dziecko gracza
     public void AttachObject(GameObject movableObject)
     {
         if (holdingObject)
@@ -133,3 +135,4 @@ public class CharacterController : MonoBehaviour
         }
     }
 }
+ 

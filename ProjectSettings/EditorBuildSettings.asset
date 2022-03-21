@@ -32,5 +32,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/MainOptions.unity
     guid: e388b9877629cea4db6032bf230d6569
-  m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: a9af1e14a1bdbe349a83d89e017ad051, type: 2}
+  - enabled: 1
+    path: Assets/Scenes/Chapter1/Puzzle.unity
+    guid: 8865cef76db310647b43c4e2b0ac7596
+  m_configObjects: {com.unity.input.settings: {fileID: 11400000, guid: a9af1e14a1bdbe349a83d89e017ad051,
+      type: 2}}
