@@ -222,6 +222,15 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Discard"",
+                    ""type"": ""Button"",
+                    ""id"": ""d0b1d8fe-a2bd-4b23-b2b9-330f32d825bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -233,6 +242,17 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f5faea2-09a0-429c-a9cc-e81ead2db1e1"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Discard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -250,6 +270,7 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_Grab = m_Actions.FindAction("Grab", throwIfNotFound: true);
+        m_Actions_Discard = m_Actions.FindAction("Discard", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -367,11 +388,13 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Actions;
     private IActionsActions m_ActionsActionsCallbackInterface;
     private readonly InputAction m_Actions_Grab;
+    private readonly InputAction m_Actions_Discard;
     public struct ActionsActions
     {
         private @NewInput m_Wrapper;
         public ActionsActions(@NewInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Grab => m_Wrapper.m_Actions_Grab;
+        public InputAction @Discard => m_Wrapper.m_Actions_Discard;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -384,6 +407,9 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                 @Grab.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGrab;
                 @Grab.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGrab;
                 @Grab.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGrab;
+                @Discard.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDiscard;
+                @Discard.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDiscard;
+                @Discard.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDiscard;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -391,6 +417,9 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                 @Grab.started += instance.OnGrab;
                 @Grab.performed += instance.OnGrab;
                 @Grab.canceled += instance.OnGrab;
+                @Discard.started += instance.OnDiscard;
+                @Discard.performed += instance.OnDiscard;
+                @Discard.canceled += instance.OnDiscard;
             }
         }
     }
@@ -405,5 +434,6 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
     public interface IActionsActions
     {
         void OnGrab(InputAction.CallbackContext context);
+        void OnDiscard(InputAction.CallbackContext context);
     }
 }
