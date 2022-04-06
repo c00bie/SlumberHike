@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,8 @@ namespace CM
         float runningSpeed = 4.5f;
         [SerializeField]
         float walkingSpeed = 0.05f;
+        [SerializeField] 
+        GameObject playerPrefab;
 
 
 
@@ -135,6 +138,28 @@ namespace CM
 
                 walkingSpeed = 0.025f;
             }
+        }
+
+        // Metoda zabijająca postać gracza i wczytująca jego ostatni zapis lub zaczynająca od nowa grę, jeśli takiego nie ma
+        public void KillPlayer(string killerName)
+        {
+            Debug.Log("You were killed by " + killerName);
+            if (File.Exists(Application.persistentDataPath + "/save.wth"))
+            {
+                DO.PlayerData data = DO.SaveGame.LoadPlayer();
+                //GameObject player = Instantiate(playerPrefab, new Vector3(data.position[0], data.position[1], data.position[2]), Quaternion.identity);
+
+                StartCoroutine(RC.SceneChanger.MovePlayerToScene(data.levelId, gameObject, new Vector3(data.position[0], data.position[1], data.position[2])));
+                //Destroy(gameObject);
+            }
+            else
+            {
+                //GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
+
+                StartCoroutine(RC.SceneChanger.MovePlayerToScene(3, gameObject, new Vector3(0, -2.49f, 0)));
+                //Destroy(gameObject);
+            }
+            
         }
     }
 }
