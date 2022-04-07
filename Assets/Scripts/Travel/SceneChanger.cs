@@ -26,8 +26,10 @@ namespace RC
 
             Scene nextThisScene = SceneManager.GetSceneByBuildIndex(nextSceneId);
 
-            player.transform.position = position;
+            
+            
             SceneManager.MoveGameObjectToScene(player, nextThisScene);
+            player.transform.position = position;
 
             while (!nextScene.isDone)
             {
@@ -36,8 +38,8 @@ namespace RC
             }
 
             SceneManager.SetActiveScene(nextThisScene);
-
             SceneManager.UnloadSceneAsync(currentId);
+
         }
     }
 }

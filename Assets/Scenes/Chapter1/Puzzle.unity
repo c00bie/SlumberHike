@@ -620,6 +620,7 @@ MonoBehaviour:
   puzzle6: {fileID: 42084463}
   puzzle7: {fileID: 113229515}
   puzzle8: {fileID: 958304461}
+  player: {fileID: 2199336845035895759, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
   puzzle1Position: {x: 0, y: 0, z: 0}
   puzzle2Position: {x: 0, y: 0, z: 0}
   puzzle3Position: {x: 0, y: 0, z: 0}
