@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,47 +6,10 @@ using UnityEngine.SceneManagement;
 //RC - Room Changing
 namespace RC
 {
-    public class ChangeScene : MonoBehaviour
+    public static class SceneChanger
     {
-        [SerializeField]
-        Vector3 position;
-        [SerializeField]
-        int nextSceneId;
-        [SerializeField]
-        bool unlocked = true;
-
-        GameObject player;
-        NewInput input;
-        bool playerInRange = false;
-
-        private void Awake()
-        {
-            input = new NewInput();
-            input.Enable();
-        }
-
-        //Sprawdzanie czy gracz jest w zasiêgu oraz przypisywanie go do zmiennej
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            player = collision.gameObject;
-            playerInRange = true;
-        }
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            playerInRange = false;
-        }
-
-        private void Update()
-        {
-            //Wykrywanie czy gracz próbuje przejœæ na inn¹ scenê
-            if (playerInRange && input.Actions.Grab.triggered && unlocked)
-            {
-                StartCoroutine(MovePlayerToScene());
-            }
-        }
-
         //IEnumerator ³aduj¹cy now¹ scenê, przenosz¹cy na ni¹ gracza oraz zamykaj¹cy star¹ scenê
-        IEnumerator MovePlayerToScene()
+        public static IEnumerator MovePlayerToScene(int nextSceneId, GameObject player, Vector3 position)
         {
             Scene currentScene = SceneManager.GetActiveScene();
             int currentId = currentScene.buildIndex;
@@ -64,8 +26,10 @@ namespace RC
 
             Scene nextThisScene = SceneManager.GetSceneByBuildIndex(nextSceneId);
 
-            player.transform.position = position;
+            
+            
             SceneManager.MoveGameObjectToScene(player, nextThisScene);
+            player.transform.position = position;
 
             while (!nextScene.isDone)
             {
@@ -74,8 +38,8 @@ namespace RC
             }
 
             SceneManager.SetActiveScene(nextThisScene);
-
             SceneManager.UnloadSceneAsync(currentId);
+
         }
     }
 }
