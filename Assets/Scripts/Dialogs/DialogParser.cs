@@ -25,6 +25,8 @@ namespace SH.Dialogs
         private List<TextAsset> dialogs = new List<TextAsset>();
         [SerializeField]
         private TMP_Text output;
+        [SerializeField]
+        private AudioSource audio;
 
         public string StartingDialog { get; set; }
 
@@ -34,6 +36,7 @@ namespace SH.Dialogs
 
         public IEnumerator ParseDialogs()
         {
+            output.transform.parent.gameObject.SetActive(false);
             parsing = true;
             Debug.Log("Parsing dialogs started");
             parsedDialogs.Clear();
@@ -62,7 +65,7 @@ namespace SH.Dialogs
                 Debug.LogError("Output text is null");
                 yield break;
             }
-            output.gameObject.SetActive(true);
+            output.transform.parent.gameObject.SetActive(true);
             output.text = "";
 
             int currDialog = 0;
@@ -79,6 +82,7 @@ namespace SH.Dialogs
                 }
                 currDialog++;
             }
+            output.transform.parent.gameObject.SetActive(false);
         }
 
         public IEnumerator ProcessDialog(string id) => ProcessDialog(FindDialogWithID(id));
@@ -99,7 +103,7 @@ namespace SH.Dialogs
                 {
                     case Sentence s:
                         {
-                            if (s.Clear.Chain())
+                            if (s.Clear.Chain(true))
                                 output.text = "";
                             foreach (ISentenceElement sel in s.Content)
                             {
@@ -113,6 +117,7 @@ namespace SH.Dialogs
                                             foreach (char c in t)
                                             {
                                                 output.text += c;
+                                                audio?.Play();
                                                 yield return new WaitForSeconds((float)s.CharDelay.Chain(d.CharDelay, defaultCharDelay));
                                             }
                                             if (!t.Content.EndsWith(" "))

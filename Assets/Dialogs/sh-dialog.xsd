@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Dialog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Sentence" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType mixed="true">
+            <xs:sequence>
+              <xs:element name="Pause" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:float" name="delay"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="id" use="optional"/>
+            <xs:attribute type="xs:string" name="speaker" use="optional"/>
+            <xs:attribute type="xs:boolean" name="lineBreak" use="optional"/>
+            <xs:attribute type="xs:string" name="goto" use="optional"/>
+            <xs:attribute type="xs:float" name="charDelay" use="optional"/>
+            <xs:attribute type="xs:float" name="sentenceDelay" use="optional"/>
+            <xs:attribute type="xs:boolean" name="clear" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:boolean" name="lineBreak"/>
+      <xs:attribute type="xs:float" name="charDelay"/>
+      <xs:attribute type="xs:float" name="sentenceDelay"/>
+      <xs:attribute type="xs:float" name="pauseDelay"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
