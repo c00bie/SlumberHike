@@ -28,7 +28,6 @@ public class Puzzle : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    public static bool afterPuzzle = false;
 
 
     public Vector3 puzzle1Position;
@@ -74,10 +73,9 @@ public class Puzzle : MonoBehaviour
                 }
             }
         }
-        if ((puzzle5.transform.position == puzzle1Position && puzzle7.transform.position == puzzle2Position && puzzle4.transform.position == puzzle3Position && puzzle3.transform.position == puzzle4Position && puzzle1.transform.position == puzzle5Position && puzzle8.transform.position == puzzle6Position && puzzle2.transform.position == puzzle7Position && puzzle6.transform.position == puzzle8Position)|| Input.GetKeyDown(KeyCode.E))
+        if ((puzzle5.transform.position == puzzle1Position && puzzle7.transform.position == puzzle2Position && puzzle4.transform.position == puzzle3Position && puzzle3.transform.position == puzzle4Position && puzzle1.transform.position == puzzle5Position && puzzle8.transform.position == puzzle6Position && puzzle2.transform.position == puzzle7Position && puzzle6.transform.position == puzzle8Position)|| Input.GetKeyDown(KeyCode.X))
         {
-            afterPuzzle = true;
-            StartCoroutine(RC.SceneChanger.MovePlayerToScene(4, player, new Vector3(42.11f, -2.25f, 0f)));
+            SceneManager.UnloadSceneAsync(2);
         }
 
     }

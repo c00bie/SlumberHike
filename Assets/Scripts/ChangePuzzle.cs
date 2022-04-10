@@ -30,14 +30,7 @@ public class ChangePuzzle : MonoBehaviour
     {
 
         Player = LayerMask.GetMask("Player");
-        if (Puzzle.afterPuzzle)
-        {
-            mainCamera.transform.position = cameraPosition.transform.position;
-            puzzl1.SetActive(false);
-            puzzl2.SetActive(true);
-            gameObject.SetActive(false);
-            Puzzle.afterPuzzle = false;
-        }
+
     }
 
 
@@ -45,7 +38,11 @@ public class ChangePuzzle : MonoBehaviour
     {   
         if (this.GetComponents<Collider2D>()[0].IsTouchingLayers(Player) && Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene(this.indexLevel, LoadSceneMode.Single);
+            gameObject.SetActive(false);
+            SceneManager.LoadScene(this.indexLevel, LoadSceneMode.Additive);
+            puzzl1.SetActive(false);
+            puzzl2.SetActive(true);
+
         }
     }
 
