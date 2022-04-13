@@ -25,6 +25,9 @@ public class Puzzle : MonoBehaviour
     private GameObject puzzle7;
     [SerializeField]
     private GameObject puzzle8;
+    [SerializeField]
+    private GameObject player;
+
 
 
     public Vector3 puzzle1Position;
@@ -70,11 +73,10 @@ public class Puzzle : MonoBehaviour
                 }
             }
         }
-        if (puzzle5.transform.position == puzzle1Position && puzzle7.transform.position == puzzle2Position && puzzle4.transform.position == puzzle3Position && puzzle3.transform.position == puzzle4Position && puzzle1.transform.position == puzzle5Position && puzzle8.transform.position == puzzle6Position && puzzle2.transform.position == puzzle7Position && puzzle6.transform.position == puzzle8Position)
+        if ((puzzle5.transform.position == puzzle1Position && puzzle7.transform.position == puzzle2Position && puzzle4.transform.position == puzzle3Position && puzzle3.transform.position == puzzle4Position && puzzle1.transform.position == puzzle5Position && puzzle8.transform.position == puzzle6Position && puzzle2.transform.position == puzzle7Position && puzzle6.transform.position == puzzle8Position)|| Input.GetKeyDown(KeyCode.X))
         {
-            ChangePuzzle.x = false;
-            ChangePuzzle.y = true;
-            SceneManager.LoadScene(5, LoadSceneMode.Single);
+            SceneManager.UnloadSceneAsync(2);
         }
+
     }
 }

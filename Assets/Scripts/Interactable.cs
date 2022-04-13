@@ -16,14 +16,24 @@ public class Interactable : MonoBehaviour
     [SerializeField]
     private TextAsset testDialog;
 
+    bool playing = false;
+
     private void Awake()
     {
         StartCoroutine(dialogParser.ParseDialogs());
-        StartCoroutine(dialogParser.ProcessDialogs());
         //Dialog d = new Dialog();
         //d.Content.Add(new Sentence("Test"));
         //d.Content.Add(new Sentence(new Text("Test"), new Pause(), new Text("Test cd")) { Goto = "$end" });
         //Debug.Log(d.Serialize());
         //StartCoroutine(dialogParser.ProcessDialogs());
+    }
+
+    private void Update()
+    {
+        if (!playing && Input.GetKeyDown(KeyCode.T))
+        {
+            playing = true;
+            StartCoroutine(dialogParser.ProcessDialogs());
+        }
     }
 }
