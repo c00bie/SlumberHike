@@ -2939,7 +2939,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732ebaa3cb3d15d40abb2d4404d6c178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 7.7, y: -2.49, z: 0}
+  position: {x: 7.89, y: -2.6950002, z: 0}
+  cameraPosition: {x: 0, y: 0, z: 0}
   nextSceneId: 4
   unlocked: 1
 --- !u!1 &1240707629

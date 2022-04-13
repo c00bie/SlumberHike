@@ -149,14 +149,14 @@ namespace CM
                 DO.PlayerData data = DO.SaveGame.LoadPlayer();
                 //GameObject player = Instantiate(playerPrefab, new Vector3(data.position[0], data.position[1], data.position[2]), Quaternion.identity);
 
-                StartCoroutine(RC.SceneChanger.MovePlayerToScene(data.levelId, gameObject, new Vector3(data.position[0], data.position[1], data.position[2])));
+                StartCoroutine(RC.SceneChanger.MovePlayerToScene(data.levelId, gameObject, new Vector3(data.position[0], data.position[1], data.position[2]), new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2])));
                 //Destroy(gameObject);
             }
             else
             {
                 //GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
 
-                StartCoroutine(RC.SceneChanger.MovePlayerToScene(3, gameObject, new Vector3(0, -2.49f, 0)));
+                StartCoroutine(RC.SceneChanger.MovePlayerToScene(3, gameObject, new Vector3(0, -2.49f, 0), new Vector3(0, 0, 0)));
                 //Destroy(gameObject);
             }
             
