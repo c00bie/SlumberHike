@@ -1285,7 +1285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 568785540}
   m_Layer: 0
-  m_Name: Room4
+  m_Name: Szpital1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1547,7 +1547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 684884833}
   m_Layer: 0
-  m_Name: Room2
+  m_Name: "Przedpok\xF3j2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2245,7 +2245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 902354584}
   m_Layer: 0
-  m_Name: Room1
+  m_Name: "Przedpok\xF3j1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3011,7 +3011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321755991}
   m_Layer: 0
-  m_Name: Room5
+  m_Name: Szpital2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3130,7 +3130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1366804979}
   m_Layer: 0
-  m_Name: Room3
+  m_Name: Kuchnia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
