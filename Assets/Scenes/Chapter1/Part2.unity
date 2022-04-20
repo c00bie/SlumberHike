@@ -4241,12 +4241,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indexLevel: 2
   mainCamera: {fileID: 720055131}
-  cameraPosition: {fileID: 1474333063}
+  position: {x: 6.62, y: 23.3, z: 0}
+  cameraPosition: {x: 0.04, y: 25.61, z: -10}
   puzzl1: {fileID: 1419059063}
   puzzl2: {fileID: 1002596772}
-  gameObject: {fileID: 1949230713}
-  InstantiateMe: {fileID: 2199336845035895765, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
-  player: {fileID: 0}
 --- !u!61 &1949230716
 BoxCollider2D:
   m_ObjectHideFlags: 0

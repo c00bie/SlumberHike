@@ -611,6 +611,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01724a2914df468479b7a63149930e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indexLevel: 4
+  position: {x: 41.55, y: -1.53, z: -0.123566315}
+  cameraPosition: {x: 34.858, y: 0.122, z: -0.123566315}
   emptySpace: {fileID: 484697518}
   puzzle1: {fileID: 986957006}
   puzzle2: {fileID: 1317376385}
@@ -620,7 +623,6 @@ MonoBehaviour:
   puzzle6: {fileID: 42084463}
   puzzle7: {fileID: 113229515}
   puzzle8: {fileID: 958304461}
-  player: {fileID: 2199336845035895759, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
   puzzle1Position: {x: 0, y: 0, z: 0}
   puzzle2Position: {x: 0, y: 0, z: 0}
   puzzle3Position: {x: 0, y: 0, z: 0}
