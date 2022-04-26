@@ -104,20 +104,31 @@ namespace CM
                 crouched = false;
             }
 
-            // Bieganie i chodzenie w prawo
+            // Bieganie i chodzenie
             if (horizontal != 0)
             {
-                if (input.Movement.Run.IsPressed() && holdingObject == false)
+                if (cantMoveLeft && horizontal < 0)
                 {
-                    
-                    animator.SetBool("Running", true);
-                    rb.velocity = new Vector2(runningSpeed * horizontal, rb.velocity.y);
+
+                    Debug.Log("Nie możesz ciągnąć krzesła");
+                }
+                else if (cantMoveRight && horizontal > 0)
+                {
+                    Debug.Log("Nie możesz ciągnąć krzesła");
                 }
                 else
                 {
-                    animator.SetBool("Running", false);
-                    rb.transform.position += new Vector3(walkingSpeed * horizontal, 0, 0);
+                    if (input.Movement.Run.IsPressed() && holdingObject == false)
+                    {
+                        animator.SetBool("Running", true);
+                        rb.velocity = new Vector2(runningSpeed * horizontal, rb.velocity.y);
+                    }
+                    else
+                    {
+                        animator.SetBool("Running", false);
+                        rb.transform.position += new Vector3(walkingSpeed * horizontal, 0, 0);
 
+                    }
                 }
             }
         }
