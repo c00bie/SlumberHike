@@ -12,10 +12,12 @@ namespace RC
         [SerializeField]
         Vector3 position;
         [SerializeField]
+        Vector3 cameraPosition;
+        [SerializeField]
         int nextSceneId;
         [SerializeField]
         bool unlocked = true;
-
+      
         GameObject player;
         NewInput input;
         bool playerInRange = false;
@@ -42,7 +44,9 @@ namespace RC
             //Wykrywanie czy gracz próbuje przejœæ na inn¹ scenê
             if (playerInRange && input.Actions.Grab.triggered && unlocked)
             {
-                StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position));
+                StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition));
+
+                DO.SaveGame.SavePlayer(player, SceneManager.GetSceneByBuildIndex(nextSceneId));
             }
         }
     }

@@ -34,10 +34,12 @@ namespace P
                     if (leftDistance < rightDistance)
                     {
                         player.transform.position = new Vector3(leftX, player.transform.position.y, player.transform.position.z);
+                        player.GetComponent<CM.CharacterController>().cantMoveLeft = true;
                     }
                     else
                     {
                         player.transform.position = new Vector3(rightX, player.transform.position.y, player.transform.position.z);
+                        player.GetComponent<CM.CharacterController>().cantMoveRight = true;
                     }
 
                     player.GetComponent<CM.CharacterController>().AttachObject(gameObject);
