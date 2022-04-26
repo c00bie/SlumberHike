@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,8 @@ namespace CM
 
 
         bool holdingObject = false;
+        public bool cantMoveRight = false;
+        public bool cantMoveLeft = false;
         GameObject holdedObject;
         public bool isGrounded = false;
         Rigidbody2D rb;
@@ -140,6 +143,28 @@ namespace CM
 
                 walkingSpeed = 0.025f;
             }
+        }
+
+        // Metoda zabijająca postać gracza i wczytująca jego ostatni zapis lub zaczynająca od nowa grę, jeśli takiego nie ma
+        public void KillPlayer(string killerName)
+        {
+            Debug.Log("You were killed by " + killerName);
+            if (File.Exists(Application.persistentDataPath + "/save.wth"))
+            {
+                DO.PlayerData data = DO.SaveGame.LoadPlayer();
+                //GameObject player = Instantiate(playerPrefab, new Vector3(data.position[0], data.position[1], data.position[2]), Quaternion.identity);
+
+                StartCoroutine(RC.SceneChanger.MovePlayerToScene(data.levelId, gameObject, new Vector3(data.position[0], data.position[1], data.position[2]), new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2])));
+                //Destroy(gameObject);
+            }
+            else
+            {
+                //GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
+
+                StartCoroutine(RC.SceneChanger.MovePlayerToScene(3, gameObject, new Vector3(0, -2.49f, 0), new Vector3(0, 0, 0)));
+                //Destroy(gameObject);
+            }
+            
         }
     }
 }
