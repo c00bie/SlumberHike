@@ -52,6 +52,7 @@ namespace CM
             if (collision.gameObject.tag == "Ground")
             {
                 isGrounded = true;
+                animator.SetBool("Jump", false);
             }
         }
 
@@ -78,6 +79,7 @@ namespace CM
             {
                 if (isGrounded)
                 {
+                    animator.SetBool("Jump", true);
                     rb.velocity = Vector2.up * jumpForce;
                     isGrounded = false;
                 }
@@ -104,10 +106,13 @@ namespace CM
             {
                 if (input.Movement.Run.IsPressed() && holdingObject == false)
                 {
+                    
+                    animator.SetBool("Running", true);
                     rb.velocity = new Vector2(runningSpeed * horizontal, rb.velocity.y);
                 }
                 else
                 {
+                    animator.SetBool("Running", false);
                     rb.transform.position += new Vector3(walkingSpeed * horizontal, 0, 0);
 
                 }
