@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//P - Platforms
-namespace P
+namespace SH.Platforms
 {
     public class MovableObject : MonoBehaviour
     {
@@ -23,7 +22,7 @@ namespace P
             // Pod³¹czanie obiektu do gracza pod warunkiem bycia w zasiêgu
             if (playerInRange && player != null)
             {
-                if (input.Actions.Grab.triggered && this.gameObject.transform.GetChild(0).GetComponent<ChildDetector>().playerStanding == false && player.GetComponent<CM.CharacterController>().isGrounded)
+                if (input.Actions.Grab.triggered && this.gameObject.transform.GetChild(0).GetComponent<ChildDetector>().playerStanding == false && player.GetComponent<Character.CharacterController>().isGrounded)
                 {
                     float leftX = gameObject.transform.GetChild(1).transform.position.x;
                     float rightX = gameObject.transform.GetChild(2).transform.position.x;
@@ -40,7 +39,7 @@ namespace P
                         player.transform.position = new Vector3(rightX, player.transform.position.y, player.transform.position.z);
                     }
 
-                    player.GetComponent<CM.CharacterController>().AttachObject(gameObject);
+                    player.GetComponent<Character.CharacterController>().AttachObject(gameObject);
                 }
             }
         }

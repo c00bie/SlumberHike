@@ -4,8 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//CM - Character Movement
-namespace CM
+namespace SH.Character
 {
     public class CharacterController : MonoBehaviour
     {

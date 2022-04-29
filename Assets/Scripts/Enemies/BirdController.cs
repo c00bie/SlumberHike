@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//EC - Enemy Controller
-namespace EC
+namespace SH.Enemy
 {
     public class BirdController : MonoBehaviour
     {
@@ -45,7 +44,7 @@ namespace EC
             if (collidedObject.transform.CompareTag("Player") && notAtacking)
             {
                 notAtacking = false;
-                collidedObject.GetComponent<CM.CharacterController>().KillPlayer(gameObject.transform.name);
+                collidedObject.GetComponent<Character.CharacterController>().KillPlayer(gameObject.transform.name);
             }
         }
     }

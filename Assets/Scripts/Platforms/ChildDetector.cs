@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//P - Platforms
-namespace P
+namespace SH.Platforms
 {
     public class ChildDetector : MonoBehaviour
     {
@@ -31,7 +30,7 @@ namespace P
             // Warunek sprawdzaj¹cy, czy gracz skacze albo stoi na platformie, aby pozwoliæ graczowi zderzyæ siê z platform¹
             if (player != null)
             {
-                if (player.GetComponent<CM.CharacterController>().isGrounded && playerStanding == false)
+                if (player.GetComponent<Character.CharacterController>().isGrounded && !playerStanding)
                 {
                     gameObject.layer = 6;
                 }

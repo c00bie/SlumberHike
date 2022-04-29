@@ -11,6 +11,10 @@ namespace SH.Inventory
         private NewInput input;
 
         [SerializeField]
+        private bool mustBeGrounded = false;
+        [SerializeField]
+        private Interaction[] afterPickup;
+        [SerializeField]
         private Item item = new Item();
         public Item Item
         {
@@ -24,7 +28,7 @@ namespace SH.Inventory
 
         private void UpdateItem()
         {
-            if (item.image != null)
+            if (item.image != null && sr != null)
             {
                 if (inRange && item.inRangeImage != null)
                     sr.sprite = item.inRangeImage;
@@ -47,17 +51,19 @@ namespace SH.Inventory
             if (inRange && input.Actions.Grab.IsPressed())
             {
                 Inventory.AddItem(item);
+                foreach (var item in afterPickup)
+                    item.DoAction();
                 Destroy(gameObject);
             }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (item != null && collision.gameObject.CompareTag("Player"))
+            if (item != null && collision.gameObject.CompareTag("Player") && (!mustBeGrounded || collision.GetComponent<Character.CharacterController>().isGrounded))
             {
-                Debug.Log("Player in range!");
+                //Debug.Log("Player in range!");
                 inRange = true;
-                if (item.inRangeImage != null)
+                if (item.inRangeImage != null && sr != null)
                     sr.sprite = item.inRangeImage;
             }
         }
@@ -66,9 +72,9 @@ namespace SH.Inventory
         {
             if (item != null && collision.gameObject.CompareTag("Player"))
             {
-                Debug.Log("Player out of range!");
+                //Debug.Log("Player out of range!");
                 inRange = false;
-                if (sr.sprite != item.image)
+                if (sr != null && sr.sprite != item.image)
                     sr.sprite = item.image;
             }
         }
