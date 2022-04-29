@@ -16,16 +16,18 @@ namespace RC
         GameObject nextRoomPosition;
         [SerializeField]
         bool onlyOneWay = true;
+        [SerializeField]
+        bool vertical = false;
 
         private void OnTriggerExit2D(Collider2D collision)
         {
 
-            // Kod wykrywaj¹cy próbê przejœcia do nastêpnej sceny oraz zmieniaj¹cy po³o¿enie kamery
+            // Kod wykrywaj¹cy próbê przejœcia do nastêpnego pokoju oraz zmieniaj¹cy po³o¿enie kamery
             if (collision.gameObject.transform.CompareTag("Player"))
             {
                 GameObject player = collision.gameObject;
 
-                if (gameObject.transform.position.x > player.transform.position.x)
+                if ((gameObject.transform.position.x > player.transform.position.x && vertical == false) || (gameObject.transform.position.y < player.transform.position.y && vertical))
                 {
                     kamera.transform.position = new Vector3(nextRoomPosition.transform.position.x, nextRoomPosition.transform.position.y, kamera.transform.position.z);
                     

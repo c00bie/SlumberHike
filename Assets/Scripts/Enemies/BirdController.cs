@@ -38,7 +38,7 @@ namespace SH.Enemy
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            // "Killing" the player if he got touched in the ballz
+            // "Killing" the player if he got touched 
             GameObject collidedObject = collider.gameObject;
 
             if (collidedObject.transform.CompareTag("Player") && notAtacking)
