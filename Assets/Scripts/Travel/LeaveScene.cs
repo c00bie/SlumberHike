@@ -31,12 +31,20 @@ namespace RC
         //Sprawdzanie czy gracz jest w zasiêgu oraz przypisywanie go do zmiennej
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            player = collision.gameObject;
-            playerInRange = true;
+            if (collision.gameObject.transform.CompareTag("Player"))
+            {
+                player = collision.gameObject;
+                playerInRange = true;
+            }
+
         }
+        //Sprawdzanie czy gracz jest poza zasiêgiem
         private void OnTriggerExit2D(Collider2D collision)
         {
-            playerInRange = false;
+            if (collision.gameObject.transform.CompareTag("Player"))
+            { 
+                playerInRange = false;
+            }
         }
 
         private void Update()
@@ -45,8 +53,6 @@ namespace RC
             if (playerInRange && input.Actions.Grab.triggered && unlocked)
             {
                 StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition));
-
-                DO.SaveGame.SavePlayer(player, SceneManager.GetSceneByBuildIndex(nextSceneId));
             }
         }
     }

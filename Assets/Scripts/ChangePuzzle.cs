@@ -3,66 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-public class ChangePuzzle : MonoBehaviour
+//RC - Room Changing
+namespace RC
 {
-    [SerializeField]
-    public int indexLevel;
-
-    [SerializeField]
-    public Camera mainCamera;
-    [SerializeField]
-    public Vector3 position;
-    [SerializeField]
-    public Vector3 cameraPosition;
-    [SerializeField]
-    private GameObject puzzl1;
-    [SerializeField]
-    private GameObject puzzl2;
-    //[SerializeField]
-    //private GameObject gameObject;
-    //[SerializeField]
-    //public Transform InstantiateMe;
-    //[SerializeField]
-    GameObject player;
-    bool playerInRange = false;
-    //int Player;
-
-    NewInput input;
-
-    void Awake()
+    public class ChangePuzzle : MonoBehaviour
     {
+        [SerializeField]
+        public int indexLevel;
 
-        //Player = LayerMask.GetMask("Player");
-        input = new NewInput();
-        input.Enable();
-    }
+        [SerializeField]
+        public Camera mainCamera;
+        [SerializeField]
+        public Vector3 cameraPosition;
+        bool playerInRange = false;
+        NewInput input;
+        GameObject player;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        player = collision.gameObject;
-        playerInRange = true;
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        playerInRange = false;
-    }
-
-    void Update()
-    {   
-        if (playerInRange && input.Actions.Grab.triggered)
+        void Awake()
         {
-            //gameObject.SetActive(false);
-            //SceneManager.LoadScene(this.indexLevel, LoadSceneMode.Additive);
-            //puzzl1.SetActive(false);
-            //puzzl2.SetActive(true);
+            input = new NewInput();
+            input.Enable();
+        }
 
-            StartCoroutine(RC.SceneChanger.MovePlayerToScene(indexLevel, player, player.transform.position, new Vector3(0.0399999991f, 25.6100006f, -10)));
+        //Sprawdzanie czy gracz jest w zasiêgu
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.transform.CompareTag("Player"))
+            {
+                player = collision.gameObject;
+                playerInRange = true;
+            }
+        }
+        //Sprawdzanie czy gracz jest poza zasiêgiem
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.transform.CompareTag("Player"))
+            {
+                playerInRange = false;
+            }
+        }
 
+        void Update()
+        {
+            //Zmiana sceny pod warunkiem spe³nienia wymagañ
+            if (playerInRange && input.Actions.Grab.triggered)
+            {
+                DO.SaveGame.SavePlayer(player, SceneManager.GetActiveScene(), Camera.main.transform.position);
+
+                StartCoroutine(RC.SceneChanger.MoveToScene(indexLevel, new Vector3(0.0399999991f, 25.6100006f, -10)));
+            }
         }
     }
-
-
-
-
 }

@@ -14,10 +14,10 @@ namespace DO
         public int levelId;
         public float[] position;
         public float[] cameraPosition;
+        public bool puzzleCompleted;
 
-        public PlayerData(GameObject player, Scene currentScene)
+        public PlayerData(GameObject player, Scene currentScene, Vector3 currentCameraPosition)
         {
-            GameObject currentCamera = GameObject.Find("Main Camera");
             levelId = currentScene.buildIndex;
 
             position = new float[3];
@@ -27,9 +27,11 @@ namespace DO
             position[1] = player.transform.position.y;
             position[2] = player.transform.position.z;
 
-            cameraPosition[0] = currentCamera.transform.position.x;
-            cameraPosition[1] = currentCamera.transform.position.y;
-            cameraPosition[2] = currentCamera.transform.position.z;
+            cameraPosition[0] = currentCameraPosition.x;
+            cameraPosition[1] = currentCameraPosition.y;
+            cameraPosition[2] = currentCameraPosition.z;
+
+            puzzleCompleted = CP.CheckPoints.puzzleCompleted;
         }
     }
 }

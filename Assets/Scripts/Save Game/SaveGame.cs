@@ -11,13 +11,13 @@ namespace DO
     //Class responsible for saving and loading game
     public static class SaveGame
     {
-        public static void SavePlayer(GameObject player, Scene scene)
+        public static void SavePlayer(GameObject player, Scene scene, Vector3 cameraPosition)
         {
             BinaryFormatter formatter = new BinaryFormatter();
             string path = Application.persistentDataPath + "/save.wth";
             FileStream stream = new FileStream(path, FileMode.Create);
 
-            PlayerData data = new PlayerData(player, scene);
+            PlayerData data = new PlayerData(player, scene, cameraPosition);
 
             formatter.Serialize(stream, data);
 
@@ -36,6 +36,8 @@ namespace DO
                 PlayerData data = formatter.Deserialize(stream) as PlayerData;
 
                 stream.Close();
+
+                CP.CheckPoints.puzzleCompleted = data.puzzleCompleted;
 
                 return data;
             }
