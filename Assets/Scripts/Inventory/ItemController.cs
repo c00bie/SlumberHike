@@ -8,6 +8,7 @@ namespace SH.Inventory
     {
         private SpriteRenderer sr;
         private bool inRange = false;
+        private bool inRangeUnpickable = false;
         private NewInput input;
 
         [SerializeField]
@@ -57,14 +58,34 @@ namespace SH.Inventory
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private IEnumerator CheckCollision(Collider2D collision)
         {
-            if (item != null && collision.gameObject.CompareTag("Player") && (!mustBeGrounded || collision.GetComponent<Character.CharacterController>().isGrounded))
+            var cc = collision.GetComponent<Character.CharacterController>();
+            float start = Time.time;
+            float check = start;
+            if (mustBeGrounded)
             {
-                //Debug.Log("Player in range!");
+                yield return new WaitUntil(() =>
+                {
+                    check = Time.time;
+                    return cc.isGrounded || !inRangeUnpickable || check - start > 5;
+                });
+            }
+            if (inRangeUnpickable && check - start <= 5)
+            {
+                Debug.Log("Player in range!");
                 inRange = true;
                 if (item.inRangeImage != null && sr != null)
                     sr.sprite = item.inRangeImage;
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (item != null && collision.gameObject.CompareTag("Player"))
+            {
+                inRangeUnpickable = true; 
+                StartCoroutine(CheckCollision(collision));
             }
         }
 
@@ -72,8 +93,8 @@ namespace SH.Inventory
         {
             if (item != null && collision.gameObject.CompareTag("Player"))
             {
-                //Debug.Log("Player out of range!");
-                inRange = false;
+                Debug.Log("Player out of range!");
+                inRange = inRangeUnpickable = false;
                 if (sr != null && sr.sprite != item.image)
                     sr.sprite = item.image;
             }

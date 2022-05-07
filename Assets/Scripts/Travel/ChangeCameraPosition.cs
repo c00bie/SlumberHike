@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//RC - Room Changing
-namespace RC
+//SH.Travel - Room Changing
+namespace SH.Travel
 {
     public class ChangeCameraPosition : MonoBehaviour
     {

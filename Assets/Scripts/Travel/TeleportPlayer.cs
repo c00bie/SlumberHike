@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//RC - Room Changing
-namespace RC
+namespace SH.Travel
 {
     public class TeleportPlayer : MonoBehaviour
     {

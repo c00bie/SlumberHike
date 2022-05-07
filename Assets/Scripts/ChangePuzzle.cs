@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//RC - Room Changing
-namespace RC
+namespace SH.Travel
 {
     public class ChangePuzzle : MonoBehaviour
     {
@@ -50,7 +49,7 @@ namespace RC
             {
                 DO.SaveGame.SavePlayer(player, SceneManager.GetActiveScene(), Camera.main.transform.position);
 
-                StartCoroutine(RC.SceneChanger.MoveToScene(indexLevel, new Vector3(0.0399999991f, 25.6100006f, -10)));
+                StartCoroutine(SceneChanger.MoveToScene(indexLevel, new Vector3(0.0399999991f, 25.6100006f, -10)));
             }
         }
     }
