@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //CP - CheckPoints
-namespace CP
+namespace SH.Managers
 {
     // Klasa odpowiadaj¹ca za wywo³ywanie konkretnych funkcji zale¿nie od podanych ustawieñ
     // Sstara³em siê zrobiæ jak najbardziej uniwersaln¹, aby mo¿na by³o u¿ywaæ jej na wszystkich obiektach.

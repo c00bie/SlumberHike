@@ -163,7 +163,7 @@ namespace SH.Character
             Debug.Log("You were killed by " + killerName);
             if (File.Exists(Application.persistentDataPath + "/save.wth"))
             {
-                DO.PlayerData data = DO.SaveGame.LoadPlayer();
+                Data.PlayerData data = Data.SaveGame.LoadPlayer();
                 //GameObject player = Instantiate(playerPrefab, new Vector3(data.position[0], data.position[1], data.position[2]), Quaternion.identity);
 
                 StartCoroutine(Travel.SceneChanger.MovePlayerToScene(data.levelId, gameObject, new Vector3(data.position[0], data.position[1], data.position[2]), new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2]), transition));

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 //DO - Data operations
-namespace DO
+namespace SH.Data
 {
     //Class responsible for saving and loading game
     public static class SaveGame
@@ -37,7 +37,7 @@ namespace DO
 
                 stream.Close();
 
-                CP.CheckPoints.puzzleCompleted = data.puzzleCompleted;
+                Managers.CheckPoints.puzzleCompleted = data.puzzleCompleted;
 
                 return data;
             }

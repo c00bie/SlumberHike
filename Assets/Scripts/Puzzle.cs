@@ -94,7 +94,7 @@ namespace SH.Travel
             if ((puzzle5.transform.position == puzzle1Position && puzzle7.transform.position == puzzle2Position && puzzle4.transform.position == puzzle3Position && puzzle3.transform.position == puzzle4Position && puzzle1.transform.position == puzzle5Position && puzzle8.transform.position == puzzle6Position && puzzle2.transform.position == puzzle7Position && puzzle6.transform.position == puzzle8Position) || input.Actions.Grab.triggered)
             {
                 GameObject player = null;
-                CP.CheckPoints.puzzleCompleted = true;
+                Managers.CheckPoints.puzzleCompleted = true;
 
                 if (playerNotGenerated)
                 {
@@ -103,7 +103,7 @@ namespace SH.Travel
 
                 StartCoroutine(SceneChanger.MovePlayerToScene(indexLevel, player, playerPosition, cameraPosition, transition));
 
-                DO.SaveGame.SavePlayer(player, SceneManager.GetSceneByBuildIndex(indexLevel), cameraPosition);
+                Data.SaveGame.SavePlayer(player, SceneManager.GetSceneByBuildIndex(indexLevel), cameraPosition);
             }
         }
     }
