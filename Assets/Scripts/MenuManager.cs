@@ -63,7 +63,7 @@ public class MenuManager : MonoBehaviour
         transition.SetTrigger("CoverTheScreen");
 
         GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
-        StartCoroutine(RC.SceneChanger.MovePlayerToScene(3, player, new Vector3(0, -2.49f, 0), new Vector3(0, 0, -10), transition));
+        StartCoroutine(SH.Travel.SceneChanger.MovePlayerToScene(3, player, new Vector3(0, -2.49f, 0), new Vector3(0, 0, -10), transition));
         File.Delete(Application.persistentDataPath + "/save.wth");
     }
     public void LoadGame()
@@ -75,7 +75,7 @@ public class MenuManager : MonoBehaviour
 
         GameObject player = Instantiate(playerPrefab, new Vector3(data.position[0], data.position[1], data.position[2]), Quaternion.identity);
 
-        StartCoroutine(RC.SceneChanger.MovePlayerToScene(data.levelId, player, new Vector3(data.position[0], data.position[1], data.position[2]), new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2]), transition));
+        StartCoroutine(SH.Travel.SceneChanger.MovePlayerToScene(data.levelId, player, new Vector3(data.position[0], data.position[1], data.position[2]), new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2]), transition));
     }
     public void Options()
     {

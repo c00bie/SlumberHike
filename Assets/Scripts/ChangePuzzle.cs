@@ -52,7 +52,7 @@ namespace RC
             {
                 DO.SaveGame.SavePlayer(player, SceneManager.GetActiveScene(), Camera.main.transform.position);
 
-                StartCoroutine(SceneChanger.MoveToScene(indexLevel, new Vector3(0.0399999991f, 25.6100006f, -10), transition));
+                StartCoroutine(SH.Travel.SceneChanger.MoveToScene(indexLevel, new Vector3(0.0399999991f, 25.6100006f, -10), transition));
             }
         }
     }
