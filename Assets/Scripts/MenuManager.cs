@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] GameObject glitchedMenu;
     [SerializeField] GameObject playerPrefab;
     [SerializeField] Button loadGameButton;
+    [SerializeField] Animator transition;
 
     private void Awake()
     {
@@ -58,24 +59,28 @@ public class MenuManager : MonoBehaviour
     
     public void NewGame()
     {
-        // Tworzenie gracza na pierwsz¹ scenê i kasowanie dotychczasowego zapisu
+        // Tworzenie gracza na pierwsz¹ scenê, kasowanie dotychczasowego zapisu oraz zakrywanie sceny
+        transition.SetTrigger("CoverTheScreen");
+
         GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
-        StartCoroutine(RC.SceneChanger.MovePlayerToScene(3, player, new Vector3(0, -2.49f, 0), new Vector3(0, 0, -10)));
+        StartCoroutine(RC.SceneChanger.MovePlayerToScene(3, player, new Vector3(0, -2.49f, 0), new Vector3(0, 0, -10), transition));
         File.Delete(Application.persistentDataPath + "/save.wth");
     }
     public void LoadGame()
     {
-        // Wczytywanie danych z zapisu, tworzenie gracza i za³adowywanie sceny, której numer zosta³ zapisany
+        // Wczytywanie danych z zapisu, tworzenie gracza, za³adowywanie sceny, której numer zosta³ zapisany oraz zakrywanie sceny
+        transition.SetTrigger("CoverTheScreen");
+
         DO.PlayerData data = DO.SaveGame.LoadPlayer();
 
         GameObject player = Instantiate(playerPrefab, new Vector3(data.position[0], data.position[1], data.position[2]), Quaternion.identity);
 
-        StartCoroutine(RC.SceneChanger.MovePlayerToScene(data.levelId, player, new Vector3(data.position[0], data.position[1], data.position[2]), new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2])));
+        StartCoroutine(RC.SceneChanger.MovePlayerToScene(data.levelId, player, new Vector3(data.position[0], data.position[1], data.position[2]), new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2]), transition));
     }
     public void Options()
     {
         // Wczytywanie menu opcji na wierzch menu g³ównego
-        
+        transition.SetTrigger("RevealTheScreen");
         SceneManager.LoadSceneAsync("MainOptions", LoadSceneMode.Additive);
     }
     public void QuitGame()

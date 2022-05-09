@@ -15,6 +15,8 @@ namespace RC
         public Camera mainCamera;
         [SerializeField]
         public Vector3 cameraPosition;
+        [SerializeField]
+        Animator transition;
         bool playerInRange = false;
         NewInput input;
         GameObject player;
@@ -50,7 +52,7 @@ namespace RC
             {
                 DO.SaveGame.SavePlayer(player, SceneManager.GetActiveScene(), Camera.main.transform.position);
 
-                StartCoroutine(RC.SceneChanger.MoveToScene(indexLevel, new Vector3(0.0399999991f, 25.6100006f, -10)));
+                StartCoroutine(SceneChanger.MoveToScene(indexLevel, new Vector3(0.0399999991f, 25.6100006f, -10), transition));
             }
         }
     }

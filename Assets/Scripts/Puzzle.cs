@@ -16,6 +16,8 @@ namespace RC
         Vector3 playerPosition;
         [SerializeField]
         Vector3 cameraPosition;
+        [SerializeField]
+        public Animator transition;
 
         [SerializeField]
         private Transform emptySpace = null;
@@ -100,7 +102,7 @@ namespace RC
                     player = Instantiate(playerPrefab, playerPosition, Quaternion.identity);
                 }
 
-                StartCoroutine(SceneChanger.MovePlayerToScene(indexLevel, player, playerPosition, cameraPosition));
+                StartCoroutine(SceneChanger.MovePlayerToScene(indexLevel, player, playerPosition, cameraPosition, transition));
 
                 DO.SaveGame.SavePlayer(player, SceneManager.GetSceneByBuildIndex(indexLevel), cameraPosition);
             }
