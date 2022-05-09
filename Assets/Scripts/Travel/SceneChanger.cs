@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//RC - Room Changing
-namespace RC
+namespace SH.Travel
 {
     public static class SceneChanger
     {
