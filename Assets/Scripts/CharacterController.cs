@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace SH.Character
 {
+    
     public class CharacterController : MonoBehaviour
     {
         [SerializeField]
@@ -32,6 +33,8 @@ namespace SH.Character
         private NewInput input;
         private SpriteRenderer spriteRenderer;
         bool crouched = false;
+        
+
 
 
         void Start()
