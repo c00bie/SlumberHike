@@ -178,6 +178,16 @@ namespace SH.Character
             }
             
         }
+
+        public void PauseMovement()
+        {
+            input.Disable();
+        }
+
+        public void ResumeMovement()
+        {
+            input.Enable();
+        }
     }
 }
  

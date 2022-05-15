@@ -6,34 +6,75 @@ using System.Xml.Serialization;
 using System.IO;
 using SH.Dialogs;
 
+[RequireComponent(typeof(Collider2D))]
 public class Interactable : MonoBehaviour
 {
     [SerializeField]
     [InspectorName("Dialog Settings")]
     private DialogParser dialogParser = new DialogParser();
     [SerializeField]
-    private List<Interaction> interactions = new List<Interaction>();
+    private List<Interaction> interactionsBeforeDialogs = new List<Interaction>();
     [SerializeField]
-    private TextAsset testDialog;
+    private List<Interaction> interactionsAfterDialogs = new List<Interaction>();
+    [SerializeField]
+    private bool autoplay = false;
 
-    bool playing = false;
+    bool started = false;
+    bool canStart = false;
+    SH.Character.CharacterController player;
+    NewInput input;
 
     private void Awake()
     {
         StartCoroutine(dialogParser.ParseDialogs());
-        //Dialog d = new Dialog();
-        //d.Content.Add(new Sentence("Test"));
-        //d.Content.Add(new Sentence(new Text("Test"), new Pause(), new Text("Test cd")) { Goto = "$end" });
-        //Debug.Log(d.Serialize());
-        //StartCoroutine(dialogParser.ProcessDialogs());
+        player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<SH.Character.CharacterController>();
+        input = new NewInput();
+        input.Actions.Grab.Enable();
     }
 
     private void Update()
     {
-        if (!playing && Input.GetKeyDown(KeyCode.T))
+        if (!started && canStart && input.Actions.Grab.IsPressed())
         {
-            playing = true;
-            StartCoroutine(dialogParser.ProcessDialogs());
+            StartCoroutine(StartActions());
         }
+    }
+
+    private IEnumerator StartActions()
+    {
+        started = true;
+        foreach (Interaction interaction in interactionsBeforeDialogs)
+        {
+            if (interaction.IsAsync)
+                yield return interaction.DoActionAsync();
+            else
+                interaction.DoAction();
+        }
+        yield return dialogParser.ProcessDialogs();
+        foreach (Interaction interaction in interactionsAfterDialogs)
+        {
+            if (interaction.IsAsync)
+                yield return interaction.DoActionAsync();
+            else
+                interaction.DoAction();
+        }
+        started = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!started && collision.CompareTag("Player"))
+        {
+            if (autoplay)
+                StartCoroutine(StartActions());
+            else
+                canStart = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            canStart = false;
     }
 }

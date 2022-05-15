@@ -257,6 +257,131 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dialogs"",
+            ""id"": ""0bed3ec5-d906-453f-ac53-2b08f3cd435e"",
+            ""actions"": [
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Value"",
+                    ""id"": ""8bdbb6fe-11dc-449e-8a2c-6d2ffff10d03"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Accept"",
+                    ""type"": ""Button"",
+                    ""id"": ""d46857dc-5cd7-4a0c-a97a-5a0456a36f4e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""700919c2-d2e8-4ee6-aeec-f502312dad58"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""6573d1a6-84f6-46d5-9b6d-aefb17f8c6d4"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""50da4010-c97c-4b9d-9e11-4f2424a84e79"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""682cdd19-6b1f-4710-bea2-5c86da2248e8"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""53e02aed-8336-440e-a2bb-7e407b154452"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""86b6e486-d1fd-4086-b551-94ad53013e0b"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd26dbe6-b982-4d89-88ae-fc30aa0832d1"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1352a7b-777f-4ec3-bb03-6aafaf32b223"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83c8ccc8-ae9d-4c6e-94a4-77ff78fb6ad1"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -271,6 +396,10 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_Grab = m_Actions.FindAction("Grab", throwIfNotFound: true);
         m_Actions_Discard = m_Actions.FindAction("Discard", throwIfNotFound: true);
+        // Dialogs
+        m_Dialogs = asset.FindActionMap("Dialogs", throwIfNotFound: true);
+        m_Dialogs_Select = m_Dialogs.FindAction("Select", throwIfNotFound: true);
+        m_Dialogs_Accept = m_Dialogs.FindAction("Accept", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -424,6 +553,47 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
         }
     }
     public ActionsActions @Actions => new ActionsActions(this);
+
+    // Dialogs
+    private readonly InputActionMap m_Dialogs;
+    private IDialogsActions m_DialogsActionsCallbackInterface;
+    private readonly InputAction m_Dialogs_Select;
+    private readonly InputAction m_Dialogs_Accept;
+    public struct DialogsActions
+    {
+        private @NewInput m_Wrapper;
+        public DialogsActions(@NewInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Select => m_Wrapper.m_Dialogs_Select;
+        public InputAction @Accept => m_Wrapper.m_Dialogs_Accept;
+        public InputActionMap Get() { return m_Wrapper.m_Dialogs; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DialogsActions set) { return set.Get(); }
+        public void SetCallbacks(IDialogsActions instance)
+        {
+            if (m_Wrapper.m_DialogsActionsCallbackInterface != null)
+            {
+                @Select.started -= m_Wrapper.m_DialogsActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_DialogsActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_DialogsActionsCallbackInterface.OnSelect;
+                @Accept.started -= m_Wrapper.m_DialogsActionsCallbackInterface.OnAccept;
+                @Accept.performed -= m_Wrapper.m_DialogsActionsCallbackInterface.OnAccept;
+                @Accept.canceled -= m_Wrapper.m_DialogsActionsCallbackInterface.OnAccept;
+            }
+            m_Wrapper.m_DialogsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @Accept.started += instance.OnAccept;
+                @Accept.performed += instance.OnAccept;
+                @Accept.canceled += instance.OnAccept;
+            }
+        }
+    }
+    public DialogsActions @Dialogs => new DialogsActions(this);
     public interface IMovementActions
     {
         void OnHorizontal(InputAction.CallbackContext context);
@@ -435,5 +605,10 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
     {
         void OnGrab(InputAction.CallbackContext context);
         void OnDiscard(InputAction.CallbackContext context);
+    }
+    public interface IDialogsActions
+    {
+        void OnSelect(InputAction.CallbackContext context);
+        void OnAccept(InputAction.CallbackContext context);
     }
 }

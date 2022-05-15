@@ -77,13 +77,8 @@ namespace SH.Dialogs
                 writer.WriteAttributeString("id", ID);
             foreach (Option element in Options)
             {
-                if (element is Text)
-                    writer.WriteString(element.ToString());
-                else
-                {
-                    var xml = new XmlSerializer(element.GetType());
-                    xml.Serialize(writer, element, new XmlSerializerNamespaces());
-                }
+                var xml = new XmlSerializer(element.GetType());
+                xml.Serialize(writer, element, new XmlSerializerNamespaces());
             }
         }
     }
