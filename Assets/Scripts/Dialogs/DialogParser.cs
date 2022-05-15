@@ -24,8 +24,9 @@ namespace SH.Dialogs
         [SerializeField]
         private List<TextAsset> dialogs = new List<TextAsset>();
         [SerializeField]
+        private GameObject outputCanvas;
+
         private TMP_Text output;
-        [SerializeField]
         private AudioSource audio;
 
         public string StartingDialog { get; set; }
@@ -38,8 +39,12 @@ namespace SH.Dialogs
 
         public IEnumerator ParseDialogs()
         {
-            output.transform.parent.gameObject.SetActive(false);
+            outputCanvas.SetActive(false);
             parsing = true;
+            input = new NewInput();
+            player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Character.CharacterController>();
+            output = outputCanvas.GetComponentInChildren<TMP_Text>();
+            audio = outputCanvas.GetComponent<AudioSource>();
             Debug.Log("Parsing dialogs started");
             parsedDialogs.Clear();
             foreach (var asset in dialogs)
@@ -94,10 +99,6 @@ namespace SH.Dialogs
 
         public IEnumerator ProcessDialog(Dialog d)
         {
-            if (input is null)
-                input = new NewInput();
-            if (player is null)
-                player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Character.CharacterController>();
             player.PauseMovement();
             input.Dialogs.Enable();
             if (d is null)
