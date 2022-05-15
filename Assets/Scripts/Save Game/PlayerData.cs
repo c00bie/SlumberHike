@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 //DO - Data operations
-namespace DO
+namespace SH.Data
 {
     //Class containing data that need to be saved
     [Serializable]
@@ -31,7 +31,7 @@ namespace DO
             cameraPosition[1] = currentCameraPosition.y;
             cameraPosition[2] = currentCameraPosition.z;
 
-            puzzleCompleted = CP.CheckPoints.puzzleCompleted;
+            puzzleCompleted = Managers.CheckPoints.puzzleCompleted;
         }
     }
 }

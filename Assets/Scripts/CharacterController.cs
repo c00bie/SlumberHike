@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using SH.Travel;
 
 namespace SH.Character
 {
+    
     public class CharacterController : MonoBehaviour
     {
         [SerializeField]
@@ -15,6 +15,8 @@ namespace SH.Character
         float runningSpeed = 4.5f;
         [SerializeField]
         float walkingSpeed = 0.05f;
+        [SerializeField]
+        Animator transition;
 
 
 
@@ -31,6 +33,8 @@ namespace SH.Character
         private NewInput input;
         private SpriteRenderer spriteRenderer;
         bool crouched = false;
+        
+
 
 
         void Start()
@@ -109,12 +113,11 @@ namespace SH.Character
             {
                 if (cantMoveLeft && horizontal < 0)
                 {
-
-                    Debug.Log("Nie możesz ciągnąć krzesła");
+                    //Debug.Log("Nie możesz ciągnąć krzesła");
                 }
                 else if (cantMoveRight && horizontal > 0)
                 {
-                    Debug.Log("Nie możesz ciągnąć krzesła");
+                    //Debug.Log("Nie możesz ciągnąć krzesła");
                 }
                 else
                 {
@@ -127,7 +130,6 @@ namespace SH.Character
                     {
                         animator.SetBool("Running", false);
                         rb.transform.position += new Vector3(walkingSpeed * horizontal, 0, 0);
-
                     }
                 }
             }
@@ -141,8 +143,9 @@ namespace SH.Character
                 movableObject.transform.parent = null;
 
                 holdingObject = false;
+                cantMoveLeft = false;
+                cantMoveRight = false;
                 holdedObject = null;
-                cantMoveLeft = cantMoveRight = false;
 
                 walkingSpeed = 0.05f;
             }
@@ -163,17 +166,17 @@ namespace SH.Character
             Debug.Log("You were killed by " + killerName);
             if (File.Exists(Application.persistentDataPath + "/save.wth"))
             {
-                DO.PlayerData data = DO.SaveGame.LoadPlayer();
+                Data.PlayerData data = Data.SaveGame.LoadPlayer();
                 //GameObject player = Instantiate(playerPrefab, new Vector3(data.position[0], data.position[1], data.position[2]), Quaternion.identity);
 
-                StartCoroutine(SceneChanger.MovePlayerToScene(data.levelId, gameObject, new Vector3(data.position[0], data.position[1], data.position[2]), new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2])));
+                StartCoroutine(Travel.SceneChanger.MovePlayerToScene(data.levelId, gameObject, new Vector3(data.position[0], data.position[1], data.position[2]), new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2]), transition));
                 //Destroy(gameObject);
             }
             else
             {
                 //GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
 
-                StartCoroutine(SceneChanger.MovePlayerToScene(3, gameObject, new Vector3(0, -2.49f, 0), new Vector3(0, 0, 0)));
+                StartCoroutine(Travel.SceneChanger.MovePlayerToScene(3, gameObject, new Vector3(0, -2.49f, 0), new Vector3(0, 0, 0), transition));
                 //Destroy(gameObject);
             }
             

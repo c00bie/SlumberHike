@@ -5,14 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-{
-
-    private void Start()
+namespace SH.Managers {
+    public class GameManager : MonoBehaviour
     {
-    }
 
-    void Update()
-    {
+        private void Start()
+        {
+        }
+
+        void Update()
+        {
+        }
     }
 }

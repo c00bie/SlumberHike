@@ -17,15 +17,26 @@ namespace SH.Travel
         int nextSceneId;
         [SerializeField]
         bool unlocked = true;
-      
+        [SerializeField]
+        Animator transition;
+        [SerializeField]
+        AudioClip clip;
+
         GameObject player;
         NewInput input;
         bool playerInRange = false;
+        AudioSource audioSource;
 
         private void Awake()
         {
             input = new NewInput();
             input.Enable();
+        }
+
+        private void Start()
+        {
+            audioSource = gameObject.GetComponent<AudioSource>();
+            audioSource.clip = clip;
         }
 
         //Sprawdzanie czy gracz jest w zasiêgu oraz przypisywanie go do zmiennej
@@ -42,7 +53,7 @@ namespace SH.Travel
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.gameObject.transform.CompareTag("Player"))
-            { 
+            {
                 playerInRange = false;
             }
         }
@@ -52,8 +63,19 @@ namespace SH.Travel
             //Wykrywanie czy gracz próbuje przejœæ na inn¹ scenê
             if (playerInRange && input.Actions.Grab.triggered && unlocked)
             {
-                StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition));
+                StartCoroutine(MovePlayer());
             }
+        }
+
+        IEnumerator MovePlayer()
+        {
+            if (audioSource.clip != null)
+            {
+                audioSource.Play();
+                yield return new WaitForSeconds(audioSource.clip.length - 1);
+            }
+
+            StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition));
         }
     }
 }

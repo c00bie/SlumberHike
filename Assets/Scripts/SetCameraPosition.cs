@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetCameraPosition : MonoBehaviour
+namespace SH.Travel 
 {
-    public Vector3 cameraPosition;
-
-    void Start()
+    public class SetCameraPosition : MonoBehaviour
     {
-        gameObject.transform.position = cameraPosition;
+        public Vector3 cameraPosition;
+
+        void Start()
+        {
+            gameObject.transform.position = cameraPosition;
+        }
     }
 }

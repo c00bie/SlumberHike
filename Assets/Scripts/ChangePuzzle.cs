@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//RC - Room Changing
 namespace SH.Travel
 {
     public class ChangePuzzle : MonoBehaviour
@@ -14,6 +15,8 @@ namespace SH.Travel
         public Camera mainCamera;
         [SerializeField]
         public Vector3 cameraPosition;
+        [SerializeField]
+        Animator transition;
         bool playerInRange = false;
         NewInput input;
         GameObject player;
@@ -47,9 +50,9 @@ namespace SH.Travel
             //Zmiana sceny pod warunkiem spe³nienia wymagañ
             if (playerInRange && input.Actions.Grab.triggered)
             {
-                DO.SaveGame.SavePlayer(player, SceneManager.GetActiveScene(), Camera.main.transform.position);
+                Data.SaveGame.SavePlayer(player, SceneManager.GetActiveScene(), Camera.main.transform.position);
 
-                StartCoroutine(SceneChanger.MoveToScene(indexLevel, new Vector3(0.0399999991f, 25.6100006f, -10)));
+                StartCoroutine(SceneChanger.MoveToScene(indexLevel, new Vector3(0.0399999991f, 25.6100006f, -10), transition));
             }
         }
     }
