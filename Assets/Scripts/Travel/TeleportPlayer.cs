@@ -22,7 +22,7 @@ namespace SH.Travel
         bool playerInRange = false;
         NewInput input;
         GameObject player;
-        AudioSource audioSource;
+        Managers.SoundManager soundManager;
 
         private void Awake()
         {
@@ -30,17 +30,17 @@ namespace SH.Travel
             input.Enable();
         }
 
-        private void Start()
-        {
-            audioSource = gameObject.GetComponent<AudioSource>();
-            audioSource.clip = clip;
-        }
-
         //Sprawdzanie czy gracz jest w zasiêgu oraz przypisywanie go do zmiennej
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            player = collision.gameObject;
-            playerInRange = true;
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                player = collision.gameObject;
+                playerInRange = true;
+
+                soundManager = GameObject.Find("SoundManager").GetComponent<Managers.SoundManager>();
+            }
+
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
@@ -62,7 +62,10 @@ namespace SH.Travel
         private IEnumerator TeleportPlayerCoroutine()
         {
             //Odtwarzanie efektów dŸwiêkowych
-            audioSource.Play();
+            if (clip != null)
+            {
+                soundManager.PlaySingleSound(clip);
+            }
 
             //Przyciemnianie ekranu oraz teleportowanie gracza
             transition.SetTrigger("CoverTheScreen");

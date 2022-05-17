@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//CP - CheckPoints
 namespace SH.Managers
 {
     // Klasa statyczna przechowuj¹ca i zwracaj¹ca, zmienne odpowiadaj¹ce punktom kontrolnym w samej grze (skomplikowa³em j¹, aby wprowadziæ bardziej uniwersaln¹ klasê - CheckPointChecker)

@@ -25,18 +25,12 @@ namespace SH.Travel
         GameObject player;
         NewInput input;
         bool playerInRange = false;
-        AudioSource audioSource;
+        Managers.SoundManager soundManager;
 
         private void Awake()
         {
             input = new NewInput();
             input.Enable();
-        }
-
-        private void Start()
-        {
-            audioSource = gameObject.GetComponent<AudioSource>();
-            audioSource.clip = clip;
         }
 
         //Sprawdzanie czy gracz jest w zasiêgu oraz przypisywanie go do zmiennej
@@ -46,6 +40,8 @@ namespace SH.Travel
             {
                 player = collision.gameObject;
                 playerInRange = true;
+
+                soundManager = GameObject.Find("SoundManager").GetComponent<Managers.SoundManager>();
             }
 
         }
@@ -63,19 +59,13 @@ namespace SH.Travel
             //Wykrywanie czy gracz próbuje przejœæ na inn¹ scenê
             if (playerInRange && input.Actions.Grab.triggered && unlocked)
             {
-                StartCoroutine(MovePlayer());
-            }
-        }
+                if (clip != null)
+                {
+                    soundManager.PlaySingleSound(clip);
+                }
 
-        IEnumerator MovePlayer()
-        {
-            if (audioSource.clip != null)
-            {
-                audioSource.Play();
-                yield return new WaitForSeconds(audioSource.clip.length - 1);
+                StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition));
             }
-
-            StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition));
         }
     }
 }
