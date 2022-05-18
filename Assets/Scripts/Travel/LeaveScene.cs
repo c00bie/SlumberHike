@@ -33,7 +33,7 @@ namespace SH.Travel
             input.Enable();
         }
 
-        //Sprawdzanie czy gracz jest w zasiêgu oraz przypisywanie go do zmiennej
+        //Sprawdzanie czy gracz jest w zasiêgu, przypisywanie do zmiennej jego oraz Ÿród³a muzyki
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.transform.CompareTag("Player"))
@@ -41,7 +41,10 @@ namespace SH.Travel
                 player = collision.gameObject;
                 playerInRange = true;
 
-                soundManager = GameObject.Find("SoundManager").GetComponent<Managers.SoundManager>();
+                if (GameObject.Find("SoundManager") != null)
+                {
+                    soundManager = GameObject.Find("SoundManager").GetComponent<Managers.SoundManager>();
+                }
             }
 
         }
@@ -56,10 +59,10 @@ namespace SH.Travel
 
         private void Update()
         {
-            //Wykrywanie czy gracz próbuje przejœæ na inn¹ scenê
+            //Wykrywanie czy gracz próbuje przejœæ na inn¹ scenê oraz puszczenie efektu dŸwiêkowego (o ile takowy jest podany)
             if (playerInRange && input.Actions.Grab.triggered && unlocked)
             {
-                if (clip != null)
+                if (clip != null && soundManager != null)
                 {
                     soundManager.PlaySingleSound(clip);
                 }

@@ -7,7 +7,9 @@ namespace SH.Managers
     public class SoundManager : MonoBehaviour
     {
         AudioSource audioSource;
+        bool stillFading = false;
 
+        // Ustawianie Ÿród³a dŸwiêków oraz dodanie obiektu do listy DontDestroyOnLoad
         private void Awake()
         {
             audioSource = gameObject.GetComponent<AudioSource>();
@@ -19,51 +21,49 @@ namespace SH.Managers
             DontDestroyOnLoad(transform.gameObject);
         }
 
+        // Zmienna wywo³uj¹ca pojedyñczy efekt dŸwiêkowy (jeszcze nic szczególnego nie robi, ale na pewno prêdzej czy póŸniej bêdzie trzeba do tego dodaæ dodatkowe efekty)
         public void PlaySingleSound(AudioClip singleSound)
         {
             audioSource.PlayOneShot(singleSound);
         }
 
-        //Sorry za komentarze, jeszcze to skoñczê w najbli¿szym czasie
+        // Metoda, która zmienia muzykê w t³a, za pomoc¹ enumeratora
         public void ChangeBackgroundMusic(AudioClip backgroundClip)
         {
-            audioSource.Stop();
-            //StartCoroutine(FadeBackgroundMusic(2.5f));
-            audioSource.clip = backgroundClip;
-            //StartCoroutine(ReturnBackgroundMusic(2.5f));
-            audioSource.Play();
+            StartCoroutine(FadeMusic(2.5f, 0, 0, backgroundClip));
+            StartCoroutine(FadeMusic(2.5f, 1, 2.5f, null));
         }
 
-        /**
-        public IEnumerator FadeBackgroundMusic(float duration)
+        // Enumerator odpowiadaj¹cy za wyciszenie/zg³oœnienie muzyki oraz opcjonaln¹ zmianê utworu przy podaniu trzeciego parametru
+        public IEnumerator FadeMusic(float duration, float targetVolume, float waitForSeconds, AudioClip clipToChange)
         {
-            float currentTime = 0;
-            float start = audioSource.volume;
-            while (currentTime < duration)
+            // Sprawdzanie czy poprzednie wywo³anie enumeratora zosta³o zakoñczone
+            if (stillFading)
             {
-                currentTime += Time.deltaTime;
-                audioSource.volume = Mathf.Lerp(start, 0, currentTime / duration);
-                yield return null;
+                yield return new WaitForSeconds(waitForSeconds);
             }
 
-            audioSource.Stop();
-            yield break;
-        }
-
-        public IEnumerator ReturnBackgroundMusic(float duration)
-        {
+            stillFading = true;
             float currentTime = 0;
             float start = audioSource.volume;
 
-            audioSource.Play();
+            // Stopniowa zmiana g³oœnoœci muzyki
             while (currentTime < duration)
             {
                 currentTime += Time.deltaTime;
-                audioSource.volume = Mathf.Lerp(start, 1, currentTime / duration);
+                audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
                 yield return null;
             }
+
+            // Opcjonalna zmiana klipu muzycznego
+            if (clipToChange != null)
+            {
+                audioSource.clip = clipToChange;
+                audioSource.Play();
+            }
+
+            stillFading = false;
             yield break;
         }
-        */
     }
 }
