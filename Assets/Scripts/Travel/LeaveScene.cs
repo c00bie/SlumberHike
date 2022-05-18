@@ -25,7 +25,7 @@ namespace SH.Travel
         GameObject player;
         NewInput input;
         bool playerInRange = false;
-        AudioSource audioSource;
+        Managers.SoundManager soundManager;
 
         private void Awake()
         {
@@ -33,19 +33,18 @@ namespace SH.Travel
             input.Enable();
         }
 
-        private void Start()
-        {
-            audioSource = gameObject.GetComponent<AudioSource>();
-            audioSource.clip = clip;
-        }
-
-        //Sprawdzanie czy gracz jest w zasiêgu oraz przypisywanie go do zmiennej
+        //Sprawdzanie czy gracz jest w zasiêgu, przypisywanie do zmiennej jego oraz Ÿród³a muzyki
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.transform.CompareTag("Player"))
             {
                 player = collision.gameObject;
                 playerInRange = true;
+
+                if (GameObject.Find("SoundManager") != null)
+                {
+                    soundManager = GameObject.Find("SoundManager").GetComponent<Managers.SoundManager>();
+                }
             }
 
         }
@@ -60,22 +59,16 @@ namespace SH.Travel
 
         private void Update()
         {
-            //Wykrywanie czy gracz próbuje przejœæ na inn¹ scenê
+            //Wykrywanie czy gracz próbuje przejœæ na inn¹ scenê oraz puszczenie efektu dŸwiêkowego (o ile takowy jest podany)
             if (playerInRange && input.Actions.Grab.triggered && unlocked)
             {
-                StartCoroutine(MovePlayer());
-            }
-        }
+                if (clip != null && soundManager != null)
+                {
+                    soundManager.PlaySingleSound(clip);
+                }
 
-        IEnumerator MovePlayer()
-        {
-            if (audioSource.clip != null)
-            {
-                audioSource.Play();
-                yield return new WaitForSeconds(audioSource.clip.length - 1);
+                StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition));
             }
-
-            StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition));
         }
     }
 }

@@ -161,6 +161,7 @@ namespace SH.Character
         }
 
         // Metoda zabijająca postać gracza i wczytująca jego ostatni zapis lub zaczynająca od nowa grę, jeśli takiego nie ma
+        // Należy dodać dodatkowy kod uwzględniający muzykę etc.
         public void KillPlayer(string killerName)
         {
             Debug.Log("You were killed by " + killerName);
