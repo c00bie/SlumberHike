@@ -426,6 +426,7 @@ GameObject:
   - component: {fileID: 1764214364}
   - component: {fileID: 1764214363}
   - component: {fileID: 1764214366}
+  - component: {fileID: 1764214367}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -454,7 +455,8 @@ MonoBehaviour:
     - {fileID: 4900000, guid: d2830dc7de5d2f24cbb3b6b366572fcf, type: 3}
     outputCanvas: {fileID: 932763642}
   interactionsBeforeDialogs: []
-  interactionsAfterDialogs: []
+  interactionsAfterDialogs:
+  - {fileID: 1764214367}
   autoplay: 1
 --- !u!212 &1764214364
 SpriteRenderer:
@@ -539,6 +541,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &1764214367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764214362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958c7f6fd95970f4393e641a3cb641ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogParser:
+    defaultCharDelay: 0.1
+    defaultSentenceDelay: 0.5
+    defaultPauseDelay: 1
+    defaultLineBreak: 1
+    dialogs: []
+    outputCanvas: {fileID: 932763642}
 --- !u!1 &1851930083
 GameObject:
   m_ObjectHideFlags: 0
