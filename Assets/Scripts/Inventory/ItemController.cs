@@ -14,7 +14,7 @@ namespace SH.Inventory
         [SerializeField]
         private bool mustBeGrounded = false;
         [SerializeField]
-        private Interaction[] afterPickup;
+        private Interactions.Interaction[] afterPickup;
         [SerializeField]
         private Item item = new Item();
         public Item Item
