@@ -28,6 +28,7 @@ namespace SH.Dialogs
 
         private TMP_Text output;
         private AudioSource audio;
+        private Canvas canvas;
 
         public string StartingDialog { get; set; }
 
@@ -39,12 +40,16 @@ namespace SH.Dialogs
 
         public IEnumerator ParseDialogs()
         {
-            outputCanvas.SetActive(false);
+            if (outputCanvas == null)
+                outputCanvas = GameObject.FindGameObjectWithTag("DialogCanvas");
+            //outputCanvas.SetActive(false);
             parsing = true;
             input = new NewInput();
             player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Character.CharacterController>();
             output = outputCanvas.GetComponentInChildren<TMP_Text>();
             audio = outputCanvas.GetComponent<AudioSource>();
+            canvas = outputCanvas.GetComponent<Canvas>();
+            canvas.enabled = false;
             Debug.Log("Parsing dialogs started");
             parsedDialogs.Clear();
             foreach (var asset in dialogs)
@@ -75,7 +80,7 @@ namespace SH.Dialogs
                 Debug.LogError("Output text is null");
                 yield break;
             }
-            output.transform.parent.gameObject.SetActive(true);
+            canvas.enabled = true;
             output.text = "";
 
             int currDialog = 0;
@@ -92,7 +97,7 @@ namespace SH.Dialogs
                 }
                 currDialog++;
             }
-            output.transform.parent.gameObject.SetActive(false);
+            canvas.enabled = false;
         }
 
         public IEnumerator ProcessDialog(string id) => ProcessDialog(FindDialogWithID(id));
