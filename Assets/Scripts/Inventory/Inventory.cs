@@ -11,7 +11,11 @@ namespace SH.Inventory
         private static List<Item> items = new List<Item>();
         private static IReadOnlyList<Item> Items => items;
 
+        public static int Count => items.Count;
+
         public static Item GetItem(string id) => items.Find(x => x.id == id);
+
+        public static Item GetItem(int i) => items[i];
 
         /// <summary>
         /// Checks if inventory contains spcified <see cref="Item"/> or item with the same ID
@@ -90,5 +94,25 @@ namespace SH.Inventory
         /// </summary>
         /// <param name="i">Item to remove</param>
         public static void RemoveItem(Item i) => RemoveItem(i.id);
+
+#if UNITY_EDITOR
+        static Inventory()
+        {
+            items.Add(new Item()
+            {
+                id = "DEBUG_VALID",
+                name = "DEBUG_VALID",
+                count = int.MaxValue,
+                image = null
+            });
+            items.Add(new Item()
+            {
+                id = "DEBUG_INVALID",
+                name = "DEBUG_INVALID",
+                count = int.MaxValue,
+                image = null
+            });
+        }
+#endif
     }
 }

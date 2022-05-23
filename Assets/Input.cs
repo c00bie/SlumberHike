@@ -279,6 +279,15 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""e7dbfeab-3b52-4075-8424-4df8ca9660b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -380,6 +389,17 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                     ""action"": ""Accept"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8886b74-7af3-4a99-80fb-f95c17f8edfd"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -400,6 +420,7 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
         m_Dialogs = asset.FindActionMap("Dialogs", throwIfNotFound: true);
         m_Dialogs_Select = m_Dialogs.FindAction("Select", throwIfNotFound: true);
         m_Dialogs_Accept = m_Dialogs.FindAction("Accept", throwIfNotFound: true);
+        m_Dialogs_Exit = m_Dialogs.FindAction("Exit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -559,12 +580,14 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
     private IDialogsActions m_DialogsActionsCallbackInterface;
     private readonly InputAction m_Dialogs_Select;
     private readonly InputAction m_Dialogs_Accept;
+    private readonly InputAction m_Dialogs_Exit;
     public struct DialogsActions
     {
         private @NewInput m_Wrapper;
         public DialogsActions(@NewInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Select => m_Wrapper.m_Dialogs_Select;
         public InputAction @Accept => m_Wrapper.m_Dialogs_Accept;
+        public InputAction @Exit => m_Wrapper.m_Dialogs_Exit;
         public InputActionMap Get() { return m_Wrapper.m_Dialogs; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -580,6 +603,9 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                 @Accept.started -= m_Wrapper.m_DialogsActionsCallbackInterface.OnAccept;
                 @Accept.performed -= m_Wrapper.m_DialogsActionsCallbackInterface.OnAccept;
                 @Accept.canceled -= m_Wrapper.m_DialogsActionsCallbackInterface.OnAccept;
+                @Exit.started -= m_Wrapper.m_DialogsActionsCallbackInterface.OnExit;
+                @Exit.performed -= m_Wrapper.m_DialogsActionsCallbackInterface.OnExit;
+                @Exit.canceled -= m_Wrapper.m_DialogsActionsCallbackInterface.OnExit;
             }
             m_Wrapper.m_DialogsActionsCallbackInterface = instance;
             if (instance != null)
@@ -590,6 +616,9 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                 @Accept.started += instance.OnAccept;
                 @Accept.performed += instance.OnAccept;
                 @Accept.canceled += instance.OnAccept;
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
             }
         }
     }
@@ -610,5 +639,6 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
     {
         void OnSelect(InputAction.CallbackContext context);
         void OnAccept(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
 }
