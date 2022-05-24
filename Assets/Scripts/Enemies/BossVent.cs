@@ -23,16 +23,17 @@ namespace SH.Enemy
 
         }
 
-        public IEnumerator StartAttack(float handDuration)
+        public IEnumerator StartAttack(BossVentsController ctrl)
         {
             animator.SetBool("Shake", true);
             yield return new WaitForSeconds(1f);
             animator.SetBool("Shake", false);
             yield return new WaitForSeconds(1 / 60 * 5f);
-            GameObject hand = Instantiate(handPrefab, transform.position - new Vector3(0, ceiling ? -10 : 10, 0), Quaternion.AngleAxis(ceiling ? 0 : 180, Vector3.forward));
+            float f = ceiling ? -1 : 1;
+            GameObject hand = Instantiate(handPrefab, transform.position - new Vector3(0, 10 * f, 0), Quaternion.AngleAxis(ceiling ? 0 : 180, Vector3.forward));
             BossHand bh = hand.GetComponent<BossHand>();
-            bh.end = new Vector3(transform.position.x, 0, transform.position.z);
-            bh.duration = handDuration;
+            bh.end = new Vector3(transform.position.x, 3.5f * f, transform.position.z);
+            bh.controller = ctrl;
             bh.enabled = true;
         }
     }

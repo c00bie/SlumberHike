@@ -834,8 +834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b5cbf0f8d6f814e96b519ee008fb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validInteraction: {fileID: 1764214368}
-  invalidInteraction: {fileID: 1764214367}
+  validInteractions: []
+  invalidInteractions: []
   itemID: testitem2
   retryIfInvalid: 1
   itemPicker: {fileID: 400854043}
@@ -1188,13 +1188,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4151268629880755553, guid: 9b71a11f44a8428408ec79744b3cd101, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4151268629880755556, guid: 9b71a11f44a8428408ec79744b3cd101, type: 3}
       propertyPath: m_Name
       value: DialogCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 4151268629880755556, guid: 9b71a11f44a8428408ec79744b3cd101, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151268631376901836, guid: 9b71a11f44a8428408ec79744b3cd101, type: 3}
+      propertyPath: m_text
+      value: "Co mam zrobi\u0107?\n\u25CF A\n<alpha=#00>\u25CF <alpha=#FF><color=#ffffff>B</color>\n<alpha=#00>\u25CF
+        <alpha=#FF>C"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b71a11f44a8428408ec79744b3cd101, type: 3}

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//RC - Room Changing
 namespace SH.Travel
 {
     public class ChangePuzzle : MonoBehaviour
@@ -17,9 +16,13 @@ namespace SH.Travel
         public Vector3 cameraPosition;
         [SerializeField]
         Animator transition;
+        [SerializeField]
+        Interactions.Interaction[] afterPuzzle = new Interactions.Interaction[0];
+
         bool playerInRange = false;
         NewInput input;
         GameObject player;
+        bool puzzleLoaded = false;
 
         void Awake()
         {
@@ -48,11 +51,27 @@ namespace SH.Travel
         void Update()
         {
             //Zmiana sceny pod warunkiem spe³nienia wymagañ
-            if (playerInRange && input.Actions.Grab.triggered)
+            if (!puzzleLoaded && playerInRange && input.Actions.Grab.triggered)
             {
                 Data.SaveGame.SavePlayer(player, SceneManager.GetActiveScene(), Camera.main.transform.position);
+                StartCoroutine(StartPuzzle());
+                //StartCoroutine(SceneChanger.MoveToScene(indexLevel, new Vector3(0.0399999991f, 25.6100006f, -10), transition));
+            }
+        }
 
-                StartCoroutine(SceneChanger.MoveToScene(indexLevel, new Vector3(0.0399999991f, 25.6100006f, -10), transition));
+        IEnumerator StartPuzzle()
+        {
+            var load = SceneManager.LoadSceneAsync(indexLevel, LoadSceneMode.Additive);
+            yield return new WaitUntil(() => load.isDone);
+            puzzleLoaded = true;
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(indexLevel));
+            yield return new WaitUntil(() => Managers.CheckPoints.puzzleCompleted == true);
+            foreach (var inter in afterPuzzle)
+            {
+                if (inter.IsAsync)
+                    yield return inter.DoActionAsync();
+                else
+                    inter.DoAction();
             }
         }
     }

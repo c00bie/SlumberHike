@@ -67,7 +67,7 @@ namespace SH.Travel
 
                 nextScene.allowSceneActivation = true;
 
-                Scene nextThisScene = SceneManager.GetSceneByBuildIndex(nextSceneId);
+                Scene nextThisScene = SceneManager.GetSceneAt(1);
 
                 SceneManager.MoveGameObjectToScene(player, nextThisScene);
 
@@ -79,7 +79,7 @@ namespace SH.Travel
 
                 SceneManager.SetActiveScene(nextThisScene);
 
-                SceneManager.UnloadScene(currentId);
+                SceneManager.UnloadSceneAsync(currentId);
 
                 player.transform.position = position;
                 GameObject currentCamera = GameObject.Find("Main Camera");

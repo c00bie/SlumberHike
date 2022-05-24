@@ -1871,6 +1871,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrossfadeCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7249693091312574442, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1905,6 +1909,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}

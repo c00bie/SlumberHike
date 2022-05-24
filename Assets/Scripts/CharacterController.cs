@@ -33,8 +33,10 @@ namespace SH.Character
         private NewInput input;
         private SpriteRenderer spriteRenderer;
         bool crouched = false;
-        
 
+        float baseJumpForce;
+        float baseRunningSpeed;
+        float baseWalkingSpeed;
 
 
         void Start()
@@ -51,6 +53,9 @@ namespace SH.Character
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             input.Enable();
+            baseJumpForce = jumpForce;
+            baseRunningSpeed = runningSpeed;
+            baseWalkingSpeed = walkingSpeed;
         }
 
         private void OnCollisionStay2D(Collision2D collision)
@@ -191,6 +196,14 @@ namespace SH.Character
         public void ResumeMovement()
         {
             input.Enable();
+        }
+
+        public void ScalePlayer(float scale)
+        {
+            transform.localScale = new Vector3(scale, scale, 1);
+            walkingSpeed = baseWalkingSpeed * scale;
+            runningSpeed = baseRunningSpeed * scale;
+            jumpForce = baseJumpForce * scale;
         }
     }
 }
