@@ -5,29 +5,24 @@ using UnityEngine;
 public class ChangeToNight : MonoBehaviour
 {
     [SerializeField]
-    public List<GameObject> toDisactive;
+    public List<GameObject> toDeactivate;
     [SerializeField]
-    public List<GameObject> toActive;
+    public List<GameObject> toActivate;
 
     public static bool night = false;
 
     void Start()
     {
-        if (night == true)
+        foreach (GameObject myListChild in toDeactivate)
         {
-            foreach (GameObject myListChild in toDisactive)
-            {
 
-                myListChild.active = false;
-            }
-            foreach (GameObject myListChild in toActive)
-            {
-
-                myListChild.active = true;
-            }
+            myListChild.SetActive(!night);
         }
-        
+        foreach (GameObject myListChild in toActivate)
+        {
 
+            myListChild.SetActive(night);
+        }
     }
 
 

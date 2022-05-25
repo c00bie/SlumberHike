@@ -52,7 +52,7 @@ namespace SH.Character
             col = GetComponent<BoxCollider2D>();
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            input.Enable();
+            ResumeMovement();
             baseJumpForce = jumpForce;
             baseRunningSpeed = runningSpeed;
             baseWalkingSpeed = walkingSpeed;
@@ -92,6 +92,7 @@ namespace SH.Character
                 if (isGrounded)
                 {
                     animator.SetBool("Jump", true);
+                    //rb.AddForce(Vector2.up * jumpForce);
                     rb.velocity = Vector2.up * jumpForce;
                     isGrounded = false;
                 }
@@ -126,15 +127,15 @@ namespace SH.Character
                 }
                 else
                 {
-                    if (input.Movement.Run.IsPressed() && holdingObject == false)
+                    if (!crouched && input.Movement.Run.IsPressed() && holdingObject == false)
                     {
                         animator.SetBool("Running", true);
-                        rb.velocity = new Vector2(runningSpeed * horizontal, rb.velocity.y);
+                        rb.transform.position += new Vector3(runningSpeed * horizontal, 0);
                     }
                     else
                     {
                         animator.SetBool("Running", false);
-                        rb.transform.position += new Vector3(walkingSpeed * horizontal, 0, 0);
+                        rb.transform.position += new Vector3(walkingSpeed * horizontal * (crouched ? .5f : 1f), 0, 0);
                     }
                 }
             }

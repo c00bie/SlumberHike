@@ -22,7 +22,7 @@ namespace SH.Platforms
             // Pod³¹czanie obiektu do gracza pod warunkiem bycia w zasiêgu
             if (playerInRange && player != null)
             {
-                if (input.Actions.Grab.triggered && this.gameObject.transform.GetChild(0).GetComponent<ChildDetector>().playerStanding == false && player.GetComponent<Character.CharacterController>().isGrounded)
+                if (input.Actions.Discard.triggered && gameObject.transform.GetChild(0).GetComponent<ChildDetector>().playerStanding == false && player.GetComponent<Character.CharacterController>().isGrounded)
                 {
                     float leftX = gameObject.transform.GetChild(1).transform.position.x;
                     float rightX = gameObject.transform.GetChild(2).transform.position.x;

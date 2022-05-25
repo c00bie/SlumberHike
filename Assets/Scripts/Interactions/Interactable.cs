@@ -20,6 +20,8 @@ namespace SH.Interactions
         private List<Interaction> interactionsAfterDialogs = new List<Interaction>();
         [SerializeField]
         private bool autoplay = false;
+        [SerializeField]
+        private float debounce = .5f;
 
         bool started = false;
         bool canStart = false;
@@ -60,6 +62,7 @@ namespace SH.Interactions
                 else
                     interaction.DoAction();
             }
+            yield return new WaitForSecondsRealtime(debounce);
             started = false;
         }
 

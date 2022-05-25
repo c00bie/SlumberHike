@@ -79,9 +79,10 @@ namespace SH.Travel
 
                 SceneManager.SetActiveScene(nextThisScene);
 
-                SceneManager.UnloadSceneAsync(currentId);
+                SceneManager.UnloadScene(currentId);
 
                 player.transform.position = position;
+                player.GetComponent<Character.CharacterController>().ResumeMovement();
                 GameObject currentCamera = GameObject.Find("Main Camera");
                 currentCamera.transform.position = cameraPosition;
             }

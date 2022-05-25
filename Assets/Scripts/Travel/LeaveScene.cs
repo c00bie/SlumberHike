@@ -26,11 +26,17 @@ namespace SH.Travel
         NewInput input;
         bool playerInRange = false;
         Managers.SoundManager soundManager;
+        bool started = false;
 
         private void Awake()
         {
             input = new NewInput();
             input.Enable();
+        }
+
+        private void Start()
+        {
+            soundManager = GameObject.Find("SoundManager")?.GetComponent<Managers.SoundManager>();
         }
 
         //Sprawdzanie czy gracz jest w zasiêgu, przypisywanie do zmiennej jego oraz Ÿród³a muzyki
@@ -40,11 +46,6 @@ namespace SH.Travel
             {
                 player = collision.gameObject;
                 playerInRange = true;
-
-                if (GameObject.Find("SoundManager") != null)
-                {
-                    soundManager = GameObject.Find("SoundManager").GetComponent<Managers.SoundManager>();
-                }
             }
 
         }
@@ -60,8 +61,9 @@ namespace SH.Travel
         private void Update()
         {
             //Wykrywanie czy gracz próbuje przejœæ na inn¹ scenê oraz puszczenie efektu dŸwiêkowego (o ile takowy jest podany)
-            if (playerInRange && input.Actions.Grab.triggered && unlocked)
+            if (playerInRange && input.Actions.Grab.triggered && unlocked && !started)
             {
+                started = true;
                 if (clip != null && soundManager != null)
                 {
                     soundManager.PlaySingleSound(clip);

@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 2199336845035895759}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 03aae9c656813e64e8f118c830a982d1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 49d515a2c27dcbc448b085c89f5732b0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -168,8 +168,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 7
-  runningSpeed: 4.5
+  runningSpeed: 0.075
   walkingSpeed: 0.05
-  playerPrefab: {fileID: 2199336845035895759}
+  transition: {fileID: 0}
+  cantMoveRight: 0
+  cantMoveLeft: 0
   isGrounded: 0
   animator: {fileID: 2199336845035895763}

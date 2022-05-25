@@ -18,7 +18,7 @@ namespace SH.Managers
                 audioSource.Play();
             }
 
-            DontDestroyOnLoad(transform.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
 
         // Zmienna wywo³uj¹ca pojedyñczy efekt dŸwiêkowy (jeszcze nic szczególnego nie robi, ale na pewno prêdzej czy póŸniej bêdzie trzeba do tego dodaæ dodatkowe efekty)

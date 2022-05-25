@@ -37,6 +37,9 @@ namespace SH.Dialogs
         private bool endProcess = false;
         NewInput input;
         Character.CharacterController player;
+        private float buttonTime = 0f;
+        private float debounce = .25f;
+        private bool acceptInput => buttonTime + debounce < Time.time;
 
         public IEnumerator ParseDialogs()
         {
@@ -71,6 +74,8 @@ namespace SH.Dialogs
         public IEnumerator ProcessDialogs()
         {
             endProcess = false;
+            if (dialogs.Count == 0)
+                yield break;
             if (parsing)
                 yield return new WaitUntil(() => !parsing);
             if (dialogs.Count != parsedDialogs.Count)
@@ -135,6 +140,11 @@ namespace SH.Dialogs
                                             {
                                                 output.text += c;
                                                 audio?.Play();
+                                                if (input.Dialogs.Accept.IsPressed() && acceptInput)
+                                                {
+                                                    buttonTime = Time.time;
+                                                    goto skip;
+                                                }
                                                 yield return new WaitForSeconds((float)s.CharDelay.Chain(d.CharDelay, defaultCharDelay));
                                             }
                                             //if (!t.Content.EndsWith(" "))
@@ -149,6 +159,7 @@ namespace SH.Dialogs
                             if (s.LineBreak.Chain(d.LineBreak, defaultLineBreak))
                                 output.text += "\n";
                             yield return new WaitForSeconds((float)s.SentenceDelay.Chain(d.SentenceDelay, defaultSentenceDelay));
+                            skip:
                             if (!s.Goto.IsNullOrEmpty())
                             {
                                 switch (s.Goto)
@@ -189,8 +200,7 @@ namespace SH.Dialogs
                                 else
                                     output.text += $"\n<alpha=#00>\u25cf <alpha=#FF>{o.Text}";
                             }
-                            yield return new WaitForSecondsRealtime(.25f);
-                            yield return new WaitUntil(() => input.Dialogs.Accept.IsPressed() || input.Dialogs.Select.ReadValue<float>() != 0);
+                            yield return new WaitUntil(() => acceptInput && (input.Dialogs.Accept.IsPressed() || input.Dialogs.Select.ReadValue<float>() != 0));
                             if (input.Dialogs.Accept.IsPressed())
                             {
                                 var g = c.Options[choice].Goto;
@@ -203,6 +213,7 @@ namespace SH.Dialogs
                                         goto exit;
                                     default:
                                         ProcessGoto(g);
+                                        buttonTime = Time.time;
                                         continue;
                                 }
                             }
@@ -211,6 +222,7 @@ namespace SH.Dialogs
                                 choice = choice == 0 ? c.Options.Count - 1 : choice - 1;
                             else if (sel < 0)
                                 choice = choice == c.Options.Count - 1 ? 0 : choice + 1;
+                            buttonTime = Time.time;
                             goto parseChoice;
                         }
                     default:
