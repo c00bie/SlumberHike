@@ -7,9 +7,13 @@ namespace SH.Platforms
 {
     public class MovableObject : MonoBehaviour
     {
+        [SerializeField]
+        AudioClip optionalWalkingClip;
+
         GameObject player;
         NewInput input;
         bool playerInRange = false;
+        public AudioClip oldWalkingClip;
 
         private void Awake()
         {
@@ -39,6 +43,15 @@ namespace SH.Platforms
                     {
                         player.transform.position = new Vector3(rightX, player.transform.position.y, player.transform.position.z);
                         player.GetComponent<Character.CharacterController>().cantMoveRight = true;
+                    }
+
+                    // Opcjonalna zmiana odg³osów poruszania siê oraz zapisanie starego klipu
+                    if (optionalWalkingClip != null)
+                    {
+                        oldWalkingClip = player.GetComponent<AudioSource>().clip;
+
+                        player.GetComponent<AudioSource>().clip = optionalWalkingClip;
+                        player.GetComponent<AudioSource>().Play();
                     }
 
                     player.GetComponent<Character.CharacterController>().AttachObject(gameObject);

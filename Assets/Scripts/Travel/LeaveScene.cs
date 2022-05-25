@@ -21,6 +21,8 @@ namespace SH.Travel
         Animator transition;
         [SerializeField]
         AudioClip clip;
+        [SerializeField]
+        AudioClip optionalWalkingClip;
 
         GameObject player;
         NewInput input;
@@ -66,7 +68,14 @@ namespace SH.Travel
                 started = true;
                 if (clip != null && soundManager != null)
                 {
-                    soundManager.PlaySingleSound(clip);
+                    soundManager.PlaySingleSound(clip, 1);
+                }
+
+                // Opcjonalna zmiana dŸwiêku chodzenia
+                if (optionalWalkingClip != null)
+                {
+                    player.GetComponent<AudioSource>().clip = optionalWalkingClip;
+                    player.GetComponent<AudioSource>().Play();
                 }
 
                 StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition));

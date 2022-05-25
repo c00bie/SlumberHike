@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 namespace SH.Character
 {
-    
     public class CharacterController : MonoBehaviour
     {
         [SerializeField]
@@ -17,8 +16,8 @@ namespace SH.Character
         float walkingSpeed = 0.05f;
         [SerializeField]
         Animator transition;
-
-
+        [SerializeField]
+        public AudioSource extraAudioSource;
 
         bool holdingObject = false;
         public bool cantMoveRight = false;
@@ -56,6 +55,7 @@ namespace SH.Character
             baseJumpForce = jumpForce;
             baseRunningSpeed = runningSpeed;
             baseWalkingSpeed = walkingSpeed;
+            extraAudioSource.Play();
         }
 
         private void OnCollisionStay2D(Collision2D collision)
@@ -75,6 +75,14 @@ namespace SH.Character
             {
                 if (input.Actions.Discard.triggered)
                 {
+                    // Opcjonalna zmiana odgłosu poruszania się
+                    if (holdedObject.GetComponent<Platforms.MovableObject>().oldWalkingClip != null)
+                    {
+                        AudioClip newWalkingClip = holdedObject.GetComponent<Platforms.MovableObject>().oldWalkingClip;
+                        gameObject.GetComponent<AudioSource>().clip = newWalkingClip;
+                        gameObject.GetComponent<AudioSource>().Play();
+                    }
+
                     AttachObject(holdedObject);
                 }
             }
@@ -112,6 +120,16 @@ namespace SH.Character
                 col.offset = new Vector2(col.offset.x, 0);
                 col.size = new Vector2(col.size.x, 4);
                 crouched = false;
+            }
+
+            // Sprawdzanie czy gracz się przemieszcza i uruchamianie dźwięków chodzenia
+            if (horizontal != 0 && isGrounded)
+            {
+                extraAudioSource.UnPause();
+            }
+            else
+            {
+                extraAudioSource.Pause();
             }
 
             // Bieganie i chodzenie

@@ -42,7 +42,7 @@ namespace SH.Interactions
         {
             if (clip != null && soundManager != null)
             {
-                soundManager.PlaySingleSound(clip);
+                soundManager.PlaySingleSound(clip, 1);
             }
 
             return SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition);

@@ -38,6 +38,8 @@ namespace SH.Travel
         private GameObject puzzle7;
         [SerializeField]
         private GameObject puzzle8;
+        [SerializeField]
+        AudioClip optionalWalkingClip;
 
         public Vector3 puzzle1Position;
         public Vector3 puzzle2Position;
@@ -102,6 +104,10 @@ namespace SH.Travel
                 //}
 
                 //StartCoroutine(SceneChanger.MovePlayerToScene(indexLevel, player, playerPosition, cameraPosition, transition));
+
+                //player.GetComponent<AudioSource>().clip = optionalWalkingClip;
+                //player.GetComponent<AudioSource>().Play();
+
                 Scene currentScene = SceneManager.GetActiveScene();
                 SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(indexLevel));
                 SceneManager.UnloadSceneAsync(currentScene);

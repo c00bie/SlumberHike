@@ -6,25 +6,25 @@ namespace SH.Managers
 {
     public class SoundManager : MonoBehaviour
     {
-        AudioSource audioSource;
+        [SerializeField]
+        AudioSource standardAudioSource;
         bool stillFading = false;
 
         // Ustawianie Ÿród³a dŸwiêków oraz dodanie obiektu do listy DontDestroyOnLoad
         private void Awake()
         {
-            audioSource = gameObject.GetComponent<AudioSource>();
-            if (audioSource.clip != null)
+            if (standardAudioSource.clip != null)
             {
-                audioSource.Play();
+                standardAudioSource.Play();
             }
 
             DontDestroyOnLoad(gameObject);
         }
 
         // Zmienna wywo³uj¹ca pojedyñczy efekt dŸwiêkowy (jeszcze nic szczególnego nie robi, ale na pewno prêdzej czy póŸniej bêdzie trzeba do tego dodaæ dodatkowe efekty)
-        public void PlaySingleSound(AudioClip singleSound)
+        public void PlaySingleSound(AudioClip singleSound, float volumeScaling)
         {
-            audioSource.PlayOneShot(singleSound);
+            standardAudioSource.PlayOneShot(singleSound, volumeScaling);
         }
 
         // Metoda, która zmienia muzykê w t³a, za pomoc¹ enumeratora
@@ -45,21 +45,21 @@ namespace SH.Managers
 
             stillFading = true;
             float currentTime = 0;
-            float start = audioSource.volume;
+            float start = standardAudioSource.volume;
 
             // Stopniowa zmiana g³oœnoœci muzyki
             while (currentTime < duration)
             {
                 currentTime += Time.deltaTime;
-                audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+                standardAudioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
                 yield return null;
             }
 
             // Opcjonalna zmiana klipu muzycznego
             if (clipToChange != null)
             {
-                audioSource.clip = clipToChange;
-                audioSource.Play();
+                standardAudioSource.clip = clipToChange;
+                standardAudioSource.Play();
             }
 
             stillFading = false;
