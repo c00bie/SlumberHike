@@ -93,7 +93,11 @@ namespace SH.Travel
             }
             //U³o¿enie uk³adanki oraz zapis gry
             //(Jeœli nie chcecie rozwi¹zywaæ puzzli to mo¿ecie je skipn¹æ za pomoc¹ klawisza "e")
-            if ((puzzle5.transform.position == puzzle1Position && puzzle7.transform.position == puzzle2Position && puzzle4.transform.position == puzzle3Position && puzzle3.transform.position == puzzle4Position && puzzle1.transform.position == puzzle5Position && puzzle8.transform.position == puzzle6Position && puzzle2.transform.position == puzzle7Position && puzzle6.transform.position == puzzle8Position) || input.Actions.Grab.triggered)
+            bool canskip = false;
+#if UNITY_EDITOR
+            canskip = true;
+#endif
+            if ((puzzle5.transform.position == puzzle1Position && puzzle7.transform.position == puzzle2Position && puzzle4.transform.position == puzzle3Position && puzzle3.transform.position == puzzle4Position && puzzle1.transform.position == puzzle5Position && puzzle8.transform.position == puzzle6Position && puzzle2.transform.position == puzzle7Position && puzzle6.transform.position == puzzle8Position) || (canskip && input.Actions.Grab.triggered))
             {
                 //GameObject player = null;
                 Managers.CheckPoints.puzzleCompleted = true;

@@ -28,6 +28,8 @@ namespace SH.Travel
         GameObject player;
         Managers.SoundManager soundManager;
 
+        public static bool Teleporting { get; private set; } = false;
+
         private void Awake()
         {
             input = new NewInput();
@@ -81,6 +83,7 @@ namespace SH.Travel
 
         private IEnumerator TeleportPlayerCoroutine()
         {
+            Teleporting = true;
             //Odtwarzanie efektu dŸwiêkowego (o ile taki istnieje)
             if (clip != null && soundManager != null)
             {
@@ -97,6 +100,7 @@ namespace SH.Travel
             }
             //Debug.Log(transition.GetCurrentAnimatorStateInfo(0).normalizedTime);
             transition.SetTrigger("RevealTheScreen");
+            Teleporting = false;
         }
     }
 }

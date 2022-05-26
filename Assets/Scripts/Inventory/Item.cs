@@ -12,7 +12,11 @@ namespace SH.Inventory
     {
         public string id;
         /// <summary>
-        /// Image to use if player is out of range and in inventory panel
+        /// Image to use in inventory panel
+        /// </summary>
+        public Sprite inventoryImage;
+        /// <summary>
+        /// Image to use if player is out of range
         /// </summary>
         public Sprite image;
         /// <summary>

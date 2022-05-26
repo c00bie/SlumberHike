@@ -7,6 +7,7 @@ using System.Linq;
 
 public static class Extensions
 {
+    private static System.Random rand = new System.Random();
     public static Dictionary<TKey, TValue> DeepCopy<TKey, TValue>(this Dictionary<TKey, TValue> dict)
     {
         var result = new Dictionary<TKey, TValue>();
@@ -40,5 +41,10 @@ public static class Extensions
             if (t.HasValue)
                 return t.Value;
         return default;
+    }
+
+    public static T RandomElement<T>(this IEnumerable<T> arr)
+    {
+        return arr.ElementAt(rand.Next(0, arr.Count()));
     }
 }

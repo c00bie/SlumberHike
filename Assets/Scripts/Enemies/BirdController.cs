@@ -8,16 +8,27 @@ namespace SH.Enemy
     {
         public bool isActive = false;
         public float speed = 0.05f;
+        public float distance = 10f;
 
         [SerializeField]
-        bool rightDirection = true;
+        private bool _rightDirection = true;
+        public bool rightDirection
+        {
+            get { return _rightDirection; }
+            set {
+                _rightDirection = value;
+                GetComponent<SpriteRenderer>().flipX = value;
+            }
+        }
 
         bool notAtacking = true;
         Rigidbody2D rb;
+        Vector3 start;
 
         private void Start()
         {
             rb = gameObject.GetComponent<Rigidbody2D>();
+            start = transform.position;
         }
 
         void Update()
@@ -33,6 +44,9 @@ namespace SH.Enemy
                 {
                     rb.transform.position -= new Vector3(speed, 0, 0);
                 }
+                var dist = Vector3.Distance(start, transform.position);
+                if (dist >= distance)
+                    Destroy(gameObject);
             }        
         }
 
@@ -41,7 +55,7 @@ namespace SH.Enemy
             // "Killing" the player if he got touched 
             GameObject collidedObject = collider.gameObject;
 
-            if (collidedObject.transform.CompareTag("Player") && notAtacking)
+            if (collidedObject.transform.CompareTag("Player") && notAtacking && !Travel.TeleportPlayer.Teleporting)
             {
                 notAtacking = false;
                 collidedObject.GetComponent<Character.CharacterController>().KillPlayer(gameObject.transform.name);

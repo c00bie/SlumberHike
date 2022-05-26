@@ -173,10 +173,10 @@ MonoBehaviour:
   - vents:
     - {fileID: 137953385}
   door: {fileID: 1139132179}
-  handMoveDuration: 0.5
+  handMoveDuration: 1
   lives: 2
   ventShakeDuration: 1
-  handStartY: 5
+  handStartY: 12
   handEndY: 2
 --- !u!4 &66809016
 Transform:
@@ -1532,6 +1532,7 @@ MonoBehaviour:
   unlocked: 1
   transition: {fileID: 745127721}
   clip: {fileID: 0}
+  optionalWalkingClip: {fileID: 0}
 --- !u!61 &1139132181
 BoxCollider2D:
   m_ObjectHideFlags: 0

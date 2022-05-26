@@ -77,7 +77,7 @@ namespace SH.Inventory
             else
             {
                 prevItem.enabled = true;
-                prevItem.sprite = Inventory.GetItem(index - 1).image;
+                prevItem.sprite = Inventory.GetItem(index - 1).inventoryImage;
             }
 
             if (index == Inventory.Count - 1)
@@ -88,12 +88,12 @@ namespace SH.Inventory
             else
             {
                 nextItem.enabled = true;
-                nextItem.sprite = Inventory.GetItem(index + 1).image;
+                nextItem.sprite = Inventory.GetItem(index + 1).inventoryImage;
             }
 
             Item curr = Inventory.GetItem(index);
             mainItem.enabled = true;
-            mainItem.sprite = curr.image;
+            mainItem.sprite = curr.inventoryImage;
             title.text = curr.name;
         }
 
