@@ -625,6 +625,7 @@ MonoBehaviour:
   puzzle6: {fileID: 42084463}
   puzzle7: {fileID: 113229515}
   puzzle8: {fileID: 958304461}
+  optionalWalkingClip: {fileID: 8300000, guid: 589c0f4ba17428347a9bb3554fa8aeeb, type: 3}
   puzzle1Position: {x: 0, y: 0, z: 0}
   puzzle2Position: {x: 0, y: 0, z: 0}
   puzzle3Position: {x: 0, y: 0, z: 0}
@@ -1068,7 +1069,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897543798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1281881, y: 2.0424182, z: -0.02294299}
+  m_LocalPosition: {x: -1.63, y: 1.96, z: -0.02294299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1680,7 +1681,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499587772}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1281881, y: 2.0424182, z: -0.02294299}
+  m_LocalPosition: {x: -1.63, y: 1.96, z: -0.02294299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

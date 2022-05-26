@@ -18,6 +18,10 @@ namespace SH.Travel
         Animator transition;
         [SerializeField]
         AudioClip clip;
+        [SerializeField]
+        AudioClip backgroundMusicSwapClip;
+        [SerializeField]
+        AudioClip optionalWalkingClip;
 
         bool playerInRange = false;
         NewInput input;
@@ -58,6 +62,19 @@ namespace SH.Travel
                 if (unlocked)
                 {
                     StartCoroutine(TeleportPlayerCoroutine());
+
+                    // Opcjonalne zmiana muzyki w tle
+                    if (backgroundMusicSwapClip != null)
+                    {
+                        soundManager.ChangeBackgroundMusic(backgroundMusicSwapClip);
+                    }
+
+                    // Opcjonalna zmiana dŸwiêku chodzenia
+                    if (optionalWalkingClip != null)
+                    {
+                        player.GetComponent<AudioSource>().clip = optionalWalkingClip;
+                        player.GetComponent<AudioSource>().Play();
+                    }
                 }
             }
         }
@@ -67,7 +84,7 @@ namespace SH.Travel
             //Odtwarzanie efektu dŸwiêkowego (o ile taki istnieje)
             if (clip != null && soundManager != null)
             {
-                soundManager.PlaySingleSound(clip);
+                soundManager.PlaySingleSound(clip, 1);
             }
 
             //Przyciemnianie ekranu oraz teleportowanie gracza

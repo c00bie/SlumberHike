@@ -20,12 +20,13 @@ namespace SH.Managers
         [SerializeField] Animator transition;
         [SerializeField] ScriptableRendererFeature glitch;
         [SerializeField] ScriptableRendererData renderData;
+        [SerializeField] AudioClip woodWalkingSound;
 
         private void Awake()
         {
             currentScene = SceneManager.GetActiveScene();
             StartCoroutine(Glitch());
-            // Sprawdzanie czy nale¿y aktywowaæ przycisk "Wczytaj grê" w menu g³ównym
+            // Sprawdzanie czy naleï¿½y aktywowaï¿½ przycisk "Wczytaj grï¿½" w menu gï¿½ï¿½wnym
             if (currentScene.name == "MainMenu" && File.Exists(Application.persistentDataPath + "/save.wth") == false)
             {
                 loadGameButton.interactable = false;
@@ -51,7 +52,7 @@ namespace SH.Managers
 
         private void Update()
         {
-            // Obs³uga systemu zmiany grafik w menu g³ównym
+            // Obsï¿½uga systemu zmiany grafik w menu gï¿½ï¿½wnym
             /*if (currentScene.name == "MainMenu")
             {
                 if (glitchingMenuVisible == false)
@@ -77,23 +78,24 @@ namespace SH.Managers
             }*/
         }
 
-        // Metody s³u¿¹ce do obs³ugi przycisków w menu g³ównym
+        // Metody sï¿½uï¿½ï¿½ce do obsï¿½ugi przyciskï¿½w w menu gï¿½ï¿½wnym
 
         public void NewGame()
         {
-            // Tworzenie gracza na pierwsz¹ scenê, kasowanie dotychczasowego zapisu oraz zakrywanie sceny
+            // Tworzenie gracza na pierwszï¿½ scenï¿½, kasowanie dotychczasowego zapisu oraz zakrywanie sceny
             transition.SetTrigger("CoverTheScreen");
 
             GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
             glitch.SetActive(false);
             StopCoroutine(Glitch());
             renderData.SetDirty();
+
             StartCoroutine(Travel.SceneChanger.MovePlayerToScene(3, player, new Vector3(0, -2.49f, 0), new Vector3(0, 0, -10), transition));
             File.Delete(Application.persistentDataPath + "/save.wth");
         }
         public void LoadGame()
         {
-            // Wczytywanie danych z zapisu, tworzenie gracza, za³adowywanie sceny, której numer zosta³ zapisany oraz zakrywanie sceny
+            // Wczytywanie danych z zapisu, tworzenie gracza, zaï¿½adowywanie sceny, ktï¿½rej numer zostaï¿½ zapisany oraz zakrywanie sceny
             transition.SetTrigger("CoverTheScreen");
 
             Data.PlayerData data = Data.SaveGame.LoadPlayer();
@@ -102,11 +104,24 @@ namespace SH.Managers
             StopCoroutine(Glitch());
             glitch.SetActive(false);
             renderData.SetDirty();
+
+            // Ustawianie wï¿½aï¿½ciwego odgï¿½osu krokï¿½w zaleï¿½nie od odczytanego poziomu
+            switch (data.levelId)
+            {
+                case 4:
+                    player.GetComponent<AudioSource>().clip = woodWalkingSound;
+                    player.GetComponent<AudioSource>().Play();
+                    break;
+
+                default:
+                    break;
+            }
+
             StartCoroutine(Travel.SceneChanger.MovePlayerToScene(data.levelId, player, new Vector3(data.position[0], data.position[1], data.position[2]), new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2]), transition));
         }
         public void Options()
         {
-            // Wczytywanie menu opcji na wierzch menu g³ównego
+            // Wczytywanie menu opcji na wierzch menu gï¿½ï¿½wnego
             transition.SetTrigger("RevealTheScreen");
             SceneManager.LoadSceneAsync("MainOptions", LoadSceneMode.Additive);
         }
@@ -116,7 +131,7 @@ namespace SH.Managers
             Application.Quit();
         }
 
-        // Metody s³u¿¹ce do obs³ugi przycisków w menu ustawieñ
+        // Metody sï¿½uï¿½ï¿½ce do obsï¿½ugi przyciskï¿½w w menu ustawieï¿½
         public void CloseOptions()
         {
             SceneManager.UnloadSceneAsync(currentScene.buildIndex);
