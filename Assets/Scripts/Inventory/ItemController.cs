@@ -14,6 +14,8 @@ namespace SH.Inventory
         [SerializeField]
         private bool mustBeGrounded = false;
         [SerializeField]
+        private Interactions.Interaction[] beforePickup;
+        [SerializeField]
         private Interactions.Interaction[] afterPickup;
         [SerializeField]
         private Item item = new Item();
@@ -51,11 +53,24 @@ namespace SH.Inventory
         {
             if (inRange && input.Actions.Grab.IsPressed())
             {
-                Inventory.AddItem(item);
-                foreach (var item in afterPickup)
-                    item.DoAction();
-                Destroy(gameObject);
+                StartCoroutine(PickUp());
             }
+        }
+
+        private IEnumerator PickUp()
+        {
+            foreach (var item in beforePickup)
+                if (item.IsAsync)
+                    yield return item.DoActionAsync();
+                else
+                    item.DoAction();
+            Inventory.AddItem(item);
+            foreach (var item in afterPickup)
+                if (item.IsAsync)
+                    yield return item.DoActionAsync();
+                else
+                    item.DoAction();
+            Destroy(gameObject);
         }
 
         private IEnumerator CheckCollision(Collider2D collision)

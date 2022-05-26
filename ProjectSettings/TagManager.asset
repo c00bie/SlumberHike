@@ -16,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Platforms (ignore not jumping player)
-  - 
+  - PostProcess
   - 
   - 
   - 
@@ -53,4 +53,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Overlays
+    uniqueID: 3048128141
     locked: 0

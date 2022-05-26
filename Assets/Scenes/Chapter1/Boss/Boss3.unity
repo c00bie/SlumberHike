@@ -180,6 +180,9 @@ MonoBehaviour:
   door: {fileID: 0}
   handMoveDuration: 1
   lives: 1
+  ventShakeDuration: 1
+  handStartY: 12
+  handEndY: 2
 --- !u!4 &66809016
 Transform:
   m_ObjectHideFlags: 0
@@ -1543,21 +1546,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2199336845035895758, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
-      propertyPath: runningSpeed
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2199336845035895758, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
-      propertyPath: walkingSpeed
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 2199336845035895759, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2199336845035895759, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2199336845035895765, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
       propertyPath: m_RootOrder

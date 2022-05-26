@@ -26,13 +26,13 @@ namespace SH.Enemy
         public IEnumerator StartAttack(BossVentsController ctrl)
         {
             animator.SetBool("Shake", true);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(ctrl.ventShakeDuration);
             animator.SetBool("Shake", false);
             yield return new WaitForSeconds(1 / 60 * 5f);
             float f = ceiling ? -1 : 1;
-            GameObject hand = Instantiate(handPrefab, transform.position - new Vector3(0, 10 * f, 0), Quaternion.AngleAxis(ceiling ? 0 : 180, Vector3.forward));
+            GameObject hand = Instantiate(handPrefab, transform.position - new Vector3(0, ctrl.handStartY * f, 0), Quaternion.AngleAxis(ceiling ? 0 : 180, Vector3.forward));
             BossHand bh = hand.GetComponent<BossHand>();
-            bh.end = new Vector3(transform.position.x, 3.5f * f, transform.position.z);
+            bh.end = new Vector3(transform.position.x, ctrl.handEndY * f, transform.position.z);
             bh.controller = ctrl;
             bh.enabled = true;
         }

@@ -8,7 +8,10 @@ namespace SH.Enemy
     public class BossHand : MonoBehaviour
     {
         private static float hitTime = 0;
-
+        [SerializeField]
+        private Sprite secondSprite;
+        [SerializeField]
+        SpriteRenderer handRenderer;
         private float cooldown = 0.5f;
         public Vector3 end = Vector3.zero;
         public BossVentsController controller;
@@ -30,7 +33,7 @@ namespace SH.Enemy
                 if (controller.lives == 0)
                 {
                     Animator anim = GameObject.FindGameObjectWithTag("CrossfadeCanvas").GetComponentInChildren<Animator>();
-                        StartCoroutine(Travel.SceneChanger.MovePlayerToScene(5, collision.gameObject, new Vector3(-1, -3, 0), Vector3.zero, anim));
+                        StartCoroutine(Travel.SceneChanger.MovePlayerToScene(5, collision.gameObject, new Vector3(-1, -3, 0), new Vector3(0, 0, -10), anim));
                 }
             }
         }
@@ -50,6 +53,8 @@ namespace SH.Enemy
             if (time <= duration)
             {
                 transform.position = Vector3.Lerp(start, end, time / duration);
+                if (handRenderer.sprite != secondSprite && secondSprite != null && time / duration >= .75f)
+                    handRenderer.sprite = secondSprite;
                 time += Time.deltaTime;
                 if (time > duration)
                     time = duration;

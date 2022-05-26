@@ -173,8 +173,11 @@ MonoBehaviour:
   - vents:
     - {fileID: 137953385}
   door: {fileID: 1139132179}
-  handMoveDuration: 1
+  handMoveDuration: 0.5
   lives: 2
+  ventShakeDuration: 1
+  handStartY: 5
+  handEndY: 2
 --- !u!4 &66809016
 Transform:
   m_ObjectHideFlags: 0

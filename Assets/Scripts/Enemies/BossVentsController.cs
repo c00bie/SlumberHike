@@ -20,9 +20,13 @@ namespace SH.Enemy
         private GameObject door;
 
         [Min(0)]
-        public float handMoveDuration = 1f;
+        public float handMoveDuration = .5f;
         [Min(1)]
         public int lives = 3;
+        [Min(0)]
+        public float ventShakeDuration = 1f;
+        public float handStartY = 5f;
+        public float handEndY = 2f;
 
         void Start()
         {
