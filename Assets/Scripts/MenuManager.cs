@@ -86,8 +86,8 @@ namespace SH.Managers
             transition.SetTrigger("CoverTheScreen");
 
             GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
-            glitch.SetActive(false);
             StopCoroutine(Glitch());
+            glitch.SetActive(false);
             renderData.SetDirty();
 
             StartCoroutine(Travel.SceneChanger.MovePlayerToScene(3, player, new Vector3(0, -2.49f, 0), new Vector3(0, 0, -10), transition));
