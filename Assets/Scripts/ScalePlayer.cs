@@ -9,7 +9,7 @@ namespace SH.Character
         [SerializeField]
         private float scaleFactor = 0.45f;
 
-        void Start()
+        void OnEnable()
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().ScalePlayer(scaleFactor);
         }

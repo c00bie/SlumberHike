@@ -14,7 +14,7 @@ namespace SH.Data
         public int levelId;
         public float[] position;
         public float[] cameraPosition;
-        public bool puzzleCompleted;
+        public Dictionary<string, bool> checkpoints;
 
         public PlayerData(GameObject player, Scene currentScene, Vector3 currentCameraPosition)
         {
@@ -31,7 +31,7 @@ namespace SH.Data
             cameraPosition[1] = currentCameraPosition.y;
             cameraPosition[2] = currentCameraPosition.z;
 
-            puzzleCompleted = Managers.CheckPoints.puzzleCompleted;
+            checkpoints = Managers.CheckPoints.checkpoints;
         }
     }
 }

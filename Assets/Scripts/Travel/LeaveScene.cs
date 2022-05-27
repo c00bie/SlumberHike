@@ -23,6 +23,8 @@ namespace SH.Travel
         AudioClip clip;
         [SerializeField]
         AudioClip optionalWalkingClip;
+        [SerializeField]
+        bool leaveOnEnter = false;
 
         GameObject player;
         NewInput input;
@@ -63,7 +65,7 @@ namespace SH.Travel
         private void Update()
         {
             //Wykrywanie czy gracz próbuje przejœæ na inn¹ scenê oraz puszczenie efektu dŸwiêkowego (o ile takowy jest podany)
-            if (playerInRange && input.Actions.Grab.triggered && unlocked && !started)
+            if (playerInRange && (input.Actions.Grab.triggered || leaveOnEnter) && unlocked && !started)
             {
                 started = true;
                 if (clip != null && soundManager != null)

@@ -65,7 +65,7 @@ namespace SH.Travel
             yield return new WaitUntil(() => load.isDone);
             puzzleLoaded = true;
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(indexLevel));
-            yield return new WaitUntil(() => Managers.CheckPoints.puzzleCompleted == true);
+            yield return new WaitUntil(() => Managers.CheckPoints.GetCheckPoint("puzzleCompleted"));
             foreach (var inter in afterPuzzle)
             {
                 if (inter.IsAsync)

@@ -37,7 +37,7 @@ namespace SH.Data
 
                 stream.Close();
 
-                Managers.CheckPoints.puzzleCompleted = data.puzzleCompleted;
+                Managers.CheckPoints.checkpoints = data.checkpoints;
 
                 return data;
             }

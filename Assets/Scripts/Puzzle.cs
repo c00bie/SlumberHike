@@ -100,7 +100,7 @@ namespace SH.Travel
             if ((puzzle5.transform.position == puzzle1Position && puzzle7.transform.position == puzzle2Position && puzzle4.transform.position == puzzle3Position && puzzle3.transform.position == puzzle4Position && puzzle1.transform.position == puzzle5Position && puzzle8.transform.position == puzzle6Position && puzzle2.transform.position == puzzle7Position && puzzle6.transform.position == puzzle8Position) || (canskip && input.Actions.Grab.triggered))
             {
                 //GameObject player = null;
-                Managers.CheckPoints.puzzleCompleted = true;
+                Managers.CheckPoints.SetCheckPoint("puzzleCompleted");
 
                 //if (playerNotGenerated)
                 //{

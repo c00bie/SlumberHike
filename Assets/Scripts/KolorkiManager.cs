@@ -36,15 +36,19 @@ public class KolorkiManager : MonoBehaviour
             vol.enabled = !vol.enabled;
             yield return new WaitForSecondsRealtime(Random.Range(.5f, 2f));
         }
+        vol.enabled = false;
     }
 
     IEnumerator StartInverse()
     {
         while (isActiveAndEnabled)
         {
-            inverse.SetActive(!inverse.isActive);
+            inverse.SetActive(false);
             renderData.SetDirty();
-            yield return new WaitForSecondsRealtime(Random.Range(1f, 3f));
+            yield return new WaitForSecondsRealtime(Random.Range(5f, 7f));
+            inverse.SetActive(true);
+            renderData.SetDirty();
+            yield return new WaitForSecondsRealtime(Random.Range(.01f, .03f));
         }
         inverse.SetActive(false);
         renderData.SetDirty();
