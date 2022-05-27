@@ -22,7 +22,7 @@ namespace SH.Managers
         [SerializeField]
         Behaviour component;
 
-        void Start()
+        void OnEnable()
         {
             if (CheckPoints.GetCheckPoint(checkpointName) ^ inverse)
             {
