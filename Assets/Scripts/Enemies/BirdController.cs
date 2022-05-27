@@ -7,7 +7,7 @@ namespace SH.Enemy
     public class BirdController : MonoBehaviour
     {
         public bool isActive = false;
-        public float speed = 0.05f;
+        public float speed = 10f;
         public float distance = 10f;
 
         [SerializeField]
@@ -24,30 +24,25 @@ namespace SH.Enemy
         bool notAtacking = true;
         Rigidbody2D rb;
         Vector3 start;
+        Vector3 end;
+        float time = 0;
 
-        private void Start()
+        private void OnEnable()
         {
             rb = gameObject.GetComponent<Rigidbody2D>();
             start = transform.position;
+            end = transform.position + new Vector3(start.x + distance * (rightDirection ? 1 : -1), 0);
         }
 
         void Update()
         {
-            // Movement to left or right depending on boolean variable
-            if (isActive)
+            if (time < speed)
             {
-                if (rightDirection)
-                {
-                    rb.transform.position += new Vector3(speed, 0, 0);
-                }
-                else
-                {
-                    rb.transform.position -= new Vector3(speed, 0, 0);
-                }
-                var dist = Vector3.Distance(start, transform.position);
-                if (dist >= distance)
-                    Destroy(gameObject);
-            }        
+                rb.transform.position = Vector3.Lerp(start, end, time / speed);
+                time += Time.deltaTime;
+            }
+            else
+                Destroy(gameObject);
         }
 
         private void OnTriggerEnter2D(Collider2D collider)
