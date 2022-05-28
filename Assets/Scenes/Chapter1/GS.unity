@@ -698,13 +698,12 @@ MonoBehaviour:
     defaultPauseDelay: 1
     defaultLineBreak: 1
     dialogs:
-    - {fileID: 4900000, guid: d2830dc7de5d2f24cbb3b6b366572fcf, type: 3}
+    - {fileID: 4900000, guid: f987b8ae5b364f24ebf5a8dcee593382, type: 3}
     outputCanvas: {fileID: 932763642}
-  interactionsBeforeDialogs:
-  - {fileID: 1358367085}
-  interactionsAfterDialogs:
-  - {fileID: 1764214369}
+  interactionsBeforeDialogs: []
+  interactionsAfterDialogs: []
   autoplay: 1
+  debounce: 0.5
 --- !u!212 &1764214364
 SpriteRenderer:
   m_ObjectHideFlags: 0
