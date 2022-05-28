@@ -887,7 +887,7 @@ MonoBehaviour:
         m_MethodName: ChangeBackgroundMusic
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: f83ea73d54d287c41b065c8e317b612b, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 134b8235be4d5934196f80536c109b7c, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1838,7 +1838,7 @@ MonoBehaviour:
         m_MethodName: ChangeBackgroundMusic
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: f83ea73d54d287c41b065c8e317b612b, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 134b8235be4d5934196f80536c109b7c, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

@@ -1565,7 +1565,6 @@ MonoBehaviour:
   nextSceneId: 8
   unlocked: 1
   transition: {fileID: 319766215}
-  clip: {fileID: 0}
 --- !u!114 &286710344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1648,9 +1647,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1729198075
+  m_SortingLayer: -2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 223e4247740d9e041b3cc8ca3665a3f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3542,6 +3541,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 54a2ef5c513a6704783726933046800a, type: 3}
     - target: {fileID: 7112271449964926253, guid: 0a4c74546e3cebf409747602efac3508, type: 3}
+      propertyPath: optionalClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a6358c22a0d33fd438a79de9099558d6, type: 3}
+    - target: {fileID: 7112271449964926253, guid: 0a4c74546e3cebf409747602efac3508, type: 3}
       propertyPath: mustBeGrounded
       value: 1
       objectReference: {fileID: 0}
@@ -3557,6 +3560,14 @@ PrefabInstance:
       propertyPath: item.inventoryImage
       value: 
       objectReference: {fileID: 21300000, guid: 54a2ef5c513a6704783726933046800a, type: 3}
+    - target: {fileID: 7112271449964926253, guid: 0a4c74546e3cebf409747602efac3508, type: 3}
+      propertyPath: afterPickup.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112271449964926253, guid: 0a4c74546e3cebf409747602efac3508, type: 3}
+      propertyPath: afterPickup.Array.data[0]
+      value: 
+      objectReference: {fileID: 1830842751}
     - target: {fileID: 7112271449964926255, guid: 0a4c74546e3cebf409747602efac3508, type: 3}
       propertyPath: m_Name
       value: Klucz
@@ -4646,6 +4657,8 @@ GameObject:
   - component: {fileID: 991763019}
   - component: {fileID: 991763018}
   - component: {fileID: 991763020}
+  - component: {fileID: 991763022}
+  - component: {fileID: 991763021}
   m_Layer: 0
   m_Name: Tabliczka
   m_TagString: Untagged
@@ -4696,6 +4709,8 @@ MonoBehaviour:
   - {fileID: 1887328508}
   - {fileID: 991763019}
   - {fileID: 991763020}
+  - {fileID: 991763022}
+  - {fileID: 991763021}
   - {fileID: 991763018}
   autoplay: 0
   debounce: 0.5
@@ -4732,7 +4747,6 @@ MonoBehaviour:
   nextSceneId: 3
   unlocked: 1
   transition: {fileID: 319766215}
-  clip: {fileID: 0}
 --- !u!114 &991763019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4759,6 +4773,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 15
+--- !u!114 &991763021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991763014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4d51d367ca3ac41b5c36304d16056a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundtrackClip: {fileID: 8300000, guid: 134b8235be4d5934196f80536c109b7c, type: 3}
+--- !u!114 &991763022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991763014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2961591d26955e944a42a51964ece2ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingClip: {fileID: 8300000, guid: 64d28b385c52c7e4eb59272e09f1a7ba, type: 3}
 --- !u!1 &1000293996
 GameObject:
   m_ObjectHideFlags: 0
@@ -5873,7 +5913,6 @@ GameObject:
   - component: {fileID: 1290265659}
   - component: {fileID: 1290265661}
   - component: {fileID: 1290265662}
-  - component: {fileID: 1290265663}
   m_Layer: 0
   m_Name: TeleportRoom2
   m_TagString: Untagged
@@ -5942,102 +5981,6 @@ MonoBehaviour:
   clip: {fileID: 8300000, guid: 2aa4cba61073724498c727588fee5938, type: 3}
   backgroundMusicSwapClip: {fileID: 8300000, guid: f102c2e5e466874408ac0cef1888730f, type: 3}
   optionalWalkingClip: {fileID: 8300000, guid: c12315c60d9653f4293bdf9fb786d98b, type: 3}
---- !u!82 &1290265663
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290265658}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1321755990
 GameObject:
   m_ObjectHideFlags: 0
@@ -7529,6 +7472,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7112271449964926252, guid: 0a4c74546e3cebf409747602efac3508, type: 3}
   m_PrefabInstance: {fileID: 711512695}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1830842751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711512696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9114a1dff0c7cdd48b9016e1f5dd58c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: a6358c22a0d33fd438a79de9099558d6, type: 3}
+  volumeScaling: 1
 --- !u!1 &1842745727
 GameObject:
   m_ObjectHideFlags: 0
@@ -7835,8 +7792,8 @@ MonoBehaviour:
   unlocked: 1
   transition: {fileID: 319766215}
   clip: {fileID: 8300000, guid: 2aa4cba61073724498c727588fee5938, type: 3}
-  backgroundMusicSwapClip: {fileID: 0}
-  optionalWalkingClip: {fileID: 0}
+  backgroundMusicSwapClip: {fileID: 8300000, guid: f83ea73d54d287c41b065c8e317b612b, type: 3}
+  optionalWalkingClip: {fileID: 8300000, guid: 589c0f4ba17428347a9bb3554fa8aeeb, type: 3}
 --- !u!61 &1887328506
 BoxCollider2D:
   m_ObjectHideFlags: 0

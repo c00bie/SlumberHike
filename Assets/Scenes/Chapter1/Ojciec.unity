@@ -2545,7 +2545,7 @@ MonoBehaviour:
   cameraPosition: {fileID: 680372454}
   unlocked: 1
   transition: {fileID: 1984350404}
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 2aa4cba61073724498c727588fee5938, type: 3}
   backgroundMusicSwapClip: {fileID: 0}
   optionalWalkingClip: {fileID: 0}
 --- !u!61 &1302518035

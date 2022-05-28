@@ -108,12 +108,9 @@ namespace SH.Managers
             // Ustawianie w�a�ciwego odg�osu krok�w zale�nie od odczytanego poziomu
             switch (data.levelId)
             {
-                case 4:
+                default:
                     player.GetComponent<AudioSource>().clip = woodWalkingSound;
                     player.GetComponent<AudioSource>().Play();
-                    break;
-
-                default:
                     break;
             }
 

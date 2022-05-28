@@ -114,9 +114,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8a703a83614f94c811983805ffd0c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mustBeGrounded: 0
+  beforePickup: []
   afterPickup: []
   item:
     id: klucz
+    inventoryImage: {fileID: 0}
     image: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
     inRangeImage: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
     name: Klucz
