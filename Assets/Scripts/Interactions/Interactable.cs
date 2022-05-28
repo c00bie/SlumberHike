@@ -22,11 +22,14 @@ namespace SH.Interactions
         private bool autoplay = false;
         [SerializeField]
         private float debounce = .5f;
+        [SerializeField]
+        private bool playOnce = false;
 
         bool started = false;
         bool canStart = false;
         SH.Character.CharacterController player;
         NewInput input;
+        bool played = false;
 
         private void Awake()
         {
@@ -46,6 +49,9 @@ namespace SH.Interactions
 
         private IEnumerator StartActions()
         {
+            if (playOnce && played && !DialogParser.IsRunning)
+                yield break;
+            played = true;
             started = true;
             foreach (Interaction interaction in interactionsBeforeDialogs)
             {

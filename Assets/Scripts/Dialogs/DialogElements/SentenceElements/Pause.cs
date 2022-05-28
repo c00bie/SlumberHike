@@ -15,6 +15,7 @@ namespace SH.Dialogs
         public double? Delay { get; set; }
 
         public string ID { get; set; }
+        public string Speaker { get; private set; } = "hania";
 
         public Pause() { }
         public Pause(double delay)

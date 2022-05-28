@@ -1527,12 +1527,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: -1, y: -3, z: 0}
-  cameraPosition: {x: 0, y: 0, z: 0}
+  cameraPosition: {x: 0, y: 0, z: -10}
   nextSceneId: 7
   unlocked: 1
   transition: {fileID: 745127721}
   clip: {fileID: 0}
   optionalWalkingClip: {fileID: 0}
+  leaveOnEnter: 0
 --- !u!61 &1139132181
 BoxCollider2D:
   m_ObjectHideFlags: 0

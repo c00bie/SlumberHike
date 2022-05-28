@@ -10,5 +10,7 @@ namespace SH.Dialogs
     public interface IDialogElement : IXmlSerializable
     {
         public string ID { get; }
+
+        public string Speaker { get; }
     }
 }

@@ -19,6 +19,7 @@ namespace SH.Dialogs
         }
 
         public string ID { get; private set; }
+        public string Speaker { get; private set; }
         public string Prompt { get; private set; }
         public List<Option> Options { get; private set; } = new List<Option>();
 
@@ -44,6 +45,9 @@ namespace SH.Dialogs
             tmp = reader.GetAttribute("id");
             if (tmp != null)
                 ID = tmp;
+            tmp = reader.GetAttribute("speaker");
+            if (tmp != null)
+                Speaker = tmp;
             bool moved = false;
             var inner = reader.ReadSubtree();
             inner.MoveToContent();

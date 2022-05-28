@@ -14,6 +14,7 @@ namespace SH.Dialogs
     public class Sentence : IDialogElement
     {
         public string ID { get; private set; }
+        public string Speaker { get; private set; }
         public string Goto { get; private set; }
         public bool? LineBreak { get; private set; }
         public bool? Clear { get; private set; }
@@ -42,6 +43,9 @@ namespace SH.Dialogs
             tmp = reader.GetAttribute("id");
             if (tmp != null)
                 ID = tmp;
+            tmp = reader.GetAttribute("speaker");
+            if (tmp != null)
+                Speaker = tmp;
             tmp = reader.GetAttribute("goto");
             if (tmp != null)
                 Goto = tmp;
