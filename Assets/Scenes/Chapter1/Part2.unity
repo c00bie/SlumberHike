@@ -2420,7 +2420,7 @@ MonoBehaviour:
     defaultLineBreak: 1
     dialogs:
     - {fileID: 4900000, guid: 3563a402f67c7884b9f0841eddbdef5a, type: 3}
-    outputCanvas: {fileID: 276774232}
+    outputCanvas: {fileID: 0}
   interactionsBeforeDialogs: []
   interactionsAfterDialogs:
   - {fileID: 449500213}
@@ -6095,7 +6095,7 @@ MonoBehaviour:
     defaultLineBreak: 1
     dialogs:
     - {fileID: 4900000, guid: 0526e2e60ebaa4743a7e15c6bbcff3e7, type: 3}
-    outputCanvas: {fileID: 276774232}
+    outputCanvas: {fileID: 0}
   interactionsBeforeDialogs: []
   interactionsAfterDialogs:
   - {fileID: 1196920443}
@@ -6795,7 +6795,7 @@ MonoBehaviour:
     defaultLineBreak: 1
     dialogs:
     - {fileID: 4900000, guid: 037fe82422e7609419be7b82fff13a93, type: 3}
-    outputCanvas: {fileID: 276774232}
+    outputCanvas: {fileID: 0}
   interactionsBeforeDialogs: []
   interactionsAfterDialogs:
   - {fileID: 1373105946}
