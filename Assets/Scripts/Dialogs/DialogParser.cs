@@ -7,12 +7,15 @@ using System.Xml;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SH.Dialogs
 {
     [Serializable]
     public class DialogParser
     {
+        public static bool IsRunning { get; private set; }
+
         [SerializeField]
         private double defaultCharDelay = 0.1f;
         [SerializeField]
@@ -40,6 +43,8 @@ namespace SH.Dialogs
         private float buttonTime = 0f;
         private float debounce = .25f;
         private bool acceptInput => buttonTime + debounce < Time.time;
+        private Sprite defSpeaker = null;
+        private Image speakerimg;
 
         public IEnumerator ParseDialogs()
         {
@@ -49,10 +54,12 @@ namespace SH.Dialogs
             parsing = true;
             input = new NewInput();
             player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Character.CharacterController>();
+            speakerimg = outputCanvas.GetComponentsInChildren<Image>()[1];
             output = outputCanvas.GetComponentInChildren<TMP_Text>();
             audio = outputCanvas.GetComponent<AudioSource>();
             canvas = outputCanvas.GetComponent<Canvas>();
             canvas.enabled = false;
+            defSpeaker = Resources.Load<Sprite>("miniaturki/hania");
             Debug.Log("Parsing dialogs started");
             parsedDialogs.Clear();
             foreach (var asset in dialogs)
@@ -87,6 +94,7 @@ namespace SH.Dialogs
             }
             canvas.enabled = true;
             output.text = "";
+            IsRunning = true;
 
             int currDialog = 0;
             if (!StartingDialog.IsNullOrEmpty())
@@ -103,6 +111,7 @@ namespace SH.Dialogs
                 currDialog++;
             }
             canvas.enabled = false;
+            IsRunning = false;
         }
 
         public IEnumerator ProcessDialog(string id) => ProcessDialog(FindDialogWithID(id));
@@ -121,6 +130,9 @@ namespace SH.Dialogs
             while (elem >= 0 && elem < d.Content.Count)
             {
                 IDialogElement dialog = d.Content[elem];
+                Sprite speaker = Resources.Load<Sprite>("miniaturki/" + dialog.Speaker.ToLower()) ?? defSpeaker;
+                if (speakerimg != null)
+                    speakerimg.sprite = speaker;
                 switch (dialog)
                 {
                     case Sentence s:

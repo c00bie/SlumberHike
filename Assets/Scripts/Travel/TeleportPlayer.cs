@@ -61,7 +61,7 @@ namespace SH.Travel
             //Teleportowanie gracza do po¿¹danej lokalizacji i wyzwalaj¹ca animacjê zakrywania ekranu
             if (playerInRange && input.Actions.Grab.triggered)
             {
-                if (unlocked)
+                if (unlocked && !Dialogs.DialogParser.IsRunning)
                 {
                     StartCoroutine(TeleportPlayerCoroutine());
 
