@@ -31,7 +31,7 @@ namespace SH.Enemy
         {
             rb = gameObject.GetComponent<Rigidbody2D>();
             start = transform.position;
-            end = transform.position + new Vector3(start.x + distance * (rightDirection ? 1 : -1), 0);
+            end = transform.position + new Vector3(distance * (rightDirection ? 1 : -1), 0);
         }
 
         void Update()

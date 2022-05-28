@@ -231,13 +231,14 @@ MonoBehaviour:
     defaultPauseDelay: 1
     defaultLineBreak: 1
     dialogs:
-    - {fileID: 4900000, guid: d2830dc7de5d2f24cbb3b6b366572fcf, type: 3}
+    - {fileID: 4900000, guid: f987b8ae5b364f24ebf5a8dcee593382, type: 3}
     outputCanvas: {fileID: 645428826}
   interactionsBeforeDialogs: []
   interactionsAfterDialogs:
   - {fileID: 36383782}
   autoplay: 1
   debounce: 0.5
+  playOnce: 1
 --- !u!58 &36383784
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1405,6 +1406,7 @@ MonoBehaviour:
   interactionsAfterDialogs: []
   autoplay: 0
   debounce: 0.5
+  playOnce: 0
 --- !u!1 &680372454
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,6 +2349,7 @@ MonoBehaviour:
   interactionsAfterDialogs: []
   autoplay: 0
   debounce: 0.5
+  playOnce: 0
 --- !u!1 &1065306994
 GameObject:
   m_ObjectHideFlags: 0
@@ -3552,6 +3555,7 @@ MonoBehaviour:
   interactionsAfterDialogs: []
   autoplay: 0
   debounce: 0.5
+  playOnce: 0
 --- !u!1 &1486202088
 GameObject:
   m_ObjectHideFlags: 0

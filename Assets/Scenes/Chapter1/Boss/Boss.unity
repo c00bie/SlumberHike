@@ -1627,7 +1627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2199336845035895759, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2199336845035895765, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
       propertyPath: m_RootOrder
@@ -2750,12 +2750,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: -1, y: -3, z: 0}
-  cameraPosition: {x: 0, y: 0, z: 0}
+  cameraPosition: {x: 0, y: 0, z: -10}
   nextSceneId: 6
   unlocked: 1
   transition: {fileID: 1871237783}
   clip: {fileID: 0}
   optionalWalkingClip: {fileID: 0}
+  leaveOnEnter: 0
 --- !u!1001 &1978808025
 PrefabInstance:
   m_ObjectHideFlags: 0

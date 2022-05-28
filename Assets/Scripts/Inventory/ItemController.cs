@@ -58,8 +58,12 @@ namespace SH.Inventory
             }
         }
 
+        bool pickingUp = false;
         private IEnumerator PickUp()
         {
+            if (pickingUp || Dialogs.DialogParser.IsRunning )
+                yield break;
+            pickingUp = true;
             foreach (var item in beforePickup)
                 if (item.IsAsync)
                     yield return item.DoActionAsync();
