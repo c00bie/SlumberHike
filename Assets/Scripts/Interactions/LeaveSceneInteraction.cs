@@ -17,17 +17,12 @@ namespace SH.Interactions
         bool unlocked = true;
         [SerializeField]
         Animator transition;
-        [SerializeField]
-        AudioClip clip;
-
-        Managers.SoundManager soundManager;
         GameObject player;
 
         public override bool IsAsync => true;
 
         private void Start()
         {
-            soundManager = GameObject.Find("SoundManager")?.GetComponent<Managers.SoundManager>();
             player = GameObject.FindGameObjectWithTag("Player");
             if (transition == null)
                 transition = GameObject.FindGameObjectWithTag("CrossfadeCanvas").GetComponentInChildren<Animator>();
@@ -40,11 +35,6 @@ namespace SH.Interactions
 
         public override IEnumerator DoActionAsync()
         {
-            if (clip != null && soundManager != null)
-            {
-                soundManager.PlaySingleSound(clip, 1);
-            }
-
             return SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition);
         }
     }

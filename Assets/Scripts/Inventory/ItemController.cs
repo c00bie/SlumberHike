@@ -19,6 +19,7 @@ namespace SH.Inventory
         private Interactions.Interaction[] afterPickup;
         [SerializeField]
         private Item item = new Item();
+
         public Item Item
         {
             get => item;
