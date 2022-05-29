@@ -12,8 +12,8 @@ namespace SH.Managers
     {
         System.Random random = new System.Random();
         Scene currentScene;
-        bool glitchingMenuVisible = false;
-
+        bool glitchingMenuVisible = true;
+        Coroutine glitchCoroutine;
         [SerializeField] GameObject glitchedMenu;
         [SerializeField] GameObject playerPrefab;
         [SerializeField] Button loadGameButton;
@@ -25,7 +25,7 @@ namespace SH.Managers
         private void Awake()
         {
             currentScene = SceneManager.GetActiveScene();
-            StartCoroutine(Glitch());
+            glitchCoroutine = StartCoroutine(Glitch());
             // Sprawdzanie czy nale�y aktywowa� przycisk "Wczytaj gr�" w menu g��wnym
             if (currentScene.name == "MainMenu" && File.Exists(Application.persistentDataPath + "/save.wth") == false)
             {
@@ -35,19 +35,21 @@ namespace SH.Managers
 
         IEnumerator Glitch()
         {
-            while (true)
+            while (glitchingMenuVisible)
             {
                 glitchedMenu.SetActive(false);
-                glitchingMenuVisible = false;
                 glitch.SetActive(false);
                 renderData.SetDirty();
                 yield return new WaitForSecondsRealtime(Random.Range(.5f, 2.5f));
                 glitchedMenu.SetActive(true);
-                glitchingMenuVisible = true;
                 glitch.SetActive(true);
                 renderData.SetDirty();
                 yield return new WaitForSecondsRealtime(Random.Range(.1f, 1f));
             }
+            glitchedMenu.SetActive(false);
+            glitchingMenuVisible = false;
+            glitch.SetActive(false);
+            renderData.SetDirty();
         }
 
         private void Update()
@@ -86,10 +88,8 @@ namespace SH.Managers
             transition.SetTrigger("CoverTheScreen");
 
             GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
-            StopCoroutine(Glitch());
-            glitch.SetActive(false);
-            renderData.SetDirty();
-
+            glitchingMenuVisible = false;
+            CursorChanger.CursorVisible = false;
             StartCoroutine(Travel.SceneChanger.MovePlayerToScene(3, player, new Vector3(0, -2.49f, 0), new Vector3(0, 0, -10), transition));
             File.Delete(Application.persistentDataPath + "/save.wth");
         }
@@ -101,9 +101,7 @@ namespace SH.Managers
             Data.PlayerData data = Data.SaveGame.LoadPlayer();
 
             GameObject player = Instantiate(playerPrefab, new Vector3(data.position[0], data.position[1], data.position[2]), Quaternion.identity);
-            StopCoroutine(Glitch());
-            glitch.SetActive(false);
-            renderData.SetDirty();
+            glitchingMenuVisible = false;
 
             // Ustawianie w�a�ciwego odg�osu krok�w zale�nie od odczytanego poziomu
             switch (data.levelId)
@@ -116,7 +114,7 @@ namespace SH.Managers
                 default:
                     break;
             }
-
+            CursorChanger.CursorVisible = false;
             StartCoroutine(Travel.SceneChanger.MovePlayerToScene(data.levelId, player, new Vector3(data.position[0], data.position[1], data.position[2]), new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2]), transition));
         }
         public void Options()

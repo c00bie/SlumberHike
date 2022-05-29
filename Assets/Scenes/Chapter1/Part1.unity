@@ -5307,7 +5307,7 @@ MonoBehaviour:
     defaultPauseDelay: 1
     defaultLineBreak: 1
     dialogs:
-    - {fileID: 4900000, guid: 0be7fea2e0e7e9041b72a7de08a4af89, type: 3}
+    - {fileID: 4900000, guid: c251d5c9f75c3704181e8c0ea022fab0, type: 3}
     outputCanvas: {fileID: 2085375367}
   interactionsBeforeDialogs: []
   interactionsAfterDialogs: []

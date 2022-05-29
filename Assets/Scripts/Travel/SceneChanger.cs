@@ -81,8 +81,10 @@ namespace SH.Travel
 
                 SceneManager.UnloadScene(currentId);
 
+                var ctrl = player.GetComponent<Character.CharacterController>();
+                ctrl.transition = GameObject.FindGameObjectWithTag("CrossfadeCanvas").GetComponentInChildren<Animator>();
                 player.transform.position = position;
-                player.GetComponent<Character.CharacterController>().ResumeMovement();
+                ctrl.ResumeMovement();
                 GameObject currentCamera = GameObject.Find("Main Camera");
                 currentCamera.transform.position = cameraPosition;
             }

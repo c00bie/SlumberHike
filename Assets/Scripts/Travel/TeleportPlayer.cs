@@ -22,6 +22,8 @@ namespace SH.Travel
         AudioClip backgroundMusicSwapClip;
         [SerializeField]
         AudioClip optionalWalkingClip;
+        [SerializeField]
+        bool leaveOnExit = false;
 
         bool playerInRange = false;
         NewInput input;
@@ -48,12 +50,15 @@ namespace SH.Travel
                 {
                     soundManager = GameObject.Find("SoundManager").GetComponent<Managers.SoundManager>();
                 }
+                if (leaveOnExit)
+                    StartCoroutine(TeleportPlayerCoroutine());
             }
 
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
-            playerInRange = false;
+            if (collision.gameObject.CompareTag("Player"))
+                playerInRange = false;
         }
 
         private void Update()

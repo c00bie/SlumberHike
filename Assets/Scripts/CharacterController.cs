@@ -15,7 +15,7 @@ namespace SH.Character
         [SerializeField]
         float walkingSpeed = 0.05f;
         [SerializeField]
-        Animator transition;
+        public Animator transition;
         [SerializeField]
         public AudioSource extraAudioSource;
 
