@@ -8,7 +8,10 @@ namespace SH.Managers
     {
         [SerializeField]
         Animator transition;
+        [SerializeField]
+        AudioClip menuBackgroundMusic;
 
+        SoundManager soundManager;
         public static bool gameIsPaused = false;
         public GameObject pauseMenu;
         GameObject player;
@@ -16,6 +19,8 @@ namespace SH.Managers
 
         void Awake()
         {
+            GameObject soudManagerGameObject = GameObject.FindGameObjectWithTag("SoundManager");
+            soundManager = soudManagerGameObject.GetComponent<SoundManager>();
             input = new NewInput();
             input.Enable();
         }
@@ -46,7 +51,7 @@ namespace SH.Managers
         public void Resume()
         {
             pauseMenu.SetActive(false);
-            //CursorChanger.CursorVisible = false;
+            CursorChanger.CursorVisible = false;
             Time.timeScale = 1;
             gameIsPaused = false;
         }
@@ -54,16 +59,17 @@ namespace SH.Managers
         void Pause()
         {
             pauseMenu.SetActive(true);
-            //CursorChanger.CursorVisible = true;
+            CursorChanger.CursorVisible = true;
             Time.timeScale = 0;
             gameIsPaused = true;
         }
 
         public void ReturnToMenu()
         {
-            //CursorChanger.CursorVisible = false;
+            CursorChanger.CursorVisible = true;
             gameIsPaused = false;
             Time.timeScale = 1;
+            soundManager.ChangeBackgroundMusic(menuBackgroundMusic);
 
             StartCoroutine(Travel.SceneChanger.MoveToScene(0, new Vector3(0, 0, 0), transition));
         }

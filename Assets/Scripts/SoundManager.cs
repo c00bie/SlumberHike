@@ -9,13 +9,18 @@ namespace SH.Managers
         [SerializeField]
         AudioSource standardAudioSource;
         bool stillFading = false;
+        public static bool alreadyExisting = false;
 
         // Ustawianie Ÿród³a dŸwiêków oraz dodanie obiektu do listy DontDestroyOnLoad
         private void Awake()
         {
-            if (GameObject.FindGameObjectsWithTag("SoundManager").Length > 1)
+            if (alreadyExisting)
             {
-                Destroy(GameObject.FindGameObjectsWithTag("SoundManager")[0].gameObject);
+                Destroy(gameObject);
+            }
+            else
+            {
+                alreadyExisting = true;
             }
 
             if (standardAudioSource.clip != null)
