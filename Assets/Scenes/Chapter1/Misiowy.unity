@@ -1283,7 +1283,7 @@ GameObject:
   - component: {fileID: 814884042}
   - component: {fileID: 814884046}
   - component: {fileID: 814884045}
-  - component: {fileID: 814884044}
+  - component: {fileID: 814884047}
   m_Layer: 0
   m_Name: Light switch
   m_TagString: Untagged
@@ -1384,19 +1384,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &814884044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814884041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cae7aea73b491d54d96780d8437696fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetState: 0
 --- !u!114 &814884045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1414,15 +1401,16 @@ MonoBehaviour:
     defaultSentenceDelay: 0.5
     defaultPauseDelay: 1
     defaultLineBreak: 1
-    dialogs: []
+    dialogs:
+    - {fileID: 4900000, guid: ab515c9489f15384b9b88baf5d8c0eec, type: 3}
     outputCanvas: {fileID: 1377764825}
-  interactionsBeforeDialogs: []
-  interactionsAfterDialogs:
+  interactionsBeforeDialogs:
   - {fileID: 1960800970}
-  - {fileID: 814884044}
+  - {fileID: 814884047}
+  interactionsAfterDialogs: []
   autoplay: 0
   debounce: 0.5
-  playOnce: 0
+  playOnce: 1
 --- !u!58 &814884046
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1439,6 +1427,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
+--- !u!114 &814884047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814884041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096ab3a339222414ca14896daab086ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetState: 1
+  target: {fileID: 814884042}
 --- !u!1 &842271409
 GameObject:
   m_ObjectHideFlags: 0
@@ -2037,6 +2039,52 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4151268629880755556, guid: 9b71a11f44a8428408ec79744b3cd101, type: 3}
   m_PrefabInstance: {fileID: 1377764824}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1446305086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1446305088}
+  - component: {fileID: 1446305087}
+  m_Layer: 0
+  m_Name: Wakeup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1446305087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446305086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5151e0ef3aa959e4180842aec0cf581a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.5
+  playerAnimator: {fileID: 0}
+--- !u!4 &1446305088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446305086}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.057667345, y: -0.14398342, z: -4.101439}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1616813920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2984,7 +3032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1960800970
 MonoBehaviour:
   m_ObjectHideFlags: 0

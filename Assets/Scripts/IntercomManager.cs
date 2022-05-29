@@ -28,6 +28,7 @@ namespace SH.Managers
         {
             intercom.sprite = clear;
             panel.sprite = digits[0];
+            CursorChanger.CursorVisible = true;
         }
 
         public void NumberClicked(int number)
@@ -40,6 +41,8 @@ namespace SH.Managers
                 if (code == "666")
                 {
                     StartCoroutine(Success());
+                    CursorChanger.CursorVisible = false;
+                    gameObject.SetActive(false);
                     return;
                 }
                 else

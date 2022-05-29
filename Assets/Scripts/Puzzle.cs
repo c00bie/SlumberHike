@@ -67,6 +67,7 @@ namespace SH.Travel
 
             input = new NewInput();
             input.Enable();
+            CursorChanger.CursorVisible = true;
         }
         void Start()
         {
@@ -112,6 +113,7 @@ namespace SH.Travel
                 //player.GetComponent<AudioSource>().clip = optionalWalkingClip;
                 //player.GetComponent<AudioSource>().Play();
 
+                CursorChanger.CursorVisible = false;
                 Scene currentScene = SceneManager.GetActiveScene();
                 SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(indexLevel));
                 SceneManager.UnloadSceneAsync(currentScene);
