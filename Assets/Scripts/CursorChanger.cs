@@ -9,6 +9,14 @@ public class CursorChanger : MonoBehaviour
     [SerializeField]
     Texture2D click;
 
+    private void Awake()
+    {
+        if (GameObject.FindGameObjectsWithTag("CursorChanger").Length > 1)
+        {
+            Destroy(GameObject.FindGameObjectsWithTag("SoundManager")[0].gameObject);
+        }
+    }
+
     void Start()
     {
         DontDestroyOnLoad(gameObject);

@@ -124,7 +124,6 @@ namespace SH.Managers
         }
         public void QuitGame()
         {
-            Debug.Log("Now game would close itself");
             Application.Quit();
         }
 

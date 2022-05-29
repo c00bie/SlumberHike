@@ -8,6 +8,8 @@ TagManager:
   - DialogCanvas
   - ItemPickerCanvas
   - CrossfadeCanvas
+  - SoundManager
+  - CursorChanger
   layers:
   - Default
   - TransparentFX

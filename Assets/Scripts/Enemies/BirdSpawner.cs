@@ -30,6 +30,15 @@ namespace SH.Enemy
 
         void Update()
         {
+            if (Managers.InGameMenuManager.gameIsPaused)
+            {
+                birdAudio.Pause();
+            }
+            else
+            {
+                birdAudio.UnPause();
+            }
+
             if (canSpawn && lastTime + delay < Time.time && birdPrefab != null)
             {
                 GameObject bird = Instantiate(birdPrefab, transform.TransformPoint(localSpawnPoints.RandomElement()), Quaternion.identity);
