@@ -13,6 +13,7 @@ namespace SH.Managers
         System.Random random = new System.Random();
         Scene currentScene;
         bool glitchingMenuVisible = true;
+        SoundManager soundManager;
         Coroutine glitchCoroutine;
         [SerializeField] GameObject glitchedMenu;
         [SerializeField] GameObject playerPrefab;
@@ -21,6 +22,7 @@ namespace SH.Managers
         [SerializeField] ScriptableRendererFeature glitch;
         [SerializeField] ScriptableRendererData renderData;
         [SerializeField] AudioClip woodWalkingSound;
+        [SerializeField] AudioClip backgroundSound;
 
         private void Awake()
         {
@@ -31,6 +33,9 @@ namespace SH.Managers
             {
                 loadGameButton.interactable = false;
             }
+
+            GameObject soundManagerGameObject = GameObject.FindGameObjectWithTag("SoundManager");
+            soundManager = soundManagerGameObject.GetComponent<SoundManager>();
         }
 
         IEnumerator Glitch()
@@ -86,6 +91,7 @@ namespace SH.Managers
         {
             // Tworzenie gracza na pierwsz� scen�, kasowanie dotychczasowego zapisu oraz zakrywanie sceny
             transition.SetTrigger("CoverTheScreen");
+            soundManager.ChangeBackgroundMusic(backgroundSound);
 
             GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
             glitchingMenuVisible = false;
@@ -97,6 +103,8 @@ namespace SH.Managers
         {
             // Wczytywanie danych z zapisu, tworzenie gracza, za�adowywanie sceny, kt�rej numer zosta� zapisany oraz zakrywanie sceny
             transition.SetTrigger("CoverTheScreen");
+
+            soundManager.ChangeBackgroundMusic(backgroundSound);
 
             Data.PlayerData data = Data.SaveGame.LoadPlayer();
 
@@ -122,7 +130,6 @@ namespace SH.Managers
         }
         public void QuitGame()
         {
-            Debug.Log("Now game would close itself");
             Application.Quit();
         }
 

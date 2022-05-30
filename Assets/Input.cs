@@ -231,6 +231,15 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenGameMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""00b41d4e-ca70-4c9c-ba91-b51c67af6f0c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -253,6 +262,17 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Discard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55da671d-6756-4c7e-8724-567c44d4377d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenGameMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -416,6 +436,7 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_Grab = m_Actions.FindAction("Grab", throwIfNotFound: true);
         m_Actions_Discard = m_Actions.FindAction("Discard", throwIfNotFound: true);
+        m_Actions_OpenGameMenu = m_Actions.FindAction("OpenGameMenu", throwIfNotFound: true);
         // Dialogs
         m_Dialogs = asset.FindActionMap("Dialogs", throwIfNotFound: true);
         m_Dialogs_Select = m_Dialogs.FindAction("Select", throwIfNotFound: true);
@@ -539,12 +560,14 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
     private IActionsActions m_ActionsActionsCallbackInterface;
     private readonly InputAction m_Actions_Grab;
     private readonly InputAction m_Actions_Discard;
+    private readonly InputAction m_Actions_OpenGameMenu;
     public struct ActionsActions
     {
         private @NewInput m_Wrapper;
         public ActionsActions(@NewInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Grab => m_Wrapper.m_Actions_Grab;
         public InputAction @Discard => m_Wrapper.m_Actions_Discard;
+        public InputAction @OpenGameMenu => m_Wrapper.m_Actions_OpenGameMenu;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -560,6 +583,9 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                 @Discard.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDiscard;
                 @Discard.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDiscard;
                 @Discard.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDiscard;
+                @OpenGameMenu.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnOpenGameMenu;
+                @OpenGameMenu.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnOpenGameMenu;
+                @OpenGameMenu.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnOpenGameMenu;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -570,6 +596,9 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                 @Discard.started += instance.OnDiscard;
                 @Discard.performed += instance.OnDiscard;
                 @Discard.canceled += instance.OnDiscard;
+                @OpenGameMenu.started += instance.OnOpenGameMenu;
+                @OpenGameMenu.performed += instance.OnOpenGameMenu;
+                @OpenGameMenu.canceled += instance.OnOpenGameMenu;
             }
         }
     }
@@ -634,6 +663,7 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
     {
         void OnGrab(InputAction.CallbackContext context);
         void OnDiscard(InputAction.CallbackContext context);
+        void OnOpenGameMenu(InputAction.CallbackContext context);
     }
     public interface IDialogsActions
     {

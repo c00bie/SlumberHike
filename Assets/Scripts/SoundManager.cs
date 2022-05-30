@@ -9,10 +9,20 @@ namespace SH.Managers
         [SerializeField]
         AudioSource standardAudioSource;
         bool stillFading = false;
+        public static bool alreadyExisting = false;
 
         // Ustawianie Ÿród³a dŸwiêków oraz dodanie obiektu do listy DontDestroyOnLoad
         private void Awake()
         {
+            if (alreadyExisting)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                alreadyExisting = true;
+            }
+
             if (standardAudioSource.clip != null)
             {
                 standardAudioSource.Play();
@@ -21,10 +31,25 @@ namespace SH.Managers
             DontDestroyOnLoad(gameObject);
         }
 
+        private void Update()
+        {
+            if (InGameMenuManager.gameIsPaused)
+            {
+                standardAudioSource.Pause();
+            }
+            else
+            {
+                standardAudioSource.UnPause();
+            }
+        }
+
         // Zmienna wywo³uj¹ca pojedyñczy efekt dŸwiêkowy (jeszcze nic szczególnego nie robi, ale na pewno prêdzej czy póŸniej bêdzie trzeba do tego dodaæ dodatkowe efekty)
         public void PlaySingleSound(AudioClip singleSound, float volumeScaling)
         {
-            standardAudioSource.PlayOneShot(singleSound, volumeScaling);
+            if (!InGameMenuManager.gameIsPaused)
+            {
+                standardAudioSource.PlayOneShot(singleSound, volumeScaling);
+            }
         }
 
         // Metoda, która zmienia muzykê w t³a, za pomoc¹ enumeratora

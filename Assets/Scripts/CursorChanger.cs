@@ -19,6 +19,19 @@ public class CursorChanger : MonoBehaviour
     Vector3 offset = new Vector3(16, -16);
 
     Image cursor;
+    public static bool alreadyExisting = false; 
+
+    private void Awake()
+    {
+        if (alreadyExisting)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            alreadyExisting = true;
+        }
+    }
 
     void Start()
     {

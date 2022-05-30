@@ -167,7 +167,8 @@ MonoBehaviour:
   materialHashCode: 462855346
   m_Version: 1.1.0
   m_SourceFontFileGUID: e3265ab4bf004d28a9537516768c1c75
-  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75,
+    type: 3}
   m_SourceFontFile: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
   m_AtlasPopulationMode: 1
   m_FaceInfo:
@@ -290,22 +291,32 @@ MonoBehaviour:
       m_Height: 63
     m_Scale: 1
     m_AtlasIndex: 0
+  - m_Index: 316
+    m_Metrics:
+      m_Width: 35
+      m_Height: 63
+      m_HorizontalBearingX: 3
+      m_HorizontalBearingY: 63
+      m_HorizontalAdvance: 42
+    m_GlyphRect:
+      m_X: 67
+      m_Y: 423
+      m_Width: 35
+      m_Height: 63
+    m_Scale: 1
+    m_AtlasIndex: 0
   m_CharacterTable:
   - m_ElementType: 1
-    m_Unicode: 380
-    m_GlyphIndex: 318
+    m_Unicode: 347
+    m_GlyphIndex: 285
     m_Scale: 1
   - m_ElementType: 1
     m_Unicode: 261
     m_GlyphIndex: 199
     m_Scale: 1
   - m_ElementType: 1
-    m_Unicode: 347
-    m_GlyphIndex: 285
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 281
-    m_GlyphIndex: 219
+    m_Unicode: 380
+    m_GlyphIndex: 318
     m_Scale: 1
   - m_ElementType: 1
     m_Unicode: 322
@@ -316,8 +327,16 @@ MonoBehaviour:
     m_GlyphIndex: 201
     m_Scale: 1
   - m_ElementType: 1
+    m_Unicode: 281
+    m_GlyphIndex: 219
+    m_Scale: 1
+  - m_ElementType: 1
     m_Unicode: 324
     m_GlyphIndex: 262
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 378
+    m_GlyphIndex: 316
     m_Scale: 1
   m_AtlasTextures:
   - {fileID: 28268798066460806}
@@ -353,6 +372,10 @@ MonoBehaviour:
     m_Y: 81
     m_Width: 57
     m_Height: 82
+  - m_X: 57
+    m_Y: 413
+    m_Width: 54
+    m_Height: 82
   m_FreeGlyphRects:
   - m_X: 0
     m_Y: 331
@@ -382,6 +405,14 @@ MonoBehaviour:
     m_Y: 0
     m_Width: 389
     m_Height: 511
+  - m_X: 65
+    m_Y: 82
+    m_Width: 446
+    m_Height: 331
+  - m_X: 61
+    m_Y: 166
+    m_Width: 450
+    m_Height: 247
   m_fontInfo:
     Name: Liberation Sans
     PointSize: 86

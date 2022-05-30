@@ -168,12 +168,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glitchedMenu: {fileID: 1642805136}
-  playerPrefab: {fileID: 2199336845035895759, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
+  playerPrefab: {fileID: 2199336845035895759, guid: 45ed55c1c4c3cba42a9c9728a71ee657,
+    type: 3}
   loadGameButton: {fileID: 685673604}
   transition: {fileID: 1041012177}
   glitch: {fileID: 5373379468579730183, guid: 0251e359ad570a040a871a2148a72aae, type: 2}
   renderData: {fileID: 11400000, guid: 0251e359ad570a040a871a2148a72aae, type: 2}
   woodWalkingSound: {fileID: 8300000, guid: 589c0f4ba17428347a9bb3554fa8aeeb, type: 3}
+  backgroundSound: {fileID: 8300000, guid: 134b8235be4d5934196f80536c109b7c, type: 3}
 --- !u!1 &80145163
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,18 +932,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 899827748}
-        m_TargetAssemblyTypeName: SH.Managers.SoundManager, Assembly-CSharp
-        m_MethodName: ChangeBackgroundMusic
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 134b8235be4d5934196f80536c109b7c, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &685673605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,7 +1059,7 @@ GameObject:
   - component: {fileID: 899827747}
   m_Layer: 0
   m_Name: SoundManager
-  m_TagString: Untagged
+  m_TagString: SoundManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1281,103 +1271,128 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1651136784}
     m_Modifications:
-    - target: {fileID: 7249693091312574442, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574442, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_Name
       value: CrossfadeCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_SizeDelta.x
       value: 946
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_SizeDelta.y
       value: 532
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalScale.x
       value: 2.029837
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalScale.y
       value: 2.029837
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalScale.z
       value: 2.029837
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 960.1128
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 539.93665
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+    - target: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -1385,12 +1400,14 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
 --- !u!95 &1041012177 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 7249693091376823767, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7249693091376823767, guid: bd06da4927aa5c648bb897fe577acf5e,
+    type: 3}
   m_PrefabInstance: {fileID: 1041012176}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &1041012178 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7249693091312574454, guid: bd06da4927aa5c648bb897fe577acf5e,
+    type: 3}
   m_PrefabInstance: {fileID: 1041012176}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1467726947
@@ -1886,7 +1903,8 @@ MonoBehaviour:
         m_MethodName: ChangeBackgroundMusic
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: f326456af4464c04fbd61f46035e55db, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: f326456af4464c04fbd61f46035e55db,
+            type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1945,7 +1963,7 @@ GameObject:
   - component: {fileID: 2122008250}
   m_Layer: 5
   m_Name: CursorCanvas
-  m_TagString: Untagged
+  m_TagString: CursorChanger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
