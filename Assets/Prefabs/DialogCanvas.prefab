@@ -269,8 +269,8 @@ MonoBehaviour:
   m_text: "Co mam zrobi\u0107?\n\u25CF A\n<alpha=#00>\u25CF <alpha=#FF><color=#ffffff>B</color>\n<alpha=#00>\u25CF
     <alpha=#FF>C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 483dffd083562234b9b0b8ff91bd5aea, type: 2}
+  m_sharedMaterial: {fileID: 1256066186775016681, guid: 483dffd083562234b9b0b8ff91bd5aea, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -10
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

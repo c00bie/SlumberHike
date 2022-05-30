@@ -42,7 +42,7 @@ namespace SH.Managers
                 {
                     StartCoroutine(Success());
                     CursorChanger.CursorVisible = false;
-                    gameObject.SetActive(false);
+                    //gameObject.SetActive(false);
                     return;
                 }
                 else

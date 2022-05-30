@@ -23,6 +23,7 @@ namespace SH.Managers
             soundManager = soudManagerGameObject.GetComponent<SoundManager>();
             input = new NewInput();
             input.Enable();
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Update()
@@ -46,6 +47,8 @@ namespace SH.Managers
                     Pause();
                 }
             }
+            if (transition == null)
+                transition = GameObject.FindGameObjectWithTag("CrossfadeCanvas")?.GetComponentInChildren<Animator>();
         }
 
         public void Resume()
@@ -54,6 +57,7 @@ namespace SH.Managers
             CursorChanger.CursorVisible = false;
             Time.timeScale = 1;
             gameIsPaused = false;
+            player?.GetComponent<Character.CharacterController>()?.ResumeMovement();
         }
 
         void Pause()
@@ -62,6 +66,7 @@ namespace SH.Managers
             CursorChanger.CursorVisible = true;
             Time.timeScale = 0;
             gameIsPaused = true;
+            player?.GetComponent<Character.CharacterController>()?.ResumeMovement();
         }
 
         public void ReturnToMenu()
@@ -70,7 +75,7 @@ namespace SH.Managers
             gameIsPaused = false;
             Time.timeScale = 1;
             soundManager.ChangeBackgroundMusic(menuBackgroundMusic);
-
+            pauseMenu.SetActive(false);
             StartCoroutine(Travel.SceneChanger.MoveToScene(0, new Vector3(0, 0, 0), transition));
         }
 

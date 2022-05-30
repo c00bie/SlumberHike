@@ -98,6 +98,7 @@ namespace SH.Character
                 animator.SetFloat("Horizontal", 0);
                 animator.SetBool("Crouch", false);
                 animator.SetBool("Running", false);
+                extraAudioSource.Pause();
                 return;
             }
             float horizontal = input.Movement.Horizontal.ReadValue<float>();

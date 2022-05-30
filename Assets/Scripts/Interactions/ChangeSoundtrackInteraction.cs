@@ -19,6 +19,8 @@ namespace SH.Interactions
 
         public override void DoAction()
         {
+            if (soundManager == null)
+                Start();
             soundManager.ChangeBackgroundMusic(soundtrackClip);
         }
 

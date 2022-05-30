@@ -8,6 +8,13 @@ using SH.Dialogs;
 
 namespace SH.Interactions
 {
+    public enum InteractablePlaySchedule
+    {
+        OnStart,
+        OnAwake,
+        OnEnable,
+        None
+    }
     [RequireComponent(typeof(Collider2D))]
     public class Interactable : MonoBehaviour
     {
@@ -24,6 +31,8 @@ namespace SH.Interactions
         private float debounce = .5f;
         [SerializeField]
         private bool playOnce = false;
+        [SerializeField]
+        private InteractablePlaySchedule playOn = InteractablePlaySchedule.None;
 
         bool started = false;
         bool canStart = false;
@@ -37,6 +46,20 @@ namespace SH.Interactions
             player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<SH.Character.CharacterController>();
             input = new NewInput();
             input.Actions.Grab.Enable();
+            if (playOn == InteractablePlaySchedule.OnAwake)
+                StartCoroutine(StartActions());
+        }
+
+        private void OnEnable()
+        {
+            if (playOn == InteractablePlaySchedule.OnEnable)
+                StartCoroutine(StartActions());
+        }
+
+        private void Start()
+        {
+            if (playOn == InteractablePlaySchedule.OnStart)
+                StartCoroutine(StartActions());
         }
 
         private void Update()

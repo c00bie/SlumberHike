@@ -38,5 +38,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chapter1/Misiowy.unity
     guid: f584ce9ffdc76504da15dbd4160fca34
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 8cb78c3430379e04686089d4ecc4490c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a9af1e14a1bdbe349a83d89e017ad051, type: 2}

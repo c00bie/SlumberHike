@@ -46,7 +46,7 @@ public class KolorkiManager : MonoBehaviour
         {
             inverse.SetActive(false);
             renderData.SetDirty();
-            yield return new WaitForSecondsRealtime(Random.Range(5f, 7f));
+            yield return new WaitForSecondsRealtime(Random.Range(1f, 3f));
             inverse.SetActive(true);
             renderData.SetDirty();
             yield return new WaitForSecondsRealtime(Random.Range(.05f, .15f));

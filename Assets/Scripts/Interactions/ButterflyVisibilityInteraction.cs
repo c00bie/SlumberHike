@@ -14,7 +14,7 @@ namespace SH.Interactions
         {
             if (motylek == null)
                 Start();
-            motylek?.SetActive(targetState);
+            motylek.SetActive(targetState);
         }
 
         public override IEnumerator DoActionAsync()
@@ -24,7 +24,7 @@ namespace SH.Interactions
 
         void Start()
         {
-            motylek = GameObject.FindGameObjectWithTag("Motylek");
+            motylek = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).gameObject;
         }
 
         

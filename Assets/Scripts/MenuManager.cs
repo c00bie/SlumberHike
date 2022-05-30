@@ -17,6 +17,7 @@ namespace SH.Managers
         Coroutine glitchCoroutine;
         [SerializeField] GameObject glitchedMenu;
         [SerializeField] GameObject playerPrefab;
+        [SerializeField] GameObject menuPrefab;
         [SerializeField] Button loadGameButton;
         [SerializeField] Animator transition;
         [SerializeField] ScriptableRendererFeature glitch;
@@ -94,6 +95,8 @@ namespace SH.Managers
             soundManager.ChangeBackgroundMusic(backgroundSound);
 
             GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
+            if (GameObject.FindGameObjectWithTag("InGameMenu") == null)
+                Instantiate(menuPrefab, Vector3.zero, Quaternion.identity);
             glitchingMenuVisible = false;
             CursorChanger.CursorVisible = false;
             StartCoroutine(Travel.SceneChanger.MovePlayerToScene(3, player, new Vector3(0, -2.49f, 0), new Vector3(0, 0, -10), transition));
@@ -110,7 +113,8 @@ namespace SH.Managers
 
             GameObject player = Instantiate(playerPrefab, new Vector3(data.position[0], data.position[1], data.position[2]), Quaternion.identity);
             glitchingMenuVisible = false;
-
+            if (GameObject.FindGameObjectWithTag("InGameMenu") == null)
+                Instantiate(menuPrefab, Vector3.zero, Quaternion.identity);
             // Ustawianie w�a�ciwego odg�osu krok�w zale�nie od odczytanego poziomu
             switch (data.levelId)
             {

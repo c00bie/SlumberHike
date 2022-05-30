@@ -39,7 +39,7 @@ namespace SH.Travel
 
                 SceneManager.SetActiveScene(nextThisScene);
 
-                SceneManager.UnloadSceneAsync(currentId);
+                SceneManager.UnloadScene(currentId);
 
                 Camera.main.gameObject.transform.position = cameraPosition;
             }
@@ -56,7 +56,7 @@ namespace SH.Travel
             // W³¹czanie animacji zakrywania ekranu
             transition.SetTrigger("CoverTheScreen");
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSecondsRealtime(2f);
             if (transition.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
             {
                 while (nextScene.progress < 0.9f)

@@ -409,6 +409,7 @@ MonoBehaviour:
   autoplay: 0
   debounce: 0.5
   playOnce: 1
+  playOn: 3
 --- !u!58 &210544474
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -543,6 +544,10 @@ PrefabInstance:
     - target: {fileID: 2199336845035895759, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199336845035895759, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2199336845035895765, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
       propertyPath: m_RootOrder
@@ -800,6 +805,7 @@ GameObject:
   - component: {fileID: 307089110}
   - component: {fileID: 307089109}
   - component: {fileID: 307089108}
+  - component: {fileID: 307089111}
   m_Layer: 0
   m_Name: SkrzyniaInterakcja
   m_TagString: Untagged
@@ -844,12 +850,14 @@ MonoBehaviour:
   interactionsAfterDialogs:
   - {fileID: 307089110}
   - {fileID: 813877432}
+  - {fileID: 307089111}
   - {fileID: 307089109}
   - {fileID: 1187332816}
   - {fileID: 307089108}
   autoplay: 0
   debounce: 0.5
   playOnce: 1
+  playOn: 3
 --- !u!58 &307089106
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -934,6 +942,20 @@ MonoBehaviour:
   useInvert: 0
   useGlitchColor: 1
   targetState: 1
+--- !u!114 &307089111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307089103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9114a1dff0c7cdd48b9016e1f5dd58c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 1b1ade65aafb1114aa1a299ee4b80196, type: 3}
+  volumeScaling: 1
 --- !u!1 &477793963
 GameObject:
   m_ObjectHideFlags: 0
@@ -2239,6 +2261,7 @@ MonoBehaviour:
   autoplay: 0
   debounce: 0.5
   playOnce: 1
+  playOn: 3
 --- !u!58 &814884046
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3713,6 +3736,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+--- !u!95 &1691441489 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7249693091376823767, guid: bd06da4927aa5c648bb897fe577acf5e, type: 3}
+  m_PrefabInstance: {fileID: 1691441488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1768473547
 GameObject:
   m_ObjectHideFlags: 0
@@ -4373,6 +4401,8 @@ GameObject:
   - component: {fileID: 1912572843}
   - component: {fileID: 1912572842}
   - component: {fileID: 1912572841}
+  - component: {fileID: 1912572844}
+  - component: {fileID: 1912572845}
   m_Layer: 0
   m_Name: Dialog1
   m_TagString: Untagged
@@ -4400,11 +4430,13 @@ MonoBehaviour:
     dialogs:
     - {fileID: 4900000, guid: 679899f11d216d74abc374559ef97acd, type: 3}
     outputCanvas: {fileID: 1377764825}
-  interactionsBeforeDialogs: []
+  interactionsBeforeDialogs:
+  - {fileID: 1912572845}
   interactionsAfterDialogs: []
   autoplay: 1
   debounce: 0.5
   playOnce: 1
+  playOn: 3
 --- !u!58 &1912572842
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4436,6 +4468,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1912572844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912572840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc18fba913c65e4bb21cd74878f04e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleFactor: 1
+--- !u!114 &1912572845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912572840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4d51d367ca3ac41b5c36304d16056a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundtrackClip: {fileID: 8300000, guid: f102c2e5e466874408ac0cef1888730f, type: 3}
 --- !u!1 &1923965446
 GameObject:
   m_ObjectHideFlags: 0
@@ -4707,6 +4765,8 @@ GameObject:
   - component: {fileID: 2042653624}
   - component: {fileID: 2042653628}
   - component: {fileID: 2042653629}
+  - component: {fileID: 2042653630}
+  - component: {fileID: 2042653631}
   m_Layer: 5
   m_Name: Domofon
   m_TagString: Untagged
@@ -4834,7 +4894,8 @@ MonoBehaviour:
   intercom: {fileID: 205461106}
   panel: {fileID: 1857567323}
   glowTime: 0.1
-  onSuccess: []
+  onSuccess:
+  - {fileID: 2042653630}
 --- !u!114 &2042653629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4848,3 +4909,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetState: 1
+--- !u!114 &2042653630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042653623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e986228da0543144a288b6c82ab804e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPosition: {x: 0, y: 0, z: -10}
+  nextSceneId: 11
+  transition: {fileID: 1691441489}
+--- !u!114 &2042653631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042653623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6c51244464e61409616fbef49ebf24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 100, y: 0, z: 0}
+  cameraPosition: {x: 0, y: 0, z: -10}
+  nextSceneId: 11
+  unlocked: 1
+  transition: {fileID: 1691441489}

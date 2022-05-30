@@ -19,7 +19,7 @@ namespace SH.Interactions
         Animator transition;
         GameObject player;
 
-        public override bool IsAsync => true;
+        public override bool IsAsync => false;
 
         private void Start()
         {
@@ -30,12 +30,12 @@ namespace SH.Interactions
 
         public override void DoAction()
         {
-            throw new System.NotImplementedException();
+            StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition));
         }
 
         public override IEnumerator DoActionAsync()
         {
-            return SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition);
+            yield return SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition);
         }
     }
 }
