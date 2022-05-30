@@ -42,7 +42,7 @@ namespace SH.Managers
 
             if (input.Actions.OpenGameMenu.triggered)
             {
-                if (!gameIsPaused)
+                if (!gameIsPaused && !Inventory.ItemPicker.IsOpen)
                 {
                     Pause();
                 }

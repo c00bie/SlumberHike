@@ -7,6 +7,7 @@ namespace SH.Inventory
 {
     public class ItemPicker : MonoBehaviour
     {
+        public static bool IsOpen { get; private set; } = false;
         [HideInInspector]
         public Item SelectedItem { get; private set; } = null;
         public bool Exit { get; private set; } = false;
@@ -108,11 +109,13 @@ namespace SH.Inventory
             input.Dialogs.Accept.Enable();
             input.Dialogs.Exit.Enable();
             canvas.enabled = true;
+            IsOpen = true;
             yield return new WaitWhile(() => SelectedItem == null && !Exit);
             input.Movement.Horizontal.Disable();
             input.Dialogs.Accept.Disable();
             input.Dialogs.Exit.Disable();
             characterController.ResumeMovement();
+            IsOpen = false;
             canvas.enabled = false;
         }
     }
