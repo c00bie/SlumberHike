@@ -30,7 +30,7 @@ namespace SH.Travel
         GameObject player;
         Managers.SoundManager soundManager;
 
-        public static bool Teleporting { get; private set; } = false;
+        public static bool Teleporting { get; internal set; } = false;
 
         private void Awake()
         {
@@ -50,7 +50,7 @@ namespace SH.Travel
                 {
                     soundManager = GameObject.Find("SoundManager").GetComponent<Managers.SoundManager>();
                 }
-                if (leaveOnExit)
+                if (leaveOnExit && !Teleporting)
                     StartCoroutine(TeleportPlayerCoroutine());
             }
 
@@ -66,7 +66,7 @@ namespace SH.Travel
             //Teleportowanie gracza do po¿¹danej lokalizacji i wyzwalaj¹ca animacjê zakrywania ekranu
             if (playerInRange && input.Actions.Grab.triggered)
             {
-                if (unlocked && !Dialogs.DialogParser.IsRunning)
+                if (unlocked && !Dialogs.DialogParser.IsRunning && !Teleporting)
                 {
                     StartCoroutine(TeleportPlayerCoroutine());
 

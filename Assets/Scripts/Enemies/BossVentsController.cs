@@ -13,6 +13,8 @@ namespace SH.Enemy
     public class BossVentsController : MonoBehaviour
     {
         [SerializeField]
+        float initialDelay = 3f;
+        [SerializeField]
         private float delay = 4f;
         [SerializeField]
         private BossVentInfo[] queue = new BossVentInfo[0];
@@ -37,7 +39,7 @@ namespace SH.Enemy
 
         IEnumerator StartFight()
         {
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(initialDelay);
             foreach (var item in queue)
             {
                 for (int i = 0; i < item.vents.Length; i++)

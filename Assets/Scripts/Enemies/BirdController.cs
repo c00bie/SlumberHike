@@ -21,7 +21,7 @@ namespace SH.Enemy
             }
         }
 
-        bool notAtacking = true;
+        static bool notAtacking = true;
         Rigidbody2D rb;
         Vector3 start;
         Vector3 end;

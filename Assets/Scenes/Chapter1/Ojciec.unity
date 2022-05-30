@@ -173,6 +173,9 @@ GameObject:
   - component: {fileID: 36383784}
   - component: {fileID: 36383783}
   - component: {fileID: 36383782}
+  - component: {fileID: 36383787}
+  - component: {fileID: 36383786}
+  - component: {fileID: 36383785}
   m_Layer: 0
   m_Name: Dialog
   m_TagString: Untagged
@@ -212,7 +215,6 @@ MonoBehaviour:
   nextSceneId: 5
   unlocked: 1
   transition: {fileID: 1984350404}
-  clip: {fileID: 0}
 --- !u!114 &36383783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +237,10 @@ MonoBehaviour:
     outputCanvas: {fileID: 645428826}
   interactionsBeforeDialogs: []
   interactionsAfterDialogs:
+  - {fileID: 36383785}
+  - {fileID: 36383786}
+  - {fileID: 1305649823}
+  - {fileID: 36383787}
   - {fileID: 36383782}
   autoplay: 1
   debounce: 0.5
@@ -255,6 +261,53 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &36383785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36383780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4d51d367ca3ac41b5c36304d16056a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundtrackClip: {fileID: 0}
+--- !u!114 &36383786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36383780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9114a1dff0c7cdd48b9016e1f5dd58c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: cc2f24d7509f70241ab5e0646e2334d6, type: 3}
+  volumeScaling: 1
+--- !u!114 &36383787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36383780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958c7f6fd95970f4393e641a3cb641ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogParser:
+    defaultCharDelay: 0.1
+    defaultSentenceDelay: 0.5
+    defaultPauseDelay: 1
+    defaultLineBreak: 1
+    dialogs:
+    - {fileID: 4900000, guid: 23df761619aea094592e9666478a7e57, type: 3}
+    outputCanvas: {fileID: 645428826}
 --- !u!1 &59852412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,6 +1387,7 @@ GameObject:
   - component: {fileID: 650907411}
   - component: {fileID: 650907413}
   - component: {fileID: 650907412}
+  - component: {fileID: 650907414}
   m_Layer: 0
   m_Name: KitchenDoor
   m_TagString: Untagged
@@ -1402,11 +1456,26 @@ MonoBehaviour:
     dialogs:
     - {fileID: 4900000, guid: 651a8a75067ce164f97ab599ef1f22cc, type: 3}
     outputCanvas: {fileID: 645428826}
-  interactionsBeforeDialogs: []
+  interactionsBeforeDialogs:
+  - {fileID: 650907414}
   interactionsAfterDialogs: []
   autoplay: 0
   debounce: 0.5
   playOnce: 0
+--- !u!114 &650907414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650907410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9114a1dff0c7cdd48b9016e1f5dd58c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 68b2b2062f37c244cb88cf54fc706c4b, type: 3}
+  volumeScaling: 1
 --- !u!1 &680372454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,6 +1934,7 @@ Transform:
   - {fileID: 680372455}
   - {fileID: 1758295533}
   - {fileID: 1565906334}
+  - {fileID: 1607024570}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2277,6 +2347,7 @@ GameObject:
   - component: {fileID: 1057804601}
   - component: {fileID: 1057804603}
   - component: {fileID: 1057804602}
+  - component: {fileID: 1057804604}
   m_Layer: 0
   m_Name: Cabinet
   m_TagString: Untagged
@@ -2345,11 +2416,26 @@ MonoBehaviour:
     dialogs:
     - {fileID: 4900000, guid: d39787266477ce34388264278faf603a, type: 3}
     outputCanvas: {fileID: 645428826}
-  interactionsBeforeDialogs: []
+  interactionsBeforeDialogs:
+  - {fileID: 1057804604}
   interactionsAfterDialogs: []
   autoplay: 0
   debounce: 0.5
   playOnce: 0
+--- !u!114 &1057804604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057804600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9114a1dff0c7cdd48b9016e1f5dd58c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 68b2b2062f37c244cb88cf54fc706c4b, type: 3}
+  volumeScaling: 1
 --- !u!1 &1065306994
 GameObject:
   m_ObjectHideFlags: 0
@@ -2551,6 +2637,7 @@ MonoBehaviour:
   clip: {fileID: 8300000, guid: 2aa4cba61073724498c727588fee5938, type: 3}
   backgroundMusicSwapClip: {fileID: 0}
   optionalWalkingClip: {fileID: 0}
+  leaveOnExit: 0
 --- !u!61 &1302518035
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2588,6 +2675,7 @@ GameObject:
   - component: {fileID: 1305649820}
   - component: {fileID: 1305649822}
   - component: {fileID: 1305649821}
+  - component: {fileID: 1305649823}
   m_Layer: 0
   m_Name: Gramofon
   m_TagString: Untagged
@@ -2682,6 +2770,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1305649823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305649819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096ab3a339222414ca14896daab086ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetState: 0
+  target: {fileID: 1305649821}
 --- !u!1 &1314799864
 GameObject:
   m_ObjectHideFlags: 0
@@ -3672,6 +3774,93 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 19.2, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1607024569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1607024570}
+  - component: {fileID: 1607024573}
+  - component: {fileID: 1607024572}
+  - component: {fileID: 1607024571}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1607024570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607024569}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.76, y: -1.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 807131543}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1607024571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607024569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4d51d367ca3ac41b5c36304d16056a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundtrackClip: {fileID: 8300000, guid: 598d74ce31bea8c4f8f06a444d56f09a, type: 3}
+--- !u!114 &1607024572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607024569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb277df7dedce447ac983d82ff82bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogParser:
+    defaultCharDelay: 0.10000000149011612
+    defaultSentenceDelay: 0.5
+    defaultPauseDelay: 1
+    defaultLineBreak: 1
+    dialogs: []
+    outputCanvas: {fileID: 645428826}
+  interactionsBeforeDialogs: []
+  interactionsAfterDialogs: []
+  autoplay: 1
+  debounce: 0.5
+  playOnce: 1
+--- !u!58 &1607024573
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607024569}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!1 &1668151042
 GameObject:
   m_ObjectHideFlags: 0
@@ -4621,7 +4810,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1729198075
   m_SortingLayer: -2
-  m_SortingOrder: 4
+  m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 9e5bb2ee44284134785c63a7c2d73a07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

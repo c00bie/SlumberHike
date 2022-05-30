@@ -32,6 +32,7 @@ namespace SH.Character
         private NewInput input;
         private SpriteRenderer spriteRenderer;
         bool crouched = false;
+        bool still = false;
 
         float baseJumpForce;
         float baseRunningSpeed;
@@ -51,7 +52,7 @@ namespace SH.Character
             col = GetComponent<BoxCollider2D>();
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            ResumeMovement();
+            input.Enable();
             baseJumpForce = jumpForce;
             baseRunningSpeed = runningSpeed;
             baseWalkingSpeed = walkingSpeed;
@@ -70,6 +71,8 @@ namespace SH.Character
 
         private void Update()
         {
+            if (still)
+                return;
             // Od��czanie obiektu od gracza
             if (holdingObject)
             {
@@ -90,6 +93,13 @@ namespace SH.Character
 
         void FixedUpdate()
         {
+            if (still)
+            {
+                animator.SetFloat("Horizontal", 0);
+                animator.SetBool("Crouch", false);
+                animator.SetBool("Running", false);
+                return;
+            }
             float horizontal = input.Movement.Horizontal.ReadValue<float>();
             if (horizontal != 0)
                 spriteRenderer.flipX = horizontal > 0;
@@ -209,12 +219,12 @@ namespace SH.Character
 
         public void PauseMovement()
         {
-            input.Disable();
+            still = true;
         }
 
         public void ResumeMovement()
         {
-            input.Enable();
+            still = false;
         }
 
         public void ScalePlayer(float scale)

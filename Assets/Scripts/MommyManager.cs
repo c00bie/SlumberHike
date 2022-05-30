@@ -20,28 +20,7 @@ namespace SH.Managers
         private int count = 0;
 
         [SerializeField]
-        Vector3 position;
-        [SerializeField]
-        Vector3 cameraPosition;
-        [SerializeField]
-        int nextSceneId;
-        [SerializeField]
-        bool unlocked = true;
-        [SerializeField]
-        Animator transition;
-        [SerializeField]
-        AudioClip clip;
-
-        SoundManager soundManager;
-        GameObject player;
-
-        private void Start()
-        {
-            soundManager = GameObject.Find("SoundManager")?.GetComponent<SoundManager>();
-            player = GameObject.FindGameObjectWithTag("Player");
-            if (transition == null)
-                transition = GameObject.FindGameObjectWithTag("CrossfadeCanvas").GetComponentInChildren<Animator>();
-        }
+        private Interactions.Interaction[] onCompleted = new Interactions.Interaction[0];
 
         void OnEnable()
         {
@@ -49,20 +28,26 @@ namespace SH.Managers
                 srenderer = GetComponent<SpriteRenderer>();
             dir = !dir;
             srenderer.sprite = dir ? left : right;
-            if (count++ == targetCount)
-            {
-                if (clip != null && soundManager != null)
-                {
-                    soundManager.PlaySingleSound(clip, 1);
-                }
-                CheckPoints.SetCheckPoint("nightCompleted");
-                StartCoroutine(SceneChanger.MovePlayerToScene(nextSceneId, player, position, cameraPosition, transition));
-            }
         }
 
         void OnDisable()
         {
             srenderer.sprite = def;
+            if (++count == targetCount)
+            {
+                StartCoroutine(Completed());
+            }
+        }
+
+        IEnumerator Completed()
+        {
+            foreach (var i in onCompleted)
+            {
+                if (i.IsAsync)
+                    yield return i.DoActionAsync();
+                else
+                    i.DoAction();
+            }
         }
     }
 }

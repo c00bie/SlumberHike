@@ -87,6 +87,10 @@ namespace SH.Travel
                 ctrl.ResumeMovement();
                 GameObject currentCamera = GameObject.Find("Main Camera");
                 currentCamera.transform.position = cameraPosition;
+
+                TeleportPlayer.Teleporting = false;
+
+                Data.SaveGame.SavePlayer(player, nextThisScene, cameraPosition);
             }
         }    
     }

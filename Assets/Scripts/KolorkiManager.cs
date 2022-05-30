@@ -18,6 +18,7 @@ public class KolorkiManager : MonoBehaviour
         glitch.SetActive(true);
         glitch_col.SetActive(true);
         StartCoroutine(StartKolorki());
+        StartCoroutine(StartInverse());
     }
 
     void OnDisable()
@@ -48,7 +49,7 @@ public class KolorkiManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(Random.Range(5f, 7f));
             inverse.SetActive(true);
             renderData.SetDirty();
-            yield return new WaitForSecondsRealtime(Random.Range(.01f, .03f));
+            yield return new WaitForSecondsRealtime(Random.Range(.05f, .15f));
         }
         inverse.SetActive(false);
         renderData.SetDirty();

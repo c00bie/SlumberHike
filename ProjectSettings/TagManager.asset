@@ -8,6 +8,7 @@ TagManager:
   - DialogCanvas
   - ItemPickerCanvas
   - CrossfadeCanvas
+  - Motylek
   layers:
   - Default
   - TransparentFX

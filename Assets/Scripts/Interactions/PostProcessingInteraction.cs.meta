@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6f7a50372801e55438f6b3a7abf773cd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - glitch: {fileID: -3410890911432209080, guid: 0251e359ad570a040a871a2148a72aae, type: 2}
+  - glitchColor: {fileID: 5373379468579730183, guid: 0251e359ad570a040a871a2148a72aae, type: 2}
+  - invert: {fileID: -8965931664958926774, guid: 0251e359ad570a040a871a2148a72aae, type: 2}
+  - data: {fileID: 11400000, guid: 0251e359ad570a040a871a2148a72aae, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
