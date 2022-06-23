@@ -34,6 +34,12 @@ namespace SH.Managers
             {
                 loadGameButton.interactable = false;
             }
+            
+            // Sprawdzenie czy należy zniszczyć obiekt menu w grze
+            if (GameObject.FindGameObjectWithTag("InGameMenu") != null)
+            {
+                InGameMenuManager.toDelete = true;
+            }
 
             GameObject soundManagerGameObject = GameObject.FindGameObjectWithTag("SoundManager");
             soundManager = soundManagerGameObject.GetComponent<SoundManager>();
@@ -115,6 +121,7 @@ namespace SH.Managers
             glitchingMenuVisible = false;
             if (GameObject.FindGameObjectWithTag("InGameMenu") == null)
                 Instantiate(menuPrefab, Vector3.zero, Quaternion.identity);
+
             // Ustawianie w�a�ciwego odg�osu krok�w zale�nie od odczytanego poziomu
             switch (data.levelId)
             {

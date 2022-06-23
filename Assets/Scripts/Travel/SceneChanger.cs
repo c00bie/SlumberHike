@@ -42,6 +42,14 @@ namespace SH.Travel
                 SceneManager.UnloadScene(currentId);
 
                 Camera.main.gameObject.transform.position = cameraPosition;
+
+                // Sprawdzenie i opcjonalnie pozbycie siê podrêcznego menu
+                if (Managers.InGameMenuManager.toDelete && GameObject.FindGameObjectWithTag("InGameMenu") != null)
+                {
+                    Managers.InGameMenuManager.toDelete = false;
+                    Managers.InGameMenuManager.alreadyExisting = false;
+                    Object.Destroy(GameObject.FindGameObjectWithTag("InGameMenu"));
+                }
             }
         }
 
@@ -91,7 +99,15 @@ namespace SH.Travel
                 TeleportPlayer.Teleporting = false;
 
                 Data.SaveGame.SavePlayer(player, nextThisScene, cameraPosition);
+
+                // Sprawdzenie i opcjonalnie pozbycie siê podrêcznego menu
+                if (Managers.InGameMenuManager.toDelete && GameObject.FindGameObjectWithTag("InGameMenu") != null)
+                {
+                    Managers.InGameMenuManager.toDelete = false;
+                    Managers.InGameMenuManager.alreadyExisting = false;
+                    Object.Destroy(GameObject.FindGameObjectWithTag("InGameMenu"));
+                }
             }
-        }    
+        }
     }
 }

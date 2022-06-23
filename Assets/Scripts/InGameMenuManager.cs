@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SH.Managers
 {
@@ -13,12 +14,23 @@ namespace SH.Managers
 
         SoundManager soundManager;
         public static bool gameIsPaused = false;
+        public static bool toDelete = false;
+        public static bool alreadyExisting = false;
         public GameObject pauseMenu;
         GameObject player;
         NewInput input;
 
         void Awake()
         {
+            if (alreadyExisting)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                alreadyExisting = true;
+            }
+
             GameObject soudManagerGameObject = GameObject.FindGameObjectWithTag("SoundManager");
             soundManager = soudManagerGameObject.GetComponent<SoundManager>();
             input = new NewInput();
