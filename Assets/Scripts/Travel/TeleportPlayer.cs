@@ -7,6 +7,8 @@ namespace SH.Travel
     public class TeleportPlayer : MonoBehaviour
     {
         [SerializeField]
+        GameObject game;
+        [SerializeField]
         Camera mainCamera;
         [SerializeField]
         Vector3 teleportTo;
@@ -66,6 +68,10 @@ namespace SH.Travel
             //Teleportowanie gracza do po¿¹danej lokalizacji i wyzwalaj¹ca animacjê zakrywania ekranu
             if (playerInRange && input.Actions.Grab.triggered)
             {
+                if (this.teleportTo.y == 38 || this.teleportTo.y == -1.5f)
+                {
+                    game.SetActive(false);
+                }
                 if (unlocked && !Dialogs.DialogParser.IsRunning && !Teleporting)
                 {
                     StartCoroutine(TeleportPlayerCoroutine());
