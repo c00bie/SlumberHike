@@ -6364,7 +6364,9 @@ MonoBehaviour:
     - {fileID: 4900000, guid: 9c1a56d8c3ef2f54b8bddd17bdc3987d, type: 3}
     outputCanvas: {fileID: 276774232}
   interactionsBeforeDialogs: []
-  interactionsAfterDialogs: []
+  interactionsAfterDialogs:
+  - {fileID: 1510632751}
+  - {fileID: 1323285143}
   autoplay: 0
   debounce: 0.5
   playOnce: 0
@@ -7325,9 +7327,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1323285141}
+  - component: {fileID: 1323285143}
   - component: {fileID: 1323285142}
   m_Layer: 0
-  m_Name: KitchenDoor
+  m_Name: KitchenDoorBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7400,6 +7403,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1323285143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323285140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae7aea73b491d54d96780d8437696fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetState: 0
 --- !u!1 &1330083934
 GameObject:
   m_ObjectHideFlags: 0
@@ -8062,9 +8078,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1510632750}
+  - component: {fileID: 1510632751}
   - component: {fileID: 1510632749}
   m_Layer: 0
-  m_Name: DoorNight
+  m_Name: OpenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8137,6 +8154,19 @@ Transform:
   m_Father: {fileID: 707434178}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1510632751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510632748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae7aea73b491d54d96780d8437696fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetState: 1
 --- !u!1 &1513097324
 GameObject:
   m_ObjectHideFlags: 0
