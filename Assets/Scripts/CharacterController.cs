@@ -39,9 +39,11 @@ namespace SH.Character
         float baseWalkingSpeed;
 
 
+
         void Start()
         {
             transform.position = new Vector3(x, y, 0f);
+
         }
 
         void Awake()
@@ -142,6 +144,7 @@ namespace SH.Character
             {
                 extraAudioSource.Pause();
             }
+           
 
             // Bieganie i chodzenie
             if (horizontal != 0)
