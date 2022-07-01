@@ -69,7 +69,8 @@ namespace SH.Managers
             CursorChanger.CursorVisible = false;
             Time.timeScale = 1;
             gameIsPaused = false;
-            player?.GetComponent<Character.CharacterController>()?.ResumeMovement();
+            if (!Dialogs.DialogParser.IsRunning)
+                player?.GetComponent<Character.CharacterController>()?.ResumeMovement();
         }
 
         void Pause()
@@ -78,7 +79,7 @@ namespace SH.Managers
             CursorChanger.CursorVisible = true;
             Time.timeScale = 0;
             gameIsPaused = true;
-            player?.GetComponent<Character.CharacterController>()?.ResumeMovement();
+            player?.GetComponent<Character.CharacterController>()?.PauseMovement();
         }
 
         public void ReturnToMenu()
