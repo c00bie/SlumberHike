@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4da6ef1a9272b44e9ae5ea35bbec7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialDelay: 0
-  delay: 0.1
+  initialDelay: 3
+  delay: 0.5
   queue:
   - vents:
     - {fileID: 2065698327}
@@ -164,7 +164,6 @@ MonoBehaviour:
     - {fileID: 1579383760}
     - {fileID: 1072020082}
   - vents:
-    - {fileID: 1327222296}
     - {fileID: 1843954349}
     - {fileID: 2096222756}
     - {fileID: 1404569256}
@@ -186,7 +185,7 @@ MonoBehaviour:
     - {fileID: 1072020082}
     - {fileID: 2096222756}
   door: {fileID: 736134580}
-  handMoveDuration: 2
+  handMoveDuration: 3
   lives: 1
   ventShakeDuration: 1
   handStartY: 12
@@ -2537,17 +2536,6 @@ Transform:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3729922356898674410, guid: 5349c737e2d79114499f9c609129bf46, type: 3}
   m_PrefabInstance: {fileID: 1305703591}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2e2e11d0e5732b4f9f717caae330734, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1327222296 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3729922356898674410, guid: 5349c737e2d79114499f9c609129bf46, type: 3}
-  m_PrefabInstance: {fileID: 3729922356929539677}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

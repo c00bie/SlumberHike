@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4da6ef1a9272b44e9ae5ea35bbec7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialDelay: 0
+  initialDelay: 3
   delay: 0.2
   queue:
   - vents:

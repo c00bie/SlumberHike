@@ -3197,7 +3197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &762117723
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3905,7 +3905,7 @@ MonoBehaviour:
   kamera: {fileID: 165548066}
   roomPosition: {fileID: 1369804145}
   nextRoomPosition: {fileID: 1860670760}
-  onlyOneWay: 1
+  onlyOneWay: 0
   vertical: 0
 --- !u!1 &967600948
 GameObject:
@@ -4584,7 +4584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2199336845035895759, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2199336845035895765, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
       propertyPath: m_RootOrder
@@ -5288,7 +5288,7 @@ MonoBehaviour:
   kamera: {fileID: 165548066}
   roomPosition: {fileID: 389998636}
   nextRoomPosition: {fileID: 1369804145}
-  onlyOneWay: 1
+  onlyOneWay: 0
   vertical: 0
 --- !u!1 &1474495215
 GameObject:
