@@ -94,7 +94,7 @@ namespace SH.Managers
 
         // Metody s�u��ce do obs�ugi przycisk�w w menu g��wnym
 
-        public void NewGame()
+        public void NewGame(int scene = 3)
         {
             // Tworzenie gracza na pierwsz� scen�, kasowanie dotychczasowego zapisu oraz zakrywanie sceny
             transition.SetTrigger("CoverTheScreen");
@@ -105,7 +105,7 @@ namespace SH.Managers
                 Instantiate(menuPrefab, Vector3.zero, Quaternion.identity);
             glitchingMenuVisible = false;
             CursorChanger.CursorVisible = false;
-            StartCoroutine(Travel.SceneChanger.MovePlayerToScene(3, player, new Vector3(0, -2.49f, 0), new Vector3(0, 0, -10), transition));
+            StartCoroutine(Travel.SceneChanger.MovePlayerToScene(scene, player, new Vector3(0, -2.49f, 0), new Vector3(0, 0, -10), transition));
             File.Delete(Application.persistentDataPath + "/save.wth");
         }
         public void LoadGame()
