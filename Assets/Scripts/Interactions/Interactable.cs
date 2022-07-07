@@ -33,9 +33,27 @@ namespace SH.Interactions
         private bool playOnce = false;
         [SerializeField]
         private InteractablePlaySchedule playOn = InteractablePlaySchedule.None;
+        [SerializeField]
+        private bool glowWhenNear = false;
+        [SerializeField]
+        private SpriteRenderer glowTarget = null;
 
         bool started = false;
-        bool canStart = false;
+        bool _canStart = false;
+        bool canStart
+        {
+            get => _canStart;
+            set
+            {
+                _canStart = value;
+                if (glowTarget != null)
+                {
+                    if (glowWhenNear)
+                        glowTarget.material.SetInteger("_Glow", value ? 1 : 0);
+                    Debug.Log(glowTarget.material.GetInteger("_Glow"));
+                }
+            }
+        }
         SH.Character.CharacterController player;
         NewInput input;
         bool played = false;
@@ -58,6 +76,8 @@ namespace SH.Interactions
 
         private void Start()
         {
+            if (glowTarget is null)
+                glowTarget = GetComponent<SpriteRenderer>();
             if (playOn == InteractablePlaySchedule.OnStart)
                 StartCoroutine(StartActions());
         }
