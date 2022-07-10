@@ -13,13 +13,13 @@ namespace SH.Character
         [SerializeField]
         float runningSpeed = 4.5f;
         [SerializeField]
-        float walkingSpeed = 0.05f;
+        public float walkingSpeed = 0.05f;
         [SerializeField]
         public Animator transition;
         [SerializeField]
         public AudioSource extraAudioSource;
 
-        bool holdingObject = false;
+        public bool holdingObject = false;
         public bool cantMoveRight = false;
         public bool cantMoveLeft = false;
         GameObject holdedObject;
@@ -75,22 +75,6 @@ namespace SH.Character
         {
             if (still)
                 return;
-            // Od��czanie obiektu od gracza
-            if (holdingObject)
-            {
-                if (input.Actions.Discard.triggered)
-                {
-                    // Opcjonalna zmiana odgłosu poruszania się
-                    if (holdedObject.GetComponent<Platforms.MovableObject>().oldWalkingClip != null)
-                    {
-                        AudioClip newWalkingClip = holdedObject.GetComponent<Platforms.MovableObject>().oldWalkingClip;
-                        gameObject.GetComponent<AudioSource>().clip = newWalkingClip;
-                        gameObject.GetComponent<AudioSource>().Play();
-                    }
-
-                    AttachObject(holdedObject);
-                }
-            }
         }
 
         void FixedUpdate()
@@ -170,31 +154,6 @@ namespace SH.Character
                         rb.transform.position += new Vector3(walkingSpeed * horizontal * (crouched ? .5f : 1f), 0, 0);
                     }
                 }
-            }
-        }
-
-        // Metoda do��czaj�ca albo od��czaj�ca dany obiekt jako dziecko gracza
-        public void AttachObject(GameObject movableObject)
-        {
-            if (holdingObject)
-            {
-                movableObject.transform.parent = null;
-
-                holdingObject = false;
-                cantMoveLeft = false;
-                cantMoveRight = false;
-                holdedObject = null;
-
-                walkingSpeed = 0.05f;
-            }
-            else
-            {
-                movableObject.transform.SetParent(gameObject.transform, true);
-
-                holdingObject = true;
-                holdedObject = movableObject;
-
-                walkingSpeed = 0.025f;
             }
         }
 
