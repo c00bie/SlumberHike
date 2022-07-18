@@ -18,6 +18,7 @@ namespace SH.Managers
         [SerializeField] GameObject glitchedMenu;
         [SerializeField] GameObject playerPrefab;
         [SerializeField] GameObject menuPrefab;
+        [SerializeField] GameObject inventoryPrefab;
         [SerializeField] Button loadGameButton;
         [SerializeField] Animator transition;
         [SerializeField] ScriptableRendererFeature glitch;
@@ -99,7 +100,7 @@ namespace SH.Managers
             // Tworzenie gracza na pierwsz� scen�, kasowanie dotychczasowego zapisu oraz zakrywanie sceny
             transition.SetTrigger("CoverTheScreen");
             soundManager.ChangeBackgroundMusic(backgroundSound);
-
+            Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity);
             GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
             if (GameObject.FindGameObjectWithTag("InGameMenu") == null)
                 Instantiate(menuPrefab, Vector3.zero, Quaternion.identity);

@@ -170,6 +170,7 @@ MonoBehaviour:
   glitchedMenu: {fileID: 1642805136}
   playerPrefab: {fileID: 2199336845035895759, guid: 45ed55c1c4c3cba42a9c9728a71ee657, type: 3}
   menuPrefab: {fileID: 5466734632548632754, guid: d8755a02cab966c48a53edef739f6ce5, type: 3}
+  inventoryPrefab: {fileID: 7491159434314731689, guid: a9754de665e5f5f4db29162aab0519e3, type: 3}
   loadGameButton: {fileID: 685673604}
   transition: {fileID: 1041012177}
   glitch: {fileID: 5373379468579730183, guid: 0251e359ad570a040a871a2148a72aae, type: 2}
