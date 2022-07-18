@@ -8,55 +8,104 @@ namespace SH.Platforms
     public class MovableObject : MonoBehaviour
     {
         [SerializeField]
-        AudioClip optionalWalkingClip;
+        GameObject maxLeftPosition;
+        [SerializeField]
+        GameObject maxRightPosition;
+        [SerializeField]
+        public AudioSource audioSource;
 
         GameObject player;
         NewInput input;
         bool playerInRange = false;
-        public AudioClip oldWalkingClip;
+        bool objectInMove = false;
 
         private void Awake()
         {
             input = new NewInput();
+
+            audioSource.Play();
+            audioSource.Pause();
             input.Enable();
         }
 
         private void Update()
         {
-            // Pod³¹czanie obiektu do gracza pod warunkiem bycia w zasiêgu
+            // Pochwycenie i puszczenie krzes³a
+            if (input.Actions.Discard.triggered && objectInMove)
+            {
+                UnAttachFromPlayer();
+            }
+            else if (input.Actions.Discard.triggered)
+            {
+                AttachToPlayer();
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            // Sprawdzanie, czy gracz znajduje siê w zasiêgu i przypisywanie zmiennych
             if (playerInRange && player != null)
             {
-                if (input.Actions.Discard.triggered && gameObject.transform.GetChild(0).GetComponent<ChildDetector>().playerStanding == false && player.GetComponent<Character.CharacterController>().isGrounded)
+                float horizontal = input.Movement.Horizontal.ReadValue<float>();
+
+                // Poruszanie krzes³a
+                if (objectInMove && horizontal != 0)
                 {
-                    float leftX = gameObject.transform.GetChild(1).transform.position.x;
-                    float rightX = gameObject.transform.GetChild(2).transform.position.x;
-
-                    float leftDistance = Math.Abs((leftX - player.transform.position.x));
-                    float rightDistance = Math.Abs((rightX - player.transform.position.x));
-
-                    if (leftDistance < rightDistance)
+                    if (horizontal > 0 && gameObject.transform.position.x < maxRightPosition.transform.position.x)
                     {
-                        player.transform.position = new Vector3(leftX, player.transform.position.y, player.transform.position.z);
-                        player.GetComponent<Character.CharacterController>().cantMoveLeft = true;
+                        gameObject.transform.position += new Vector3(player.GetComponent<Character.CharacterController>().walkingSpeed * horizontal, 0, 0);
                     }
-                    else
+                    else if (horizontal < 0 && gameObject.transform.position.x > maxLeftPosition.transform.position.x)
                     {
-                        player.transform.position = new Vector3(rightX, player.transform.position.y, player.transform.position.z);
-                        player.GetComponent<Character.CharacterController>().cantMoveRight = true;
+                        gameObject.transform.position += new Vector3(player.GetComponent<Character.CharacterController>().walkingSpeed * horizontal, 0, 0);
                     }
+                }
 
-                    // Opcjonalna zmiana odg³osów poruszania siê oraz zapisanie starego klipu
-                    if (optionalWalkingClip != null)
-                    {
-                        oldWalkingClip = player.GetComponent<AudioSource>().clip;
-
-                        player.GetComponent<AudioSource>().clip = optionalWalkingClip;
-                        player.GetComponent<AudioSource>().Play();
-                    }
-
-                    player.GetComponent<Character.CharacterController>().AttachObject(gameObject);
+                // Sprawdzanie czy krzes³o siê porusza i uruchamianie dŸwiêków szurania
+                if (horizontal != 0 && objectInMove)
+                {
+                    audioSource.UnPause();
+                }
+                else
+                {
+                    audioSource.Pause();
                 }
             }
+        }
+
+        //Metoda wywo³ywana przy podniesieniu przez gracza krzes³a, obs³uguje wszystkie jednorazowe efekty
+        public void AttachToPlayer()
+        {
+            player.GetComponent<Character.CharacterController>().walkingSpeed = 0.025f;
+            player.GetComponent<Character.CharacterController>().holdingObject = true;
+            player.GetComponent<AudioSource>().Stop();
+
+            objectInMove = true;
+            float leftX = gameObject.transform.GetChild(1).transform.position.x;
+            float rightX = gameObject.transform.GetChild(2).transform.position.x;
+
+            float leftDistance = Math.Abs((leftX - player.transform.position.x));
+            float rightDistance = Math.Abs((rightX - player.transform.position.x));
+
+            if (leftDistance < rightDistance)
+            {
+                player.transform.position = new Vector3(leftX, player.transform.position.y, player.transform.position.z);
+            }
+            else
+            {
+                player.transform.position = new Vector3(rightX, player.transform.position.y, player.transform.position.z);
+            }
+        }
+
+        //Metoda wywo³ywana przy upuszczeniu przez gracza krzes³a, obs³uguje wszystkie jednorazowe efekty
+        public void UnAttachFromPlayer()
+        {
+            objectInMove = false;
+
+            gameObject.GetComponent<AudioSource>().Pause();
+            player.GetComponent<Character.CharacterController>().walkingSpeed = 0.05f;
+            player.GetComponent<Character.CharacterController>().holdingObject = false;
+            player.GetComponent<AudioSource>().Play();
         }
 
         // Decydowanie czy gracz jest w zasiêgu
@@ -74,6 +123,7 @@ namespace SH.Platforms
             if (collision.CompareTag("Player"))
             {
                 playerInRange = false;
+                UnAttachFromPlayer();
             }
         }
     }

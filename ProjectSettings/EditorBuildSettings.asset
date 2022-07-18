@@ -5,19 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menus/MainMenu.unity
     guid: 78691e92adf9145479f56c48e047704f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menus/MainOptions.unity
     guid: e388b9877629cea4db6032bf230d6569
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Chapter1/Puzzle.unity
     guid: 8865cef76db310647b43c4e2b0ac7596
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Chapter1/Part1.unity
     guid: 50a263644854da141a8a93276fbef506
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Chapter1/Part2.unity
     guid: 6cc2ab7b56ac2ef4baabe9bfec18bcec
   - enabled: 1
@@ -29,16 +29,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chapter1/Boss/Boss3.unity
     guid: 61c21b79709a73743be2dd02e63a9124
-  - enabled: 0
+  - enabled: 1
     path: "Assets/Scenes/Chapter1/Stodo\u0142a.unity"
     guid: edeba1f1c57af8046954702bfe485b7b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Chapter1/Ojciec.unity
     guid: 2013ae624b0b55043a0142d2d99e4180
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Chapter1/Misiowy.unity
     guid: f584ce9ffdc76504da15dbd4160fca34
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 8cb78c3430379e04686089d4ecc4490c
   m_configObjects:
