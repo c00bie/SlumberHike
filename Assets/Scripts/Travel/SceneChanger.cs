@@ -98,8 +98,6 @@ namespace SH.Travel
 
                 TeleportPlayer.Teleporting = false;
 
-                Data.SaveGame.SavePlayer(player, nextThisScene, cameraPosition);
-
                 // Sprawdzenie i opcjonalnie pozbycie siê podrêcznego menu
                 if (Managers.InGameMenuManager.toDelete && GameObject.FindGameObjectWithTag("InGameMenu") != null)
                 {

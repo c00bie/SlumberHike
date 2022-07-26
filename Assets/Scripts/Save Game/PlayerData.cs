@@ -12,13 +12,18 @@ namespace SH.Data
     public class PlayerData
     {
         public int levelId;
+        public string backGroundClipName;
+        public string walkingSoundClipName;
         public float[] position;
         public float[] cameraPosition;
         public Dictionary<string, bool> checkpoints;
 
-        public PlayerData(GameObject player, Scene currentScene, Vector3 currentCameraPosition)
+        public PlayerData(GameObject player, Scene currentScene, Vector3 currentCameraPosition, AudioSource backgroundAudioSource)
         {
             levelId = currentScene.buildIndex;
+
+            backGroundClipName = backgroundAudioSource.clip.name;
+            walkingSoundClipName = player.GetComponent<AudioSource>().clip.name;
 
             position = new float[3];
             cameraPosition = new float[3];

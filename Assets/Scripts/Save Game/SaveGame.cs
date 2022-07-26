@@ -5,10 +5,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//DO - Data operations
 namespace SH.Data
 {
-    //Class responsible for saving and loading game
+    // Class responsible for saving and loading game
     public static class SaveGame
     {
         public static void SavePlayer(GameObject player, Scene scene, Vector3 cameraPosition)
@@ -16,8 +15,9 @@ namespace SH.Data
             BinaryFormatter formatter = new BinaryFormatter();
             string path = Application.persistentDataPath + "/save.wth";
             FileStream stream = new FileStream(path, FileMode.Create);
+            AudioSource audioSource = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<AudioSource>();
 
-            PlayerData data = new PlayerData(player, scene, cameraPosition);
+            PlayerData data = new PlayerData(player, scene, cameraPosition, audioSource);
 
             formatter.Serialize(stream, data);
 

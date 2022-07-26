@@ -174,8 +174,8 @@ MonoBehaviour:
   transition: {fileID: 1041012177}
   glitch: {fileID: 5373379468579730183, guid: 0251e359ad570a040a871a2148a72aae, type: 2}
   renderData: {fileID: 11400000, guid: 0251e359ad570a040a871a2148a72aae, type: 2}
-  woodWalkingSound: {fileID: 8300000, guid: 589c0f4ba17428347a9bb3554fa8aeeb, type: 3}
-  backgroundSound: {fileID: 8300000, guid: 134b8235be4d5934196f80536c109b7c, type: 3}
+  woodWalkingSound: {fileID: 8300000, guid: a4365627ce8b8ab48bb5a99859e85dc6, type: 3}
+  backgroundSound: {fileID: 8300000, guid: a1efa81819e8de2449e6f9e33b21d0f7, type: 3}
 --- !u!1 &19740873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,7 +1486,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c333f2566361fc04bbf92d8c99fa1d96, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 507598ffccae47d4396fd6b514f208be, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

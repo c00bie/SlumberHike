@@ -292,6 +292,7 @@ MonoBehaviour:
   walkingSpeed: 0.05
   transition: {fileID: 0}
   extraAudioSource: {fileID: 1901468851184327831}
+  holdingObject: 0
   cantMoveRight: 0
   cantMoveLeft: 0
   isGrounded: 0
@@ -306,7 +307,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 64d28b385c52c7e4eb59272e09f1a7ba, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
