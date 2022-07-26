@@ -16,6 +16,7 @@ namespace SH.Managers
         public static bool gameIsPaused = false;
         public static bool toDelete = false;
         public static bool alreadyExisting = false;
+        public static bool overlayVisible = false;
         public GameObject pauseMenu;
         GameObject player;
         NewInput input;
@@ -66,10 +67,11 @@ namespace SH.Managers
         public void Resume()
         {
             pauseMenu.SetActive(false);
-            CursorChanger.CursorVisible = false;
             Time.timeScale = 1;
             gameIsPaused = false;
-            if (!Dialogs.DialogParser.IsRunning)
+            if (!overlayVisible)
+                CursorChanger.CursorVisible = false;
+            if (!(Dialogs.DialogParser.IsRunning || overlayVisible))
                 player?.GetComponent<Character.CharacterController>()?.ResumeMovement();
         }
 

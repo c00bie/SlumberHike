@@ -240,6 +240,15 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c54c569-4a0d-4cc8-9010-7c643691e80a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -273,6 +282,17 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""OpenGameMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8d27282-e95a-445b-a82e-cd2547522027"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -437,6 +457,7 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
         m_Actions_Grab = m_Actions.FindAction("Grab", throwIfNotFound: true);
         m_Actions_Discard = m_Actions.FindAction("Discard", throwIfNotFound: true);
         m_Actions_OpenGameMenu = m_Actions.FindAction("OpenGameMenu", throwIfNotFound: true);
+        m_Actions_OpenInventory = m_Actions.FindAction("OpenInventory", throwIfNotFound: true);
         // Dialogs
         m_Dialogs = asset.FindActionMap("Dialogs", throwIfNotFound: true);
         m_Dialogs_Select = m_Dialogs.FindAction("Select", throwIfNotFound: true);
@@ -561,6 +582,7 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Grab;
     private readonly InputAction m_Actions_Discard;
     private readonly InputAction m_Actions_OpenGameMenu;
+    private readonly InputAction m_Actions_OpenInventory;
     public struct ActionsActions
     {
         private @NewInput m_Wrapper;
@@ -568,6 +590,7 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
         public InputAction @Grab => m_Wrapper.m_Actions_Grab;
         public InputAction @Discard => m_Wrapper.m_Actions_Discard;
         public InputAction @OpenGameMenu => m_Wrapper.m_Actions_OpenGameMenu;
+        public InputAction @OpenInventory => m_Wrapper.m_Actions_OpenInventory;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -586,6 +609,9 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                 @OpenGameMenu.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnOpenGameMenu;
                 @OpenGameMenu.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnOpenGameMenu;
                 @OpenGameMenu.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnOpenGameMenu;
+                @OpenInventory.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnOpenInventory;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -599,6 +625,9 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
                 @OpenGameMenu.started += instance.OnOpenGameMenu;
                 @OpenGameMenu.performed += instance.OnOpenGameMenu;
                 @OpenGameMenu.canceled += instance.OnOpenGameMenu;
+                @OpenInventory.started += instance.OnOpenInventory;
+                @OpenInventory.performed += instance.OnOpenInventory;
+                @OpenInventory.canceled += instance.OnOpenInventory;
             }
         }
     }
@@ -664,6 +693,7 @@ public partial class @NewInput : IInputActionCollection2, IDisposable
         void OnGrab(InputAction.CallbackContext context);
         void OnDiscard(InputAction.CallbackContext context);
         void OnOpenGameMenu(InputAction.CallbackContext context);
+        void OnOpenInventory(InputAction.CallbackContext context);
     }
     public interface IDialogsActions
     {

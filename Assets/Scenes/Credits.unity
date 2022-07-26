@@ -203,6 +203,8 @@ MonoBehaviour:
   debounce: 0.5
   playOnce: 0
   playOn: 2
+  glowWhenNear: 0
+  glowTarget: {fileID: 0}
 --- !u!58 &213505012
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -489,7 +491,8 @@ MonoBehaviour:
   m_text: "<b><size=200%>SLUMBER HIKE<size=100%></b>\n\n<b>GAME DESIGNERZY</b>\nAleksandra
     Maliszewska\nWiktor Ba\u0142dyga\n\n<b>PROGRAMI\u015ACI</b>\nJakub Ka\u0144du\u0142a\nPiotr
     Kluczy\u0144ski\nWojciech Nowak\n\n<b>GRAFICY</b>\nJulia Madej\nMateusz Le\u015Bniak\nMicha\u0142
-    Hejda\n\n<b>LIDER ZESPO\u0141U</b>\nWiktor Ba\u0142dyga"
+    Hejda\n\n<b>MUZYKA</b>\nAleksandra Maliszewska\nDaniel Maliszewski\n\n<b>LIDER
+    ZESPO\u0141U</b>\nWiktor Ba\u0142dyga"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 483dffd083562234b9b0b8ff91bd5aea, type: 2}
   m_sharedMaterial: {fileID: 1256066186775016681, guid: 483dffd083562234b9b0b8ff91bd5aea, type: 2}
@@ -767,6 +770,8 @@ MonoBehaviour:
   debounce: 0.5
   playOnce: 1
   playOn: 0
+  glowWhenNear: 0
+  glowTarget: {fileID: 0}
 --- !u!61 &1576065229
 BoxCollider2D:
   m_ObjectHideFlags: 0

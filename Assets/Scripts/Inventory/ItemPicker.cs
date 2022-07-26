@@ -27,12 +27,21 @@ namespace SH.Inventory
         private float last = 0;
         private int index = 0;
         private Canvas canvas;
+        private bool isSelecting = false;
 
         void Awake()
         {
-            characterController = GameObject.FindGameObjectWithTag("Player").GetComponent<Character.CharacterController>();
+            UnityEngine.SceneManagement.SceneManager.activeSceneChanged += (s, e) =>
+            {
+                if (e.buildIndex == 0)
+                    Destroy(gameObject);
+            };
+
+            DontDestroyOnLoad(gameObject);
             input = new NewInput();
+            input.Actions.OpenInventory.Enable();
             canvas = GetComponent<Canvas>();
+            characterController = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Character.CharacterController>();
         }
 
         void Update()
@@ -48,15 +57,31 @@ namespace SH.Inventory
                 }
                 if (input.Dialogs.Accept.IsPressed())
                 {
-                    SelectedItem = Inventory.GetItem(index);
+                    if (isSelecting)
+                        SelectedItem = Inventory.GetItem(index);
                     return;
                 }
                 if (input.Dialogs.Exit.IsPressed())
                 {
-                    Exit = true;
+                    if (isSelecting)
+                        Exit = true;
+                    else
+                        Hide();
                     return;
                 }
                 last = Time.time;
+            }
+            if (input.Actions.OpenInventory.WasPerformedThisFrame())
+            {
+                if (IsOpen)
+                {
+                    if (isSelecting)
+                        Exit = true;
+                    else
+                        Hide();
+                }
+                else if (!(Dialogs.DialogParser.IsRunning || Managers.InGameMenuManager.gameIsPaused))
+                    Show();
             }
         }
 
@@ -98,25 +123,39 @@ namespace SH.Inventory
             title.text = curr.name;
         }
 
-        public IEnumerator SelectItem()
+        public void Show()
         {
+            if (characterController == null)
+                characterController = GameObject.FindGameObjectWithTag("Player").GetComponent<Character.CharacterController>();
             index = 0;
             SelectedItem = null;
             Exit = false;
             ShowItems();
-            characterController.PauseMovement();
             input.Movement.Horizontal.Enable();
             input.Dialogs.Accept.Enable();
             input.Dialogs.Exit.Enable();
             canvas.enabled = true;
             IsOpen = true;
-            yield return new WaitWhile(() => SelectedItem == null && !Exit);
+            characterController?.PauseMovement();
+        }
+
+        public void Hide()
+        {
             input.Movement.Horizontal.Disable();
             input.Dialogs.Accept.Disable();
             input.Dialogs.Exit.Disable();
             characterController.ResumeMovement();
             IsOpen = false;
             canvas.enabled = false;
+        }
+
+        public IEnumerator SelectItem()
+        {
+            isSelecting = true;
+            Show();
+            yield return new WaitWhile(() => SelectedItem == null && !Exit);
+            Hide();
+            isSelecting = false;
         }
     }
 }

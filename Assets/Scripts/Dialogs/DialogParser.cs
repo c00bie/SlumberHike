@@ -170,7 +170,8 @@ namespace SH.Dialogs
                             }
                             if (s.LineBreak.Chain(d.LineBreak, defaultLineBreak))
                                 output.text += "\n";
-                            yield return new WaitForSeconds((float)s.SentenceDelay.Chain(d.SentenceDelay, defaultSentenceDelay));
+                            yield return new WaitUntil(() => input.Dialogs.Accept.triggered);
+                            //yield return new WaitForSeconds((float)s.SentenceDelay.Chain(d.SentenceDelay, defaultSentenceDelay));
                             skip:
                             if (!s.Goto.IsNullOrEmpty())
                             {
