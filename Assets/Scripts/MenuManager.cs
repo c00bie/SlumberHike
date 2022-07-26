@@ -75,7 +75,6 @@ namespace SH.Managers
         {
             // Tworzenie gracza na pierwsz� scen�, kasowanie dotychczasowego zapisu oraz zakrywanie sceny
             transition.SetTrigger("CoverTheScreen");
-            soundManager.ChangeBackgroundMusic(backgroundSound);
             Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity);
             GameObject player = Instantiate(playerPrefab, new Vector3(0, -2.49f, 0), Quaternion.identity);
             if (GameObject.FindGameObjectWithTag("InGameMenu") == null)
