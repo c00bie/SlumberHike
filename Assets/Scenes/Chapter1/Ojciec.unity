@@ -247,7 +247,9 @@ MonoBehaviour:
   autoplay: 1
   debounce: 0.5
   playOnce: 1
-  playOnAwake: 0
+  playOn: 3
+  glowWhenNear: 0
+  glowTarget: {fileID: 0}
 --- !u!58 &36383784
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1012,6 +1014,106 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &457988622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 457988623}
+  - component: {fileID: 457988626}
+  - component: {fileID: 457988625}
+  - component: {fileID: 457988624}
+  m_Layer: 0
+  m_Name: SavePiont
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &457988623
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457988622}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.689995, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 807131543}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &457988624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457988622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 359860e8f09f0a5429f07f769db19599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &457988625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457988622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb277df7dedce447ac983d82ff82bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogParser:
+    defaultCharDelay: 0.10000000149011612
+    defaultSentenceDelay: 0.5
+    defaultPauseDelay: 1
+    defaultLineBreak: 1
+    dialogs: []
+    outputCanvas: {fileID: 0}
+  interactionsBeforeDialogs: []
+  interactionsAfterDialogs:
+  - {fileID: 457988624}
+  autoplay: 1
+  debounce: 0.5
+  playOnce: 1
+  playOn: 3
+  glowWhenNear: 0
+  glowTarget: {fileID: 0}
+--- !u!61 &457988626
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457988622}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 10}
+  m_EdgeRadius: 0
 --- !u!1 &564792284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,7 +1580,9 @@ MonoBehaviour:
   autoplay: 0
   debounce: 0.5
   playOnce: 0
-  playOnAwake: 0
+  playOn: 3
+  glowWhenNear: 0
+  glowTarget: {fileID: 0}
 --- !u!114 &650907414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1952,6 +2056,7 @@ Transform:
   - {fileID: 1758295533}
   - {fileID: 1565906334}
   - {fileID: 1607024570}
+  - {fileID: 457988623}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2439,7 +2544,9 @@ MonoBehaviour:
   autoplay: 0
   debounce: 0.5
   playOnce: 0
-  playOnAwake: 0
+  playOn: 3
+  glowWhenNear: 0
+  glowTarget: {fileID: 0}
 --- !u!114 &1057804604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3676,7 +3783,9 @@ MonoBehaviour:
   autoplay: 0
   debounce: 0.5
   playOnce: 0
-  playOnAwake: 0
+  playOn: 3
+  glowWhenNear: 0
+  glowTarget: {fileID: 0}
 --- !u!1 &1486202088
 GameObject:
   m_ObjectHideFlags: 0
@@ -3865,7 +3974,9 @@ MonoBehaviour:
   autoplay: 1
   debounce: 0.5
   playOnce: 1
-  playOnAwake: 0
+  playOn: 3
+  glowWhenNear: 0
+  glowTarget: {fileID: 0}
 --- !u!58 &1607024573
 CircleCollider2D:
   m_ObjectHideFlags: 0
